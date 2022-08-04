@@ -1,7 +1,7 @@
 name: sixvalley_delivery_boy
 description: A new Flutter application.
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.0+3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -19,7 +19,7 @@ dependencies:
   google_maps_flutter: ^2.0.1
   geocoding: ^2.0.0
   geolocator: ^8.2.0
-  url_launcher: ^6.0.2
+  url_launcher: ^6.1.4
   url_strategy: ^0.2.0
   flutter_local_notifications: ^9.3.2
   path_provider: ^2.0.2
@@ -35,6 +35,8 @@ dependencies:
   country_code_picker: ^2.0.2
   universal_platform:
   modal_bottom_sheet:
+  validate_ksa_number: ^1.0.0
+  responsive_framework: ^0.2.0
 
 dev_dependencies:
   flutter_test:

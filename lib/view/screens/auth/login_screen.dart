@@ -8,11 +8,13 @@ import 'package:sixvalley_delivery_boy/helper/email_checker.dart';
 import 'package:sixvalley_delivery_boy/utill/color_resources.dart';
 import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
 import 'package:sixvalley_delivery_boy/utill/images.dart';
+import 'package:sixvalley_delivery_boy/utill/phone_utils.dart';
 import 'package:sixvalley_delivery_boy/view/base/code_picker_widget.dart';
 import 'package:sixvalley_delivery_boy/view/base/custom_button.dart';
 import 'package:sixvalley_delivery_boy/view/base/custom_snackbar.dart';
 import 'package:sixvalley_delivery_boy/view/base/custom_text_field.dart';
 import 'package:sixvalley_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
+import 'package:validate_ksa_number/validate_ksa_number.dart';
 
 class LoginScreen extends StatefulWidget {
    // ignore: prefer_const_constructors_in_immutables
@@ -79,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Center(
                       child: Text('login'.tr, style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 24, color: Theme.of(context).hintColor),)),
                   const SizedBox(height: 35),
-                  Text('email_address'.tr, style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).highlightColor),),
+                  Text('phone_number'.tr, style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).highlightColor),),
                   const SizedBox(height: Dimensions.paddingSizeSmall),
                   // CustomTextField(
                   //   hintText: 'demo_gmail'.tr,
@@ -113,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Expanded(
                     child: 
                     CustomTextField(
-                  hintText: 'demo_gmail'.tr,
+                  hintText: 'demo_phone'.tr,
                   
                   focusNode: _emailNode,
                   nextNode: _passwordFocus,
@@ -200,16 +202,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   !authController.isLoading ? CustomButton(
                     btnTxt: 'login'.tr,
                     onTap: () async {
-                      String _email =_countryDialCode.trim()+ _emailController.text.trim();
+                      var ksaNumber = KsaNumber();
+                      String _email =_countryDialCode.trim()+
+                    
+                    PhoneNumberUtils.getPhoneNumberFromInputs( _emailController.text.trim())
+                    ;
                       String _password = _passwordController.text.trim();
                       log(_email);
                       if (_email.isEmpty) {
-                        showCustomSnackBar('enter_email_address'.tr);
+                        showCustomSnackBar('enter_phone_number'.tr);
                       }
                       
-                      // else if (EmailChecker.isNotValid(_email)) {
-                      //   showCustomSnackBar('enter_valid_email'.tr);
-                      // }
+                      else if (!ksaNumber.isValidNumber(_email)) {
+                        showCustomSnackBar('enter_valid_phone'.tr);
+                      }
                       
                       else if (_password.isEmpty) {
                         showCustomSnackBar('enter_password'.tr);
@@ -219,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         authController.login(_email, _password).then((status) async {
                           if (status.isSuccess) {
                             if (authController.isActiveRememberMe) {
-                              authController.saveUserNumberAndPassword(_email, _password);
+                              authController.saveUserNumberAndPassword(_emailController.text.toString().trim(), _password);
                             } else {
                               authController.clearUserEmailAndPassword();
                             }

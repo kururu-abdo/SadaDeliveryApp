@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   Future<void> _loadData(BuildContext context) async {
     await Get.find<OrderController>().getAllOrders(context);
+        await Get.find<LocationController>().checkIfLocationPermissionGranted();
     await Get.find<LocationController>().getUserLocation();
   }
 
