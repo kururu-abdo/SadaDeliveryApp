@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/utill/styles.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/styles.dart';
 
 class ProfileButton extends StatelessWidget {
   final IconData icon;

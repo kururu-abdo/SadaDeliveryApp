@@ -4,15 +4,15 @@ import 'package:connectivity/connectivity.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/controller/auth_controller.dart';
-import 'package:sixvalley_delivery_boy/controller/order_controller.dart';
-import 'package:sixvalley_delivery_boy/controller/splash_controller.dart';
-import 'package:sixvalley_delivery_boy/utill/app_constants.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/utill/images.dart';
-import 'package:sixvalley_delivery_boy/utill/styles.dart';
-import 'package:sixvalley_delivery_boy/view/screens/auth/login_screen.dart';
-import 'package:sixvalley_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
+import 'package:joseeder_delivery_boy/controller/auth_controller.dart';
+import 'package:joseeder_delivery_boy/controller/order_controller.dart';
+import 'package:joseeder_delivery_boy/controller/splash_controller.dart';
+import 'package:joseeder_delivery_boy/utill/app_constants.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/images.dart';
+import 'package:joseeder_delivery_boy/utill/styles.dart';
+import 'package:joseeder_delivery_boy/view/screens/auth/login_screen.dart';
+import 'package:joseeder_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);

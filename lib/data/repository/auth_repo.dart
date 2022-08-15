@@ -3,9 +3,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sixvalley_delivery_boy/data/api/api_client.dart';
-import 'package:sixvalley_delivery_boy/data/model/response/profile_model.dart';
-import 'package:sixvalley_delivery_boy/utill/app_constants.dart';
+import 'package:joseeder_delivery_boy/data/api/api_client.dart';
+import 'package:joseeder_delivery_boy/data/model/response/profile_model.dart';
+import 'package:joseeder_delivery_boy/utill/app_constants.dart';
 
 
 class AuthRepo {

@@ -1,11 +1,11 @@
 //
 // import 'package:get/get.dart';
-// import 'package:sixvalley_delivery_boy/view/screens/auth/login_screen.dart';
-// import 'package:sixvalley_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
-// import 'package:sixvalley_delivery_boy/view/screens/home/home_screen.dart';
-// import 'package:sixvalley_delivery_boy/view/screens/html/html_viewer_screen.dart';
-// import 'package:sixvalley_delivery_boy/view/screens/order/order_details_screen.dart';
-// import 'package:sixvalley_delivery_boy/view/screens/splash/splash_screen.dart';
+// import 'package:joseeder_delivery_boy/view/screens/auth/login_screen.dart';
+// import 'package:joseeder_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
+// import 'package:joseeder_delivery_boy/view/screens/home/home_screen.dart';
+// import 'package:joseeder_delivery_boy/view/screens/html/html_viewer_screen.dart';
+// import 'package:joseeder_delivery_boy/view/screens/order/order_details_screen.dart';
+// import 'package:joseeder_delivery_boy/view/screens/splash/splash_screen.dart';
 //
 // class RouteHelper {
 //   static const String initial = '/';

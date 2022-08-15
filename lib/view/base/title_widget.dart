@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/utill/styles.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/styles.dart';
 
 class TitleWidget extends StatelessWidget {
   final String title;

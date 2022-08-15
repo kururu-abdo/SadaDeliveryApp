@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/controller/language_controller.dart';
-import 'package:sixvalley_delivery_boy/controller/localization_controller.dart';
-import 'package:sixvalley_delivery_boy/data/model/response/language_model.dart';
-import 'package:sixvalley_delivery_boy/utill/app_constants.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/utill/images.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_button.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_snackbar.dart';
-import 'package:sixvalley_delivery_boy/view/screens/auth/login_screen.dart';
+import 'package:joseeder_delivery_boy/controller/language_controller.dart';
+import 'package:joseeder_delivery_boy/controller/localization_controller.dart';
+import 'package:joseeder_delivery_boy/data/model/response/language_model.dart';
+import 'package:joseeder_delivery_boy/utill/app_constants.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/images.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_button.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_snackbar.dart';
+import 'package:joseeder_delivery_boy/view/screens/auth/login_screen.dart';
 
 
 class ChooseLanguageScreen extends StatelessWidget {

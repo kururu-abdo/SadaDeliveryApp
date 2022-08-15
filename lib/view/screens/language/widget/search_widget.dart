@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:sixvalley_delivery_boy/controller/language_controller.dart';
-import 'package:sixvalley_delivery_boy/utill/color_resources.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/utill/images.dart';
+import 'package:joseeder_delivery_boy/controller/language_controller.dart';
+import 'package:joseeder_delivery_boy/utill/color_resources.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/images.dart';
 
 class SearchWidget extends StatefulWidget {
 

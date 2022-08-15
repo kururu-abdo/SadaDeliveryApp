@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/data/api/api_checker.dart';
-import 'package:sixvalley_delivery_boy/data/model/body/track_body.dart';
-import 'package:sixvalley_delivery_boy/data/model/response/response_model.dart';
-import 'package:sixvalley_delivery_boy/data/repository/tracker_repo.dart';
+import 'package:joseeder_delivery_boy/data/api/api_checker.dart';
+import 'package:joseeder_delivery_boy/data/model/body/track_body.dart';
+import 'package:joseeder_delivery_boy/data/model/response/response_model.dart';
+import 'package:joseeder_delivery_boy/data/repository/tracker_repo.dart';
 
 
 class TrackerController extends GetxController implements GetxService {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/controller/localization_controller.dart';
-import 'package:sixvalley_delivery_boy/controller/location_controller.dart';
-import 'package:sixvalley_delivery_boy/data/model/response/order_model.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/utill/images.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_button.dart';
-import 'package:sixvalley_delivery_boy/view/screens/order/order_details_screen.dart';
+import 'package:joseeder_delivery_boy/controller/localization_controller.dart';
+import 'package:joseeder_delivery_boy/controller/location_controller.dart';
+import 'package:joseeder_delivery_boy/data/model/response/order_model.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/images.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_button.dart';
+import 'package:joseeder_delivery_boy/view/screens/order/order_details_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OrderWidget extends StatelessWidget {

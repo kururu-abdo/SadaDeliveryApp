@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:sixvalley_delivery_boy/controller/splash_controller.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_app_bar.dart';
+import 'package:joseeder_delivery_boy/controller/splash_controller.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 

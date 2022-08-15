@@ -69,7 +69,7 @@
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
        <service
-           android:name="com.sixamtech.sixvalley_delivery_boy.BackgroundService"
+           android:name="com.sixamtech.joseeder_delivery_boy.BackgroundService"
            android:enabled="true"
            android:exported="false" />
         <meta-data

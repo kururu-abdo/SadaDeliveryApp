@@ -2,12 +2,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/controller/order_controller.dart';
-import 'package:sixvalley_delivery_boy/helper/notification_helper.dart';
-import 'package:sixvalley_delivery_boy/utill/color_resources.dart';
-import 'package:sixvalley_delivery_boy/view/screens/home/home_screen.dart';
-import 'package:sixvalley_delivery_boy/view/screens/order/order_history_screen.dart';
-import 'package:sixvalley_delivery_boy/view/screens/profile/profile_screen.dart';
+import 'package:joseeder_delivery_boy/controller/order_controller.dart';
+import 'package:joseeder_delivery_boy/helper/notification_helper.dart';
+import 'package:joseeder_delivery_boy/utill/color_resources.dart';
+import 'package:joseeder_delivery_boy/view/screens/home/home_screen.dart';
+import 'package:joseeder_delivery_boy/view/screens/order/order_history_screen.dart';
+import 'package:joseeder_delivery_boy/view/screens/profile/profile_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int pageIndex;

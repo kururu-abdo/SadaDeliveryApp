@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sixvalley_delivery_boy/data/api/api_client.dart';
-import 'package:sixvalley_delivery_boy/utill/app_constants.dart';
+import 'package:joseeder_delivery_boy/data/api/api_client.dart';
+import 'package:joseeder_delivery_boy/utill/app_constants.dart';
 
 class SplashRepo {
   ApiClient apiClient;

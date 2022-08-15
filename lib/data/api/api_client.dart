@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart' as foundation;
-import 'package:sixvalley_delivery_boy/data/model/response/error_response.dart';
-import 'package:sixvalley_delivery_boy/utill/app_constants.dart';
+import 'package:joseeder_delivery_boy/data/model/response/error_response.dart';
+import 'package:joseeder_delivery_boy/utill/app_constants.dart';
 
 class ApiClient extends GetConnect implements GetxService {
   final String appBaseUrl;

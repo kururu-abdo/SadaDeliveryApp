@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sixvalley_delivery_boy/controller/order_controller.dart';
-import 'package:sixvalley_delivery_boy/controller/tracker_controller.dart';
-import 'package:sixvalley_delivery_boy/data/model/response/order_model.dart';
+import 'package:joseeder_delivery_boy/controller/order_controller.dart';
+import 'package:joseeder_delivery_boy/controller/tracker_controller.dart';
+import 'package:joseeder_delivery_boy/data/model/response/order_model.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/helper/price_converter.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/utill/images.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_button.dart';
+import 'package:joseeder_delivery_boy/helper/price_converter.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/images.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_button.dart';
 
 import '../order_details_screen.dart';
 import '../order_place_screen.dart';

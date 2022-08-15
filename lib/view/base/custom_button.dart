@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sixvalley_delivery_boy/utill/color_resources.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/color_resources.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
   final Function onTap;

@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/data/api/api_checker.dart';
-import 'package:sixvalley_delivery_boy/data/model/response/userinfo_model.dart';
-import 'package:sixvalley_delivery_boy/data/repository/profile_repo.dart';
+import 'package:joseeder_delivery_boy/data/api/api_checker.dart';
+import 'package:joseeder_delivery_boy/data/model/response/userinfo_model.dart';
+import 'package:joseeder_delivery_boy/data/repository/profile_repo.dart';
 
 class ProfileController extends GetxController implements GetxService {
   final ProfileRepo profileRepo;

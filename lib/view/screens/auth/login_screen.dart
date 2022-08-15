@@ -3,17 +3,17 @@ import 'dart:developer';
 import 'package:country_code_picker/country_code.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/controller/auth_controller.dart';
-import 'package:sixvalley_delivery_boy/helper/email_checker.dart';
-import 'package:sixvalley_delivery_boy/utill/color_resources.dart';
-import 'package:sixvalley_delivery_boy/utill/dimensions.dart';
-import 'package:sixvalley_delivery_boy/utill/images.dart';
-import 'package:sixvalley_delivery_boy/utill/phone_utils.dart';
-import 'package:sixvalley_delivery_boy/view/base/code_picker_widget.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_button.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_snackbar.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_text_field.dart';
-import 'package:sixvalley_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
+import 'package:joseeder_delivery_boy/controller/auth_controller.dart';
+import 'package:joseeder_delivery_boy/helper/email_checker.dart';
+import 'package:joseeder_delivery_boy/utill/color_resources.dart';
+import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:joseeder_delivery_boy/utill/images.dart';
+import 'package:joseeder_delivery_boy/utill/phone_utils.dart';
+import 'package:joseeder_delivery_boy/view/base/code_picker_widget.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_button.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_snackbar.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_text_field.dart';
+import 'package:joseeder_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
 import 'package:validate_ksa_number/validate_ksa_number.dart';
 
 class LoginScreen extends StatefulWidget {

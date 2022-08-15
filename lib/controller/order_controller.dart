@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixvalley_delivery_boy/data/api/api_checker.dart';
-import 'package:sixvalley_delivery_boy/data/model/response/order_details.dart';
-import 'package:sixvalley_delivery_boy/data/model/response/order_model.dart';
-import 'package:sixvalley_delivery_boy/data/repository/order_repo.dart';
-import 'package:sixvalley_delivery_boy/view/base/custom_snackbar.dart';
+import 'package:joseeder_delivery_boy/data/api/api_checker.dart';
+import 'package:joseeder_delivery_boy/data/model/response/order_details.dart';
+import 'package:joseeder_delivery_boy/data/model/response/order_model.dart';
+import 'package:joseeder_delivery_boy/data/repository/order_repo.dart';
+import 'package:joseeder_delivery_boy/view/base/custom_snackbar.dart';
 
 class OrderController extends GetxController implements GetxService {
   final OrderRepo orderRepo;
