@@ -88,7 +88,11 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Padding(
           padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Image.asset(Images.splashLogo, width: 150),
+            Image.asset(Images.splashLogo,
+            height: 200,
+            
+            
+             width: 200),
             const SizedBox(height: Dimensions.paddingSizeDefault),
         //    Text(AppConstants.appName, style: rubikRegular.copyWith(fontSize: 25,color: Colors.white), textAlign: TextAlign.center),
 

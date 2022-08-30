@@ -103,12 +103,33 @@ class OrderWidget extends StatelessWidget {
                     child:orderModel.shippingAddress != null? CustomButton(
                         btnTxt: 'direction'.tr,
                         onTap: () {
-                          MapUtils.openMap(
+
+
+
+                          if (GetPlatform.isIOS) {
+
+
+
+
+
+                               MapUtils.openAppleMap(
+                                // 18.518496,73.879259,18.519513,73.868315
+                              double.parse(orderModel.shippingAddress.latitude) ?? 23.8103,
+                              double.parse(orderModel.shippingAddress.longitude) ?? 90.4125,
+                              locationController.currentLocation.latitude ?? 23.9103,
+                              locationController.currentLocation.longitude ?? 90.8125
+                              
+                              );
+
+                          }else {
+                               MapUtils.openMap(
                               double.parse(orderModel.shippingAddress.latitude) ?? 23.8103,
                               double.parse(orderModel.shippingAddress.longitude) ?? 90.4125,
                               locationController.currentLocation.latitude ?? 23.9103,
                               locationController.currentLocation.longitude ?? 90.8125);
 
+                         }
+                       
                         }):const SizedBox()),
               )
             ],
@@ -131,4 +152,16 @@ class MapUtils {
       throw 'Could not open the map.';
     }
   }
+
+static Future<void> openAppleMap(double destinationLatitude, double destinationLongitude, double userLatitude, double userLongitude)async{
+  String url = 'https://maps.apple.com/?saddr=$userLatitude,$userLongitude&daddr=$destinationLatitude,$destinationLongitude'; // I used 0,0 as latitude and longitude
+if (await canLaunch(url)) {
+  launch(url);
+} else {
+     throw 'Could not open the map.';
+}
+}
+
+
+
 }
