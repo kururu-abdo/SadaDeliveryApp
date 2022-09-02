@@ -1,7 +1,7 @@
 name: joseeder_delivery_boy
 description: A new Flutter application.
 publish_to: 'none'
-version: 1.0.0+3
+version: 1.0.0+4
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
