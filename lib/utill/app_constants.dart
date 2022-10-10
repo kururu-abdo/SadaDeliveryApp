@@ -4,8 +4,8 @@ import 'images.dart';
 
 class AppConstants {
 
-  static const String appName = 'Joseeder Delivery';
-  static const String baseUri = 'https://joseeder.com';
+  static const String appName = 'Sada Delivery';
+  static const String baseUri = 'https://echoemaar.com';
   static const String profileUri = '/api/v2/delivery-man/info';
   static const String configUri = '/api/v1/config';
   static const String loginUri = '/api/v2/delivery-man/auth/login';

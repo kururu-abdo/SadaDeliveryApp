@@ -6,15 +6,15 @@ import 'package:joseeder_delivery_boy/utill/dimensions.dart';
 ThemeData light = ThemeData(
   fontFamily: 'Cairo',
   brightness: Brightness.light,
-  scaffoldBackgroundColor: const Color(0xFFa3a25f),
+  scaffoldBackgroundColor: const Color(0xFFfaf274),
   hintColor: Colors.grey,
-  primaryColorLight: const Color(0xFFa3a25f),
-  canvasColor: const Color(0xFFa3a25f),
+  primaryColorLight: const Color(0xFFfaf274),
+  canvasColor: const Color(0xFFfaf274),
 
   shadowColor: const Color(0xfffcf9f4),
   backgroundColor: const Color(0xffF4F7FC), // for background color
   cardColor: const Color(0xFFFFFFFF), // for surface color
- primaryColor: Color(0xFFa3a25f),
+ primaryColor: Color(0xFFfaf274),
    highlightColor: const Color(0xFF1F1F1F), // for on background text
   focusColor: const Color(0xFF1F1F1F),  // for On Surface text color
   dividerColor: const Color(0xFF2A2A2A), // for Any line
