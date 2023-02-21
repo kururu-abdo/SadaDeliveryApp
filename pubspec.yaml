@@ -1,4 +1,5 @@
-name: joseeder_delivery_boy
+name: eamar_delivery
+# eamar_delivery
 description: A new Flutter application.
 publish_to: 'none'
 version: 1.0.0+4
@@ -26,7 +27,7 @@ dependencies:
   vibration: ^1.7.4-nullsafety.0
   shimmer: ^2.0.0-nullsafety.0
   flutter_widget_from_html_core: ^0.8.5+1
-  image_picker: ^0.8.0+4
+  image_picker: ^0.8.6
   intl: ^0.17.0
   connectivity: ^3.0.6
   firebase_core: ^1.10.0
@@ -37,6 +38,7 @@ dependencies:
   modal_bottom_sheet:
   validate_ksa_number: ^1.0.0
   responsive_framework: ^0.2.0
+  file: ^6.1.4
 
 dev_dependencies:
   flutter_test:

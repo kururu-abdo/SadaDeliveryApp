@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:joseeder_delivery_boy/controller/splash_controller.dart';
+import 'package:eamar_delivery/controller/splash_controller.dart';
 
 class PriceConverter {
   static String convertPrice(double price, {double discount, String discountType, int asFixed = 2}) {

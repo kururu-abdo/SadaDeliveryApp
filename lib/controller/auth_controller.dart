@@ -2,12 +2,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:joseeder_delivery_boy/data/api/api_checker.dart';
-import 'package:joseeder_delivery_boy/data/model/response/profile_model.dart';
-import 'package:joseeder_delivery_boy/data/model/response/response_model.dart';
-import 'package:joseeder_delivery_boy/data/model/response/userinfo_model.dart';
-import 'package:joseeder_delivery_boy/data/repository/auth_repo.dart';
-import 'package:joseeder_delivery_boy/view/base/custom_snackbar.dart';
+import 'package:eamar_delivery/data/api/api_checker.dart';
+import 'package:eamar_delivery/data/model/response/profile_model.dart';
+import 'package:eamar_delivery/data/model/response/response_model.dart';
+import 'package:eamar_delivery/data/model/response/userinfo_model.dart';
+import 'package:eamar_delivery/data/repository/auth_repo.dart';
+import 'package:eamar_delivery/view/base/custom_snackbar.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;

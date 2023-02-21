@@ -2,8 +2,8 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:shimmer/shimmer.dart';
-// import 'package:joseeder_delivery_boy/utill/dimensions.dart';
-// import 'package:joseeder_delivery_boy/utill/images.dart';
+// import 'package:eamar_delivery/utill/dimensions.dart';
+// import 'package:eamar_delivery/utill/images.dart';
 //
 //
 // class OrderShimmer extends StatelessWidget {

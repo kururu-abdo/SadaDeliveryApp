@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:joseeder_delivery_boy/controller/auth_controller.dart';
-import 'package:joseeder_delivery_boy/controller/location_controller.dart';
-import 'package:joseeder_delivery_boy/controller/order_controller.dart';
-import 'package:joseeder_delivery_boy/controller/splash_controller.dart';
-import 'package:joseeder_delivery_boy/utill/color_resources.dart';
-import 'package:joseeder_delivery_boy/utill/dimensions.dart';
-import 'package:joseeder_delivery_boy/utill/images.dart';
-import 'package:joseeder_delivery_boy/view/screens/home/widget/order_widget.dart';
-import 'package:joseeder_delivery_boy/view/screens/language/choose_language_screen.dart';
+import 'package:eamar_delivery/controller/auth_controller.dart';
+import 'package:eamar_delivery/controller/location_controller.dart';
+import 'package:eamar_delivery/controller/order_controller.dart';
+import 'package:eamar_delivery/controller/splash_controller.dart';
+import 'package:eamar_delivery/utill/color_resources.dart';
+import 'package:eamar_delivery/utill/dimensions.dart';
+import 'package:eamar_delivery/utill/images.dart';
+import 'package:eamar_delivery/view/screens/home/widget/order_widget.dart';
+import 'package:eamar_delivery/view/screens/language/choose_language_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key key}) : super(key: key);

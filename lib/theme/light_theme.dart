@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:joseeder_delivery_boy/utill/color_resources.dart';
-import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:eamar_delivery/utill/color_resources.dart';
+import 'package:eamar_delivery/utill/dimensions.dart';
 
 
 ThemeData light = ThemeData(
   fontFamily: 'Cairo',
   brightness: Brightness.light,
-  scaffoldBackgroundColor: const Color(0xFFfaf274),
-  hintColor: Colors.grey,
-  primaryColorLight: const Color(0xFFfaf274),
-  canvasColor: const Color(0xFFfaf274),
+  scaffoldBackgroundColor:  Colors.white,
+    hintColor: Colors.grey,
+  primaryColorLight: Color(0xFF8B8000),
+  
+  canvasColor: const Color(0xFFa3a25f),
 
   shadowColor: const Color(0xfffcf9f4),
   backgroundColor: const Color(0xffF4F7FC), // for background color
   cardColor: const Color(0xFFFFFFFF), // for surface color
- primaryColor: Color(0xFFfaf274),
+ primaryColor: Color(0xFF8B8000),
    highlightColor: const Color(0xFF1F1F1F), // for on background text
   focusColor: const Color(0xFF1F1F1F),  // for On Surface text color
   dividerColor: const Color(0xFF2A2A2A), // for Any line

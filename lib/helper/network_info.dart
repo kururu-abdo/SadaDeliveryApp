@@ -2,7 +2,7 @@ import 'package:connectivity/connectivity.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:joseeder_delivery_boy/controller/splash_controller.dart';
+import 'package:eamar_delivery/controller/splash_controller.dart';
 
 class NetworkInfo {
   final Connectivity connectivity;

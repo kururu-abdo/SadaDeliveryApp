@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:joseeder_delivery_boy/controller/theme_controller.dart';
-import 'package:joseeder_delivery_boy/utill/color_resources.dart';
-import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:eamar_delivery/controller/theme_controller.dart';
+import 'package:eamar_delivery/utill/color_resources.dart';
+import 'package:eamar_delivery/utill/dimensions.dart';
 
 class StatusWidget extends StatefulWidget {
 

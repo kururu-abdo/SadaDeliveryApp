@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:joseeder_delivery_boy/controller/order_controller.dart';
-import 'package:joseeder_delivery_boy/helper/date_converter.dart';
-import 'package:joseeder_delivery_boy/helper/price_converter.dart';
-import 'package:joseeder_delivery_boy/utill/color_resources.dart';
-import 'package:joseeder_delivery_boy/utill/dimensions.dart';
-import 'package:joseeder_delivery_boy/utill/styles.dart';
+import 'package:eamar_delivery/controller/order_controller.dart';
+import 'package:eamar_delivery/helper/date_converter.dart';
+import 'package:eamar_delivery/helper/price_converter.dart';
+import 'package:eamar_delivery/utill/color_resources.dart';
+import 'package:eamar_delivery/utill/dimensions.dart';
+import 'package:eamar_delivery/utill/styles.dart';
 
 import 'order_details_screen.dart';
 

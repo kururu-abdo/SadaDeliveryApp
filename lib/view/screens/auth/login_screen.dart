@@ -3,17 +3,18 @@ import 'dart:developer';
 import 'package:country_code_picker/country_code.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:joseeder_delivery_boy/controller/auth_controller.dart';
-import 'package:joseeder_delivery_boy/helper/email_checker.dart';
-import 'package:joseeder_delivery_boy/utill/color_resources.dart';
-import 'package:joseeder_delivery_boy/utill/dimensions.dart';
-import 'package:joseeder_delivery_boy/utill/images.dart';
-import 'package:joseeder_delivery_boy/utill/phone_utils.dart';
-import 'package:joseeder_delivery_boy/view/base/code_picker_widget.dart';
-import 'package:joseeder_delivery_boy/view/base/custom_button.dart';
-import 'package:joseeder_delivery_boy/view/base/custom_snackbar.dart';
-import 'package:joseeder_delivery_boy/view/base/custom_text_field.dart';
-import 'package:joseeder_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
+import 'package:eamar_delivery/controller/auth_controller.dart';
+import 'package:eamar_delivery/helper/email_checker.dart';
+import 'package:eamar_delivery/utill/color_resources.dart';
+import 'package:eamar_delivery/utill/dimensions.dart';
+import 'package:eamar_delivery/utill/images.dart';
+import 'package:eamar_delivery/utill/phone_utils.dart';
+import 'package:eamar_delivery/view/base/code_picker_widget.dart';
+import 'package:eamar_delivery/view/base/custom_button.dart';
+import 'package:eamar_delivery/view/base/custom_snackbar.dart';
+import 'package:eamar_delivery/view/base/custom_text_field.dart';
+import 'package:eamar_delivery/view/base/custom_textfield2.dart';
+import 'package:eamar_delivery/view/screens/dashboard/dashboard_screen.dart';
 import 'package:validate_ksa_number/validate_ksa_number.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -93,28 +94,48 @@ class _LoginScreenState extends State<LoginScreen> {
                   // ),
 
  // for Email
-          Container(
-            // margin: EdgeInsets.only(
-            //     left: Dimensions.MARGIN_SIZE_LARGE,
-            //     right: Dimensions.MARGIN_SIZE_LARGE,
-            //     bottom: Dimensions.MARGIN_SIZE_SMALL),
-            child: Row(
-              children: [
-                CodePickerWidget(
-                  onChanged: (CountryCode countryCode) {
-                    _countryDialCode = countryCode.dialCode;
-                  },
-                  initialSelection: _countryDialCode,
-                  favorite: [_countryDialCode],
-                  showDropDownButton: true,
-                  padding: EdgeInsets.zero,
-                  showFlagMain: true,
-                  textStyle: TextStyle(
-                      color: Theme.of(context).textTheme.headline1.color),
-                ),
-                Expanded(
-                    child: 
-                    CustomTextField(
+          // Container(
+          //   // margin: EdgeInsets.only(
+          //   //     left: Dimensions.MARGIN_SIZE_LARGE,
+          //   //     right: Dimensions.MARGIN_SIZE_LARGE,
+          //   //     bottom: Dimensions.MARGIN_SIZE_SMALL),
+          //   child: Row(
+          //     children: [
+          //       CodePickerWidget(
+          //         onChanged: (CountryCode countryCode) {
+          //           _countryDialCode = countryCode.dialCode;
+          //         },
+          //         initialSelection: _countryDialCode,
+          //         favorite: [_countryDialCode],
+          //         showDropDownButton: true,
+          //         padding: EdgeInsets.zero,
+          //         showFlagMain: true,
+          //         textStyle: TextStyle(
+          //             color: Theme.of(context).textTheme.headline1.color),
+          //       ),
+          //       Expanded(
+          //           child: 
+          //           CustomTextField(
+          //         hintText: 'demo_phone'.tr,
+                  
+          //         focusNode: _emailNode,
+          //         nextNode: _passwordFocus,
+          //         controller: _emailController,
+          //         isPhoneNumber: true,
+          //         textInputAction: TextInputAction.next,
+          //         textInputType: TextInputType.phone,
+          //       )
+          //       ),
+          //     ],
+          //   ),
+          // ),
+Container(
+            margin: EdgeInsets.only(
+                // left: Dimensions.MARGIN_SIZE_LARGE,
+                // right: Dimensions.MARGIN_SIZE_LARGE,
+                bottom: Dimensions.MARGIN_SIZE_SMALL),
+child: 
+ PhoneField(
                   hintText: 'demo_phone'.tr,
                   
                   focusNode: _emailNode,
@@ -124,11 +145,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   textInputAction: TextInputAction.next,
                   textInputType: TextInputType.phone,
                 )
-                ),
-              ],
-            ),
-          ),
 
+
+,
+),
 
 
 

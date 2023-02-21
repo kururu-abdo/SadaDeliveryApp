@@ -1,4 +1,4 @@
-import 'package:joseeder_delivery_boy/data/model/response/product_model.dart';
+import 'package:eamar_delivery/data/model/response/product_model.dart';
 
 class OrderDetailsModel {
   int _id;

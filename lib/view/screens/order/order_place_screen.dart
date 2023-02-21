@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:joseeder_delivery_boy/utill/dimensions.dart';
-import 'package:joseeder_delivery_boy/utill/images.dart';
-import 'package:joseeder_delivery_boy/view/base/custom_button.dart';
-import 'package:joseeder_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
+import 'package:eamar_delivery/utill/dimensions.dart';
+import 'package:eamar_delivery/utill/images.dart';
+import 'package:eamar_delivery/view/base/custom_button.dart';
+import 'package:eamar_delivery/view/screens/dashboard/dashboard_screen.dart';
 
 class OrderPlaceScreen extends StatelessWidget {
   final String orderID;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:joseeder_delivery_boy/utill/dimensions.dart';
+import 'package:eamar_delivery/utill/dimensions.dart';
 
 void showCustomSnackBar(String message, {bool isError = true}) {
   Get.showSnackbar(GetBar(

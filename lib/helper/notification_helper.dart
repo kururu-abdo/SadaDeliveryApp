@@ -6,7 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:joseeder_delivery_boy/utill/app_constants.dart';
+import 'package:eamar_delivery/utill/app_constants.dart';
 
 class NotificationHelper {
 

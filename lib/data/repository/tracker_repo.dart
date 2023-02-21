@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:joseeder_delivery_boy/data/api/api_client.dart';
-import 'package:joseeder_delivery_boy/data/model/body/track_body.dart';
-import 'package:joseeder_delivery_boy/utill/app_constants.dart';
+import 'package:eamar_delivery/data/api/api_client.dart';
+import 'package:eamar_delivery/data/model/body/track_body.dart';
+import 'package:eamar_delivery/utill/app_constants.dart';
 
 class TrackerRepo {
   final ApiClient apiClient;
