@@ -1,0 +1,21 @@
+// alert for locaion usage disclaimer
+
+showDialog(
+  context: context,
+  builder: (context) => AlertDialog(
+    title: const Text("Alert"),
+    content: const Text("I need Permission......"),
+    actions: [
+      TextButton(
+        child: const Text("Grant Permission"),
+        onPressed: () async {
+          Navigator.pop(context);
+          // Reguest permission here
+
+          
+        }
+      ),
+    ],
+  ),
+);
+

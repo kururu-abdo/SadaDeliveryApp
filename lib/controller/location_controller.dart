@@ -4,6 +4,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+
+
 class LocationController extends GetxController implements GetxService{
 
   final SharedPreferences sharedPreferences;

@@ -71,7 +71,10 @@ class SplashController extends GetxController implements GetxService {
   Future<bool> initSharedData() {
     return splashRepo.initSharedData();
   }
-
+bool isFirstTime()=>splashRepo.isFirstTime();
+setIfirstTime(){
+  splashRepo.setIsfirtTime();
+}
   Future<bool> removeSharedData() {
     return splashRepo.removeSharedData();
   }

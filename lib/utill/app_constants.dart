@@ -4,7 +4,7 @@ import 'images.dart';
 
 class AppConstants {
 
-  static const String appName = 'Sada Delivery';
+  static const String appName = 'Emar Delivery';
   static const String baseUri = 'https://echoemaar.com';
   static const String profileUri = '/api/v2/delivery-man/info';
   static const String configUri = '/api/v1/config';
@@ -27,6 +27,9 @@ class AppConstants {
   static const String cartList = 'cart_list';
   static const String userPassword = 'user_password';
   static const String userEmail = 'user_email';
+
+    static const String isFirstTime = 'is_first_time';
+
   static const String currency = 'currency';
   static const String topic = 'six_valley_delivery';
 

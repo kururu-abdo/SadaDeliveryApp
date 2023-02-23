@@ -38,7 +38,12 @@ class SplashRepo {
   String getCurrency() {
     return sharedPreferences.getString(AppConstants.currency) ?? '';
   }
-
+ bool isFirstTime() {
+    return sharedPreferences.getBool(AppConstants.isFirstTime) ?? true;
+  }
+void setIsfirtTime(){
+   sharedPreferences.setBool(AppConstants.isFirstTime, false);
+}
   void setCurrency(String currencyCode) {
     sharedPreferences.setString(AppConstants.currency, currencyCode);
   }
