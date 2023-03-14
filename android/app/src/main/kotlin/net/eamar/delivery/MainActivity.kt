@@ -1,4 +1,4 @@
-package net.citysoft.joseeder_delivery_boy
+package net.eamar.delivery
 
 import io.flutter.embedding.android.FlutterActivity
 

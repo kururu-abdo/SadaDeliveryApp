@@ -1,42 +1,41 @@
 {
   "project_info": {
-    "project_number": "300688260581",
-    "project_id": "jose-eder",
-    "storage_bucket": "jose-eder.appspot.com"
+    "project_number": "715551820384",
+    "project_id": "eamar-ecda8",
+    "storage_bucket": "eamar-ecda8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:300688260581:android:7a2661d07337e0be11c30c",
+        "mobilesdk_app_id": "1:715551820384:android:72aa04058cbc4a1e61d105",
         "android_client_info": {
           "package_name": "com.store.joseeder"
         }
       },
       "oauth_client": [
         {
-          "client_id": "300688260581-bhg0dph16nstoto46hl9v97hdqo6485s.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.store.joseeder",
-            "certificate_hash": "116b33988da4bd571b02669455e970f0bb79a475"
-          }
-        },
-        {
-          "client_id": "300688260581-vlo4lidpntphetd1o45tkgpssnh2cu3d.apps.googleusercontent.com",
+          "client_id": "715551820384-6v1lct35l528ijlmbtan4c48qm07ctlg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDhOgrL35U0oYGAKOEV0FAzM1gE7MeEbgw"
+          "current_key": "AIzaSyD_8FTYzN0YuD6NaIG5UQNss0AZZAj6P0Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "300688260581-vlo4lidpntphetd1o45tkgpssnh2cu3d.apps.googleusercontent.com",
+              "client_id": "715551820384-6r7bntl5libvpp48jgomi2d2smalhqc2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "715551820384-t657krt3greequnvoeoe6647mv16tngs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sixamtech.sixValley"
+              }
             }
           ]
         }
@@ -44,28 +43,71 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:300688260581:android:8a61292f32ee539d11c30c",
+        "mobilesdk_app_id": "1:715551820384:android:4577f9aa9dc2b92161d105",
         "android_client_info": {
-          "package_name": "net.citysoft.joseeder_delivery_boy"
+          "package_name": "net.eamar.delivery"
         }
       },
       "oauth_client": [
         {
-          "client_id": "300688260581-vlo4lidpntphetd1o45tkgpssnh2cu3d.apps.googleusercontent.com",
+          "client_id": "715551820384-6v1lct35l528ijlmbtan4c48qm07ctlg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDhOgrL35U0oYGAKOEV0FAzM1gE7MeEbgw"
+          "current_key": "AIzaSyD_8FTYzN0YuD6NaIG5UQNss0AZZAj6P0Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "300688260581-vlo4lidpntphetd1o45tkgpssnh2cu3d.apps.googleusercontent.com",
+              "client_id": "715551820384-6r7bntl5libvpp48jgomi2d2smalhqc2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "715551820384-t657krt3greequnvoeoe6647mv16tngs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sixamtech.sixValley"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715551820384:android:ca7597ea62bfb46c61d105",
+        "android_client_info": {
+          "package_name": "net.eamar.seller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715551820384-6v1lct35l528ijlmbtan4c48qm07ctlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_8FTYzN0YuD6NaIG5UQNss0AZZAj6P0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715551820384-6r7bntl5libvpp48jgomi2d2smalhqc2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "715551820384-t657krt3greequnvoeoe6647mv16tngs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sixamtech.sixValley"
+              }
             }
           ]
         }
