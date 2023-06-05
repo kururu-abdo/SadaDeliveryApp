@@ -10,8 +10,8 @@ import 'package:eamar_delivery/view/screens/order/order_history_screen.dart';
 import 'package:eamar_delivery/view/screens/profile/profile_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
-  final int pageIndex;
-   const DashboardScreen({Key key, @required this.pageIndex}) : super(key: key);
+  final int? pageIndex;
+   const DashboardScreen({Key? key, @required this.pageIndex}) : super(key: key);
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
@@ -19,8 +19,8 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   final PageController _pageController = PageController();
   int _pageIndex = 0;
-  List<Widget> _screens;
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  List<Widget>? _screens;
+  FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
 
   @override
   void initState() {
@@ -37,11 +37,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     var iOSInitialize = const IOSInitializationSettings();
     var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    flutterLocalNotificationsPlugin.initialize(initializationsSettings);
+    flutterLocalNotificationsPlugin!.initialize(initializationsSettings);
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       debugPrint("onMessage: ${message.data}");
-      NotificationHelper.showNotification(message, flutterLocalNotificationsPlugin, false);
+      NotificationHelper.showNotification(message, flutterLocalNotificationsPlugin!, false);
       Get.find<OrderController>().getAllOrders(context);
       Get.find<OrderController>().getAllOrderHistory(context);
     });
@@ -84,10 +84,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         body: PageView.builder(
           controller: _pageController,
-          itemCount: _screens.length,
+          itemCount: _screens!.length,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            return _screens[index];
+            return _screens![index];
           },
         ),
       ),

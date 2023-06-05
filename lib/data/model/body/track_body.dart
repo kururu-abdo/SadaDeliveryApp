@@ -1,8 +1,8 @@
 class TrackBody {
-  double longitude;
-  double latitude;
-  String location;
-  String orderId;
+  double? longitude;
+  double? latitude;
+  String? location;
+  String? orderId;
 
   TrackBody(
       {this.longitude, this.latitude, this.location, this.orderId});

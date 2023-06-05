@@ -5,24 +5,24 @@ import 'package:eamar_delivery/data/api/api_client.dart';
 import 'package:eamar_delivery/utill/app_constants.dart';
 
 class SplashRepo {
-  ApiClient apiClient;
-  final SharedPreferences sharedPreferences;
+  ApiClient? apiClient;
+  final SharedPreferences? sharedPreferences;
   SplashRepo({@required this.sharedPreferences, @required this.apiClient});
 
   Future<Response> getConfigData() async {
-    Response _response = await apiClient.getData(AppConstants.configUri);
+    Response _response = await apiClient!.getData(AppConstants.configUri);
     return _response;
   }
 
   Future<bool> initSharedData() {
-    if(!sharedPreferences.containsKey(AppConstants.theme)) {
-      return sharedPreferences.setBool(AppConstants.theme, false);
+    if(!sharedPreferences!.containsKey(AppConstants.theme)) {
+      return sharedPreferences!.setBool(AppConstants.theme, false);
     }
-    if(!sharedPreferences.containsKey(AppConstants.countryCode)) {
-      return sharedPreferences.setString(AppConstants.countryCode, AppConstants.languages[0].countryCode);
+    if(!sharedPreferences!.containsKey(AppConstants.countryCode)) {
+      return sharedPreferences!.setString(AppConstants.countryCode, AppConstants.languages[0].countryCode!);
     }
-    if(!sharedPreferences.containsKey(AppConstants.languageCode)) {
-      return sharedPreferences.setString(AppConstants.languageCode, AppConstants.languages[0].languageCode);
+    if(!sharedPreferences!.containsKey(AppConstants.languageCode)) {
+      return sharedPreferences!.setString(AppConstants.languageCode, AppConstants.languages[0].languageCode!);
     }
     // if(!sharedPreferences.containsKey(AppConstants.NOTIFICATION)) {
     //   return sharedPreferences.setBool(AppConstants.NOTIFICATION, true);
@@ -36,19 +36,19 @@ class SplashRepo {
     return Future.value(true);
   }
   String getCurrency() {
-    return sharedPreferences.getString(AppConstants.currency) ?? '';
+    return sharedPreferences!.getString(AppConstants.currency) ?? '';
   }
  bool isFirstTime() {
-    return sharedPreferences.getBool(AppConstants.isFirstTime) ?? true;
+    return sharedPreferences!.getBool(AppConstants.isFirstTime) ?? true;
   }
 void setIsfirtTime(){
-   sharedPreferences.setBool(AppConstants.isFirstTime, false);
+   sharedPreferences!.setBool(AppConstants.isFirstTime, false);
 }
   void setCurrency(String currencyCode) {
-    sharedPreferences.setString(AppConstants.currency, currencyCode);
+    sharedPreferences!.setString(AppConstants.currency, currencyCode);
   }
 
   Future<bool> removeSharedData() {
-    return sharedPreferences.clear();
+    return sharedPreferences!.clear();
   }
 }

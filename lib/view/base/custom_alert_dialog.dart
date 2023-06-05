@@ -6,9 +6,9 @@ import 'package:eamar_delivery/utill/styles.dart';
 import 'custom_button.dart';
 
 class CustomAlertDialog extends StatelessWidget {
-  final String description;
-  final Function onOkPressed;
-  const CustomAlertDialog({Key key, @required this.description, @required this.onOkPressed}) : super(key: key);
+  final String? description;
+  final Function()? onOkPressed;
+  const CustomAlertDialog({Key? key, @required this.description, @required this.onOkPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +23,14 @@ class CustomAlertDialog extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
             child: Text(
-              description, textAlign: TextAlign.center,
+              description!, textAlign: TextAlign.center,
               style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge),
             ),
           ),
 
           CustomButton(
             btnTxt: 'ok'.tr,
-            onTap: onOkPressed,
+            onTap: onOkPressed!,
           ),
 
         ]),

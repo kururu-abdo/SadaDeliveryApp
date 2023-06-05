@@ -1,16 +1,16 @@
 class UserInfoModel {
-  int id;
-  String fName;
-  String lName;
-  String phone;
-  String email;
-  String identityNumber;
-  String identityType;
-  String identityImage;
-  String image;
-  int isActive;
-  String createdAt;
-  String updatedAt;
+  int? id;
+  String? fName;
+  String ?lName;
+  String? phone;
+  String? email;
+  String? identityNumber;
+  String? identityType;
+  String? identityImage;
+  String? image;
+  int? isActive;
+  String? createdAt;
+  String? updatedAt;
 
   UserInfoModel(
       {this.id,

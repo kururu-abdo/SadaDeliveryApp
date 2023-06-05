@@ -22,15 +22,15 @@ import 'package:url_launcher/url_launcher.dart';
 import 'order_place_screen.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
-  final OrderModel orderModel;
-  final int index;
-  const OrderDetailsScreen({Key key, this.orderModel, @required this.index}) : super(key: key);
+  final OrderModel? orderModel;
+  final int? index;
+  const OrderDetailsScreen({Key? key, this.orderModel, @required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.find<OrderController>().getOrderDetails(orderModel.id.toString(), context);
+    Get.find<OrderController>().getOrderDetails(orderModel!.id.toString(), context);
     double deliveryCharge = 0;
-    deliveryCharge = orderModel.shippingCost;
+    deliveryCharge = orderModel!.shippingCost!;
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       appBar: AppBar(
@@ -40,14 +40,14 @@ class OrderDetailsScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Theme.of(context).textTheme.bodyText1.color,
+            color: Theme.of(context).textTheme.bodyText1!.color,
           ),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         title: Text('order_details'.tr,
-          style: Theme.of(context).textTheme.headline3.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyText1.color),
+          style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyText1!.color),
         ),
       ),
       body: GetBuilder<OrderController>(
@@ -63,7 +63,7 @@ class OrderDetailsScreen extends StatelessWidget {
             }
           }
           double _subTotal = _itemsPrice + _tax;
-          double totalPrice = _subTotal - _discount + deliveryCharge - orderModel.discountAmount;
+          double totalPrice = _subTotal - _discount + deliveryCharge - orderModel!.discountAmount!;
 
           return orderController.orderDetails != null
               ? Column(
@@ -78,7 +78,7 @@ class OrderDetailsScreen extends StatelessWidget {
                             child: Row(mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text('order_id'.tr, style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                                Text(' # ${orderModel.id}', style: rubikMedium.copyWith(color: Theme.of(context).highlightColor)),
+                                Text(' # ${orderModel!.id}', style: rubikMedium.copyWith(color: Theme.of(context).highlightColor)),
                               ],
                             ),
                           ),
@@ -90,7 +90,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                 const SizedBox(width: Dimensions.paddingSizeExtraSmall),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 2.0),
-                                  child: Text(DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderModel.createdAt)), maxLines: 1, overflow: TextOverflow.ellipsis, style: rubikRegular.copyWith(color: Theme.of(context).highlightColor,fontSize: Dimensions.fontSizeExtraSmall)),
+                                  child: Text(DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderModel!.createdAt!)), maxLines: 1, overflow: TextOverflow.ellipsis, style: rubikRegular.copyWith(color: Theme.of(context).highlightColor,fontSize: Dimensions.fontSizeExtraSmall)),
                                 ),
                               ],
                             ),
@@ -104,7 +104,7 @@ class OrderDetailsScreen extends StatelessWidget {
                             color: Theme.of(context).primaryColorDark,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [BoxShadow(
-                              color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 300],
+                              color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 300]!,
                               blurRadius: 5, spreadRadius: 1,
                             )],
                           ),
@@ -116,17 +116,17 @@ class OrderDetailsScreen extends StatelessWidget {
                                   child: FadeInImage.assetNetwork(
                                     imageErrorBuilder: (c,o,s) => Image.asset(Images.placeholder),
                                     placeholder: Images.placeholder,
-                                    image: '${Get.find<SplashController>().baseUrls.customerImageUrl}/${orderModel.customer.image ?? ''}',
+                                    image: '${Get.find<SplashController>().baseUrls!.customerImageUrl}/${orderModel!.customer!.image ?? ''}',
                                     height: 40, width: 40, fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                               title: Text(
-                                '${orderModel.customer.fName ?? ''} ${orderModel.customer.lName ?? ''}',
+                                '${orderModel!.customer!.fName ?? ''} ${orderModel!.customer!.lName ?? ''}',
                                 style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
                               ),
                               trailing: InkWell(
-                                onTap: () {launch('tel:${orderModel.customer.phone}');
+                                onTap: () {launch('tel:${orderModel!.customer!.phone}');
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
@@ -136,11 +136,11 @@ class OrderDetailsScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: Dimensions.paddingSizeDefault),
-                            Text('${'order_note'.tr} : ${orderModel.orderNote != null?orderModel.orderNote ?? '': ""}', style: rubikRegular),
+                            Text('${'order_note'.tr} : ${orderModel!.orderNote != null?orderModel!.orderNote ?? '': ""}', style: rubikRegular),
                             const SizedBox(height: Dimensions.paddingSizeDefault),
-                            Text('${'address'.tr} : ${orderModel.shippingAddressData != null ? orderModel.shippingAddress.address : orderModel.shippingAddress ?? ''}', style: rubikRegular),
+                            Text('${'address'.tr} : ${orderModel!.shippingAddressData != null ? orderModel!.shippingAddress!.address! : orderModel!.shippingAddress ?? ''}', style: rubikRegular),
                             const SizedBox(height: Dimensions.paddingSizeDefault),
-                            Text('${'billing_address'.tr} : ${orderModel.billingAddress != null ? jsonDecode(orderModel.billingAddress)['address'] : orderModel.billingAddress ?? ''}', style: rubikRegular),
+                            Text('${'billing_address'.tr} : ${orderModel!.billingAddress != null ? jsonDecode(orderModel!.billingAddress!)['address'] : orderModel!.billingAddress ?? ''}', style: rubikRegular),
 
                           ]),
                         ),
@@ -154,11 +154,11 @@ class OrderDetailsScreen extends StatelessWidget {
                               const SizedBox(width: Dimensions.paddingSizeExtraSmall),
                               Text(orderController.orderDetails.length.toString(), style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
                             ]),
-                            orderModel.orderStatus == 'processing' || orderModel.orderStatus == 'out_for_delivery'
+                            orderModel!.orderStatus == 'processing' || orderModel!.orderStatus == 'out_for_delivery'
                                 ? Row(children: [
                                     Text('${'payment_status'.tr}:', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
                                     const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                                    Text(orderModel.paymentStatus.tr , style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
+                                    Text(orderModel!.paymentStatus!.tr , style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
                                   ])
                                 : const SizedBox.shrink(),
                           ],
@@ -179,7 +179,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                     child: FadeInImage.assetNetwork(
                                       imageErrorBuilder: (c,o,s) => Image.asset(Images.placeholder),
                                       placeholder: Images.placeholder,
-                                      image: '${Get.find<SplashController>().baseUrls.productThumbnailUrl}/${orderController.orderDetails[index].productDetails.thumbnail}',
+                                      image: '${Get.find<SplashController>().baseUrls!.productThumbnailUrl}/${orderController.orderDetails[index].productDetails.thumbnail}',
                                       height: 70, width: 70, fit: BoxFit.cover,
                                     ),
                                   ),
@@ -271,7 +271,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                           Text('coupon_discount'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                           Text(
-                            '(-) ${PriceConverter.convertPrice(orderModel.discountAmount)}',
+                            '(-) ${PriceConverter.convertPrice(orderModel!.discountAmount!)}',
                             style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
                           ),
                         ]),
@@ -315,7 +315,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     ),
                   ),
 
-                  orderModel.orderStatus == 'processing' ? Container(
+                  orderModel!.orderStatus == 'processing' ? Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.all(Dimensions.paddingSizeSmall),
@@ -330,12 +330,12 @@ class OrderDetailsScreen extends StatelessWidget {
                         textDirection: TextDirection.ltr,
                         child: SliderButton(
                           action: () {
-                            Get.find<OrderController>().updateOrderStatus(orderId: orderModel.id, status: 'out_for_delivery',context: context);
+                            Get.find<OrderController>().updateOrderStatus(orderId: orderModel!.id, status: 'out_for_delivery',context: context);
                             Get.find<OrderController>().getAllOrders(context);
                           },
 
                           ///Put label over here
-                          label: Text('swip_to_deliver_order'.tr, style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).primaryColor),),
+                          label: Text('swip_to_deliver_order'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).primaryColor),),
                           dismissThresholds: 0.5,
                           icon: const Center(
                               child: Icon(
@@ -355,7 +355,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       ),
                     ),
                   )
-                      : orderModel.orderStatus == 'out_for_delivery'
+                      : orderModel!.orderStatus == 'out_for_delivery'
                       ? Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
@@ -372,11 +372,11 @@ class OrderDetailsScreen extends StatelessWidget {
                           action: () {
                             // String token = Get.find<AuthController>().getUserToken();
 
-                            if (orderModel.paymentStatus == 'paid') {
-                              Get.find<OrderController>().updateOrderStatus(orderId: orderModel.id, status: 'delivered',context: context);
+                            if (orderModel!.paymentStatus == 'paid') {
+                              Get.find<OrderController>().updateOrderStatus(orderId: orderModel!.id, status: 'delivered',context: context);
                               Get.find<TrackerController>().updateTrackStart(false);
                               Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(builder: (_) => OrderPlaceScreen(orderID: orderModel.id.toString())));
+                                  MaterialPageRoute(builder: (_) => OrderPlaceScreen(orderID: orderModel!.id.toString())));
                             } else {
                               showDialog(context: context,
                                   barrierDismissible: false,
@@ -395,7 +395,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           },
 
                           ///Put label over here
-                          label: Text('swip_to_confirm_order'.tr, style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).primaryColor),),
+                          label: Text('swip_to_confirm_order'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).primaryColor),),
                           dismissThresholds: 0.5,
                           icon: const Center(
                               child: Icon(

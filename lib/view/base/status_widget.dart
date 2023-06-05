@@ -6,20 +6,20 @@ import 'package:eamar_delivery/utill/dimensions.dart';
 
 class StatusWidget extends StatefulWidget {
 
-  const StatusWidget({Key key}) : super(key: key);
+  const StatusWidget({Key ?key}) : super(key: key);
 
   @override
   State<StatusWidget> createState() => _StatusWidgetState();
 }
 
 class _StatusWidgetState extends State<StatusWidget> {
-  ThemeController themeController;
+  ThemeController? themeController;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: themeController.toggleTheme,
-      child: themeController.darkTheme
+      onTap: themeController!.toggleTheme,
+      child: themeController!.darkTheme
           ? Container(
         width: 74,
         height: 29,
@@ -32,7 +32,7 @@ class _StatusWidgetState extends State<StatusWidget> {
             Expanded(
                 child: Text('dark'.tr,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2.copyWith(
+                  style: Theme.of(context).textTheme.headline2!.copyWith(
                     color: ColorResources.colorWhite,
                     fontSize: Dimensions.fontSizeSmall,
                   ),
@@ -67,7 +67,7 @@ class _StatusWidgetState extends State<StatusWidget> {
                 child: Text(
                   'light'.tr,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2.copyWith(
+                  style: Theme.of(context).textTheme.headline2!.copyWith(
                     color: ColorResources.colorWhite,
                     fontSize: Dimensions.fontSizeSmall,
                   ),

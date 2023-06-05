@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:eamar_delivery/utill/app_constants.dart';
 
 class ThemeController extends GetxController implements GetxService {
-  final SharedPreferences sharedPreferences;
+  final SharedPreferences? sharedPreferences;
   ThemeController({@required this.sharedPreferences}) {
     _loadCurrentTheme();
   }
@@ -14,12 +14,12 @@ class ThemeController extends GetxController implements GetxService {
 
   void toggleTheme() {
     _darkTheme = !_darkTheme;
-    sharedPreferences.setBool(AppConstants.theme, _darkTheme);
+    sharedPreferences!.setBool(AppConstants.theme, _darkTheme);
     update();
   }
 
   void _loadCurrentTheme() async {
-    _darkTheme = sharedPreferences.getBool(AppConstants.theme) ?? false;
+    _darkTheme = sharedPreferences!.getBool(AppConstants.theme) ?? false;
     update();
   }
 }

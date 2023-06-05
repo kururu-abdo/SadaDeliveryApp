@@ -22,7 +22,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterL
 
  class MyHttpOverrides extends HttpOverrides{
   @override
-  HttpClient createHttpClient(SecurityContext context){
+  HttpClient createHttpClient(SecurityContext? context){
     return super.createHttpClient(context)
       ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
@@ -47,8 +47,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final Map<String, Map<String, String>> languages;
-  const MyApp({Key key, @required this.languages}) : super(key: key);
+  final Map<String, Map<String, String>>? languages;
+  const MyApp({Key? key, @required this.languages}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ThemeController>(builder: (themeController) {
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
           return  GetMaterialApp(
             title: AppConstants.appName,
              builder: (context, child) => ResponsiveWrapper.builder(
-          BouncingScrollWrapper.builder(context, child),
+          BouncingScrollWrapper.builder(context, child!),
           maxWidth: 1200,
           minWidth: 450,
           defaultScale: true,
@@ -73,8 +73,8 @@ class MyApp extends StatelessWidget {
             navigatorKey: Get.key,
             theme: themeController.darkTheme ? dark : light,
             locale: localizeController.locale,
-            translations: Messages(languages: languages),
-            fallbackLocale: Locale(AppConstants.languages[0].languageCode, AppConstants.languages[0].countryCode),
+            translations: Messages(languages: languages!),
+            fallbackLocale: Locale(AppConstants.languages[0].languageCode!, AppConstants.languages[0].countryCode),
             // ignore: prefer_const_constructors
             home: SplashScreen(),
             defaultTransition: Transition.topLevel,

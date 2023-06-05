@@ -7,24 +7,24 @@ import 'package:eamar_delivery/data/model/response/error_response.dart';
 import 'package:eamar_delivery/utill/app_constants.dart';
 
 class ApiClient extends GetConnect implements GetxService {
-  final String appBaseUrl;
-  final SharedPreferences sharedPreferences;
+  final String? appBaseUrl;
+  final SharedPreferences? sharedPreferences;
 
-  String token;
-  Map<String, String> mainHeaders;
+  String? token;
+  Map<String, String>? mainHeaders;
 
   ApiClient({@required this.appBaseUrl, @required this.sharedPreferences}) {
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 30);
-    token = sharedPreferences.getString(AppConstants.token);
+    token = sharedPreferences!.getString(AppConstants.token);
     mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token'
     };
   }
 
-  Future<Response> getData(String uri, {Map<String, dynamic> query, String contentType,
-    Map<String, String> headers, Function(dynamic) decoder,
+  Future<Response> getData(String uri, {Map<String, dynamic>? query, String? contentType,
+    Map<String, String>? headers, Function(dynamic)? decoder,
   }) async {
     try {
       if(foundation.kDebugMode) {
@@ -45,8 +45,8 @@ class ApiClient extends GetConnect implements GetxService {
     }
   }
 
-  Future<Response> postData(String uri, dynamic body, {Map<String, dynamic> query, String contentType,
-    Map<String, String> headers, Function(dynamic) decoder, Function(double) uploadProgress,
+  Future<Response> postData(String uri, dynamic body, {Map<String, dynamic>? query, String? contentType,
+    Map<String, String>? headers, Function(dynamic)? decoder, Function(double)? uploadProgress,
   }) async {
     try {
       if(foundation.kDebugMode) {
@@ -68,8 +68,8 @@ class ApiClient extends GetConnect implements GetxService {
     }
   }
 
-  Future<Response> putData(String uri, dynamic body, {Map<String, dynamic> query, String contentType,
-    Map<String, String> headers, Function(dynamic) decoder, Function(double) uploadProgress,
+  Future<Response> putData(String uri, dynamic body, {Map<String, dynamic>? query, String? contentType,
+    Map<String, String>? headers, Function(dynamic)? decoder, Function(double)? uploadProgress,
   }) async {
     try {
       if(foundation.kDebugMode) {
@@ -91,8 +91,8 @@ class ApiClient extends GetConnect implements GetxService {
     }
   }
 
-  Future<Response> deleteData(String uri, {Map<String, dynamic> query, String contentType,
-    Map<String, String> headers, Function(dynamic) decoder,
+  Future<Response> deleteData(String uri, {Map<String, dynamic>? query, String? contentType,
+    Map<String, String>? headers, Function(dynamic)? decoder,
   }) async {
     try {
       if(foundation.kDebugMode) {

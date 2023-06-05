@@ -12,19 +12,19 @@ extension EmailValidator on String {
 }
 
 class PhoneField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final TextInputType textInputType;
-  final int maxLine;
-  final FocusNode focusNode;
-  final FocusNode nextNode;
-  final TextInputAction textInputAction;
-  final bool isPhoneNumber;
-  final bool isValidator;
-  final String validatorMessage;
-  final Color fillColor;
-  final TextCapitalization capitalization;
-  final bool isBorder;
+  final TextEditingController? controller;
+  final String? hintText;
+  final TextInputType? textInputType;
+  final int? maxLine;
+  final FocusNode? focusNode;
+  final FocusNode? nextNode;
+  final TextInputAction? textInputAction;
+  final bool? isPhoneNumber;
+  final bool? isValidator;
+  final String? validatorMessage;
+  final Color? fillColor;
+  final TextCapitalization?capitalization;
+  final bool? isBorder;
 
   PhoneField(
       {this.controller,
@@ -53,7 +53,7 @@ class PhoneField extends StatelessWidget {
           border: Border.all(
             color:
             // widget.isShowBorder ?
-           ColorResources.colorMap[200] 
+           ColorResources.colorMap[200] !
           //  : 
           //  Colors.transparent
            
@@ -77,8 +77,8 @@ class PhoneField extends StatelessWidget {
       
         controller: controller,
         maxLines: maxLine ?? 1,
-        textCapitalization: capitalization,
-        maxLength: isPhoneNumber ? 10 : null,
+        textCapitalization: capitalization!,
+        maxLength: isPhoneNumber! ? 10 : null,
         focusNode: focusNode,
         keyboardType: textInputType ?? TextInputType.text,
         //keyboardType: TextInputType.number,
@@ -91,10 +91,10 @@ class PhoneField extends StatelessWidget {
           FocusScope.of(context).requestFocus(nextNode);
         },
         //autovalidate: true,
-        inputFormatters: [isPhoneNumber ? FilteringTextInputFormatter.digitsOnly : FilteringTextInputFormatter.singleLineFormatter],
+        inputFormatters: [isPhoneNumber! ? FilteringTextInputFormatter.digitsOnly : FilteringTextInputFormatter.singleLineFormatter],
         validator: (input){
-          if(input.isEmpty){
-            if(isValidator){
+          if(input!.isEmpty){
+            if(isValidator!){
               return validatorMessage??"";
             }
           }
@@ -110,7 +110,7 @@ hintTextDirection: TextDirection.ltr,
           isDense: true,
           counterText: '',
           focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor)),
-                   hintStyle: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
+                   hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
 
           errorStyle: TextStyle(height: 1.5),
           border: InputBorder.none,
@@ -126,7 +126,7 @@ hintTextDirection: TextDirection.ltr,
                       style: TextStyle(
                           // color: Colors.black
                           
-                   color:       Theme.of(context).textTheme.headline1.color ,
+                   color:       Theme.of(context).textTheme.headline1!.color ,
                    fontWeight: FontWeight.bold
                           
                           ),
@@ -143,7 +143,7 @@ hintTextDirection: TextDirection.ltr,
                       style: TextStyle(
                           // color: Colors.black
                           
-                   color:       Theme.of(context).textTheme.headline1.color ,
+                   color:       Theme.of(context).textTheme.headline1!.color ,
                    fontWeight: FontWeight.bold
                           
                           ),

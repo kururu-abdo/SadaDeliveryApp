@@ -19,7 +19,7 @@ import 'package:validate_ksa_number/validate_ksa_number.dart';
 
 class LoginScreen extends StatefulWidget {
    // ignore: prefer_const_constructors_in_immutables
-   LoginScreen({Key key}) : super(key: key);
+   LoginScreen({Key? key}) : super(key: key);
 
 
   @override
@@ -28,11 +28,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final FocusNode _emailFocus = FocusNode();
-  final FocusNode _passwordFocus = FocusNode();
-  TextEditingController _emailController;
-  TextEditingController _passwordController;
-  GlobalKey<FormState> _formKeyLogin;
+  final FocusNode? _emailFocus = FocusNode();
+  final FocusNode? _passwordFocus = FocusNode();
+  TextEditingController? _emailController;
+  TextEditingController? _passwordController;
+  GlobalKey<FormState>? _formKeyLogin;
 
   @override
   void initState() {
@@ -42,14 +42,14 @@ class _LoginScreenState extends State<LoginScreen> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
 
-    _emailController.text = Get.find<AuthController>().getUserEmail();
-    _passwordController.text = Get.find<AuthController>().getUserPassword();
+    _emailController!.text = Get.find<AuthController>().getUserEmail();
+    _passwordController!.text = Get.find<AuthController>().getUserPassword();
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    _emailController!.dispose();
+    _passwordController!.dispose();
     super.dispose();
   }
   String _countryDialCode = "+966";
@@ -80,9 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   //SizedBox(height: 20),
                   Center(
-                      child: Text('login'.tr, style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 24, color: Theme.of(context).hintColor),)),
+                      child: Text('login'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 24, color: Theme.of(context).hintColor),)),
                   const SizedBox(height: 35),
-                  Text('phone_number'.tr, style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).highlightColor),),
+                  Text('phone_number'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).highlightColor),),
                   const SizedBox(height: Dimensions.paddingSizeSmall),
                   // CustomTextField(
                   //   hintText: 'demo_gmail'.tr,
@@ -153,7 +153,7 @@ child:
 
 
                   const SizedBox(height: Dimensions.paddingSizeLarge),
-                  Text('password'.tr, style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).highlightColor),),
+                  Text('password'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).highlightColor),),
                   const SizedBox(height: Dimensions.paddingSizeSmall),
                   CustomTextField(
                     hintText: 'password_hint'.tr,
@@ -190,7 +190,7 @@ child:
                                   : const SizedBox.shrink(),
                             ),
                             const SizedBox(width: Dimensions.paddingSizeSmall),
-                            Text('remember_me'.tr, style: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).highlightColor),)
+                            Text('remember_me'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).highlightColor),)
                           ],
                         ),
                       )
@@ -208,7 +208,7 @@ child:
                       Expanded(
                         child: Text(
                           authController.loginErrorMessage ?? "",
-                          style: Theme.of(context).textTheme.headline2.copyWith(
+                          style: Theme.of(context).textTheme.headline2!.copyWith(
                             fontSize: Dimensions.fontSizeSmall,
                             color: Colors.red,
                           ),
@@ -225,9 +225,9 @@ child:
                       var ksaNumber = KsaNumber();
                       String _email =_countryDialCode.trim()+
                     
-                    PhoneNumberUtils.getPhoneNumberFromInputs( _emailController.text.trim())
+                    PhoneNumberUtils.getPhoneNumberFromInputs( _emailController!.text.trim())
                     ;
-                      String _password = _passwordController.text.trim();
+                      String _password = _passwordController!.text.trim();
                       log(_email);
                       if (_email.isEmpty) {
                         showCustomSnackBar('enter_phone_number'.tr);
@@ -245,7 +245,7 @@ child:
                         authController.login(_email, _password).then((status) async {
                           if (status.isSuccess) {
                             if (authController.isActiveRememberMe) {
-                              authController.saveUserNumberAndPassword(_emailController.text.toString().trim(), _password);
+                              authController.saveUserNumberAndPassword(_emailController!.text.toString().trim(), _password);
                             } else {
                               authController.clearUserEmailAndPassword();
                             }

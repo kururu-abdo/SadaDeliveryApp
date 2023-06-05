@@ -4,16 +4,16 @@ import 'package:eamar_delivery/utill/dimensions.dart';
 import 'package:eamar_delivery/utill/styles.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-  final bool isBackButtonExist;
-  const CustomAppBar({Key key, @required this.title, this.isBackButtonExist = true}) : super(key: key);
+  final String? title;
+  final bool? isBackButtonExist;
+  const CustomAppBar({Key? key, @required this.title, this.isBackButtonExist = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyText1.color)),
+      title: Text(title!, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyText1!.color)),
       centerTitle: true,
-      leading: isBackButtonExist ? IconButton(
+      leading: isBackButtonExist! ? IconButton(
         icon: const Icon(Icons.arrow_back_ios, color: ColorResources.colorBlack),
         onPressed: () => Navigator.pop(context),
       ) : const SizedBox(),

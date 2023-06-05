@@ -15,7 +15,7 @@ import 'package:eamar_delivery/view/screens/auth/login_screen.dart';
 import 'package:eamar_delivery/view/screens/dashboard/dashboard_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -23,7 +23,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
-  StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+  StreamSubscription<ConnectivityResult>? _onConnectivityChanged;
 
   @override
   void initState() {
@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void dispose() {
     super.dispose();
 
-    _onConnectivityChanged.cancel();
+    _onConnectivityChanged!.cancel();
   }
 
   void _route() {

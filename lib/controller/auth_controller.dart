@@ -10,13 +10,13 @@ import 'package:eamar_delivery/data/repository/auth_repo.dart';
 import 'package:eamar_delivery/view/base/custom_snackbar.dart';
 
 class AuthController extends GetxController implements GetxService {
-  final AuthRepo authRepo;
+  final AuthRepo? authRepo;
   AuthController({@required this.authRepo}) ;
 
   bool _isLoading = false;
   final bool _notification = true;
-  UserInfoModel _profileModel;
-  XFile _pickedFile;
+  UserInfoModel? _profileModel;
+  XFile? _pickedFile;
   // for login section
   final String _loginErrorMessage = '';
   String get loginErrorMessage => _loginErrorMessage;
@@ -24,21 +24,21 @@ class AuthController extends GetxController implements GetxService {
 
   bool get isLoading => _isLoading;
   bool get notification => _notification;
-  UserInfoModel get profileModel => _profileModel;
-  XFile get pickedFile => _pickedFile;
+  UserInfoModel get profileModel => _profileModel!;
+  XFile get pickedFile => _pickedFile!;
 
   Future<ResponseModel> login(String email, String password) async {
     _isLoading = true;
     update();
-    Response response = await authRepo.login(email, password);
+    Response response = await authRepo!.login(email, password);
     ResponseModel responseModel;
     if (response.statusCode == 200) {
-      authRepo.saveUserToken(response.body['token']);
+      authRepo!.saveUserToken(response.body['token']);
 
-      await authRepo.updateToken();
+      await authRepo!.updateToken();
       responseModel = ResponseModel(true, 'successful');
     } else {
-      responseModel = ResponseModel(false, response.statusText);
+      responseModel = ResponseModel(false, response.statusText!);
     }
     _isLoading = false;
     update();
@@ -46,7 +46,7 @@ class AuthController extends GetxController implements GetxService {
   }
 
   Future<void> getProfile() async {
-    Response response = await authRepo.getProfileInfo();
+    Response response = await authRepo!.getProfileInfo();
     if (response.statusCode == 200) {
       _profileModel = UserInfoModel.fromJson(response.body);
 
@@ -67,7 +67,7 @@ class AuthController extends GetxController implements GetxService {
     _isLoading = true;
     update();
     bool _isSuccess;
-    Response response = await authRepo.changePassword(updatedUserModel, password);
+    Response response = await authRepo!.changePassword(updatedUserModel, password);
     _isLoading = false;
     if (response.statusCode == 200) {
       String message = response.body["message"];
@@ -83,7 +83,7 @@ class AuthController extends GetxController implements GetxService {
 
 
   Future<void> updateToken() async {
-    await authRepo.updateToken();
+    await authRepo!.updateToken();
   }
 
 
@@ -107,33 +107,33 @@ class AuthController extends GetxController implements GetxService {
   }
 
   bool isLoggedIn() {
-    return authRepo.isLoggedIn();
+    return authRepo!.isLoggedIn();
   }
 
   Future<bool> clearSharedData() async {
-    return await authRepo.clearSharedData();
+    return await authRepo!.clearSharedData();
   }
 
   void saveUserNumberAndPassword(String number, String password) {
-    authRepo.saveUserNumberAndPassword(number, password);
+    authRepo!.saveUserNumberAndPassword(number, password);
   }
 
 
   String getUserEmail() {
-    return authRepo.getUserEmail() ?? "";
+    return authRepo!.getUserEmail() ?? "";
   }
 
   String getUserPassword() {
-    return authRepo.getUserPassword() ?? "";
+    return authRepo!.getUserPassword() ?? "";
   }
 
   Future<bool> clearUserEmailAndPassword() async {
-    return authRepo.clearUserNumberAndPassword();
+    return authRepo!.clearUserNumberAndPassword();
   }
 
 
   String getUserToken() {
-    return authRepo.getUserToken();
+    return authRepo!.getUserToken();
   }
 
 

@@ -9,37 +9,37 @@ import 'package:eamar_delivery/utill/app_constants.dart';
 
 
 class AuthRepo {
-  final ApiClient apiClient;
-  final SharedPreferences sharedPreferences;
+  final ApiClient? apiClient;
+  final SharedPreferences? sharedPreferences;
   AuthRepo({@required this.apiClient, @required this.sharedPreferences});
 
   Future<Response> login(String email, String password) async {
-    return await apiClient.postData(AppConstants.loginUri,
+    return await apiClient!.postData(AppConstants.loginUri,
         {"email": email, "password": password});
   }
 
   Future<Response> getProfileInfo() async {
-    return await apiClient.getData(AppConstants.profileUri);
+    return await apiClient!.getData(AppConstants.profileUri);
   }
 
   Future<Response> changePassword(ProfileModel userInfoModel, String password) async {
-    return await apiClient.postData(AppConstants.updateProfileUri, {'_method': 'put', 'f_name': userInfoModel.fName,
+    return await apiClient!.postData(AppConstants.updateProfileUri, {'_method': 'put', 'f_name': userInfoModel.fName,
       'l_name': userInfoModel.lName, 'email': userInfoModel.email, 'password': password, 'token': getUserToken()});
   }
 
 
 
   Future<bool> saveUserToken(String token) async {
-    apiClient.token = token;
-    apiClient.mainHeaders = {'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer $token'};
-    return await sharedPreferences.setString(AppConstants.token, token);
+    apiClient!.token = token;
+    apiClient!.mainHeaders = {'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer $token'};
+    return await sharedPreferences!.setString(AppConstants.token, token);
   }
 
 
 
 
   Future<Response> updateToken() async {
-    String _deviceToken;
+    String? _deviceToken;
     if (GetPlatform.isIOS) {
       NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
         alert: true, announcement: false, badge: true, carPlay: false,
@@ -56,19 +56,19 @@ class AuthRepo {
     if(!GetPlatform.isWeb) {
       FirebaseMessaging.instance.subscribeToTopic('six_valley_delivery');
     }
-    return await apiClient.postData(AppConstants.tokenUri,
+    return await apiClient!.postData(AppConstants.tokenUri,
 
         {"_method": "put", "fcm_token": _deviceToken},
       headers:  {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ${sharedPreferences.get(AppConstants.token)}'
+        'Authorization': 'Bearer ${sharedPreferences!.get(AppConstants.token)}'
       },
     );
   }
 
 
-  Future<String> _saveDeviceToken() async {
-    String _deviceToken = '';
+  Future<String?> _saveDeviceToken() async {
+    String? _deviceToken = '';
     if(!GetPlatform.isWeb) {
       _deviceToken = await FirebaseMessaging.instance.getToken();
     }
@@ -78,42 +78,42 @@ class AuthRepo {
   }
 
   String getUserToken() {
-    return sharedPreferences.getString(AppConstants.token) ?? "";
+    return sharedPreferences!.getString(AppConstants.token) ?? "";
   }
 
   bool isLoggedIn() {
-    return sharedPreferences.containsKey(AppConstants.token);
+    return sharedPreferences!.containsKey(AppConstants.token);
   }
 
   Future<bool> clearSharedData() async {
     if(!GetPlatform.isWeb) {
-      apiClient.postData(AppConstants.tokenUri, {"_method": "put", "fcm_token": 'no'});
+      apiClient!.postData(AppConstants.tokenUri, {"_method": "put", "fcm_token": 'no'});
     }
-    await sharedPreferences.remove(AppConstants.token);
+    await sharedPreferences!.remove(AppConstants.token);
     return true;
   }
 
   // for  Remember Email
   Future<void> saveUserNumberAndPassword(String number, String password) async {
     try {
-      await sharedPreferences.setString(AppConstants.userPassword, password);
-      await sharedPreferences.setString(AppConstants.userEmail, number);
+      await sharedPreferences!.setString(AppConstants.userPassword, password);
+      await sharedPreferences!.setString(AppConstants.userEmail, number);
     } catch (e) {
       rethrow;
     }
   }
 
-  String getUserEmail() {
-    return sharedPreferences.getString(AppConstants.userEmail) ?? "";
+  String? getUserEmail() {
+    return sharedPreferences!.getString(AppConstants.userEmail) ?? "";
   }
 
-  String getUserPassword() {
-    return sharedPreferences.getString(AppConstants.userPassword) ?? "";
+  String? getUserPassword() {
+    return sharedPreferences!.getString(AppConstants.userPassword) ?? "";
   }
 
   Future<bool> clearUserNumberAndPassword() async {
-    await sharedPreferences.remove(AppConstants.userPassword);
-    return await sharedPreferences.remove(AppConstants.userEmail);
+    await sharedPreferences!.remove(AppConstants.userPassword);
+    return await sharedPreferences!.remove(AppConstants.userEmail);
   }
 
 }

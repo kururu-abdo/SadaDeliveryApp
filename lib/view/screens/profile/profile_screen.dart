@@ -12,7 +12,7 @@ import 'package:eamar_delivery/view/screens/profile/widget/profile_button.dart';
 
 
 class ProfileScreen extends StatelessWidget {
-   const ProfileScreen({Key key}) : super(key: key);
+   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       const SizedBox(height: 10),
-                      Text('my_profile'.tr, style: Theme.of(context).textTheme.headline3.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).primaryColorDark),),
+                      Text('my_profile'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).primaryColorDark),),
                       const SizedBox(height: 30),
                       Container(
                         height: 80,
@@ -45,13 +45,13 @@ class ProfileScreen extends StatelessWidget {
                               width: 80,
                               height: 80,
                               fit: BoxFit.fill,
-                              image: '${Get.find<SplashController>().baseUrls.reviewImageUrl}/delivery-man/${profileController.profileModel.image}',
+                              image: '${Get.find<SplashController>().baseUrls!.reviewImageUrl}/delivery-man/${profileController.profileModel.image}',
 
                             )),
                       ),
                       const SizedBox(height: 20),
                       Text(profileController.profileModel.fName != null ? '${profileController.profileModel.fName ?? ''} ${profileController.profileModel.lName ?? ''}' : "",
-                        style: Theme.of(context).textTheme.headline3.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColorDark),
+                        style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColorDark),
                       ),
                       const SizedBox(height: 20),
                     ],
@@ -64,18 +64,18 @@ class ProfileScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('theme_style'.tr, style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).highlightColor, fontSize: Dimensions.fontSizeLarge),
+                          Text('theme_style'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).highlightColor, fontSize: Dimensions.fontSizeLarge),
                           ),
                           //Theme section.........................
                           // StatusWidget()
                         ],
                       ),
                       const SizedBox(height: 20),
-                      _userInfoWidget(context: context, text: profileController.profileModel.fName),
+                      _userInfoWidget(context: context, text: profileController.profileModel.fName!),
                       const SizedBox(height: 15),
-                      _userInfoWidget(context: context, text: profileController.profileModel.lName),
+                      _userInfoWidget(context: context, text: profileController.profileModel.lName!),
                       const SizedBox(height: 15),
-                      _userInfoWidget(context: context, text: profileController.profileModel.phone),
+                      _userInfoWidget(context: context, text: profileController.profileModel.phone!),
                       const SizedBox(height: 20),
                       ProfileButton(icon: Icons.privacy_tip, title: 'privacy_policy'.tr, onTap: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) =>  HtmlViewerScreen(isPrivacyPolicy: true)));
@@ -102,9 +102,9 @@ class ProfileScreen extends StatelessWidget {
         ));
   }
 
-  Widget _userInfoWidget({String text, BuildContext context}) {
+  Widget _userInfoWidget({String? text, BuildContext? context}) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context!).size.width,
       padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 22),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
@@ -112,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
           border: Border.all(color: ColorResources.borderColor)),
       child: Text(
         text ?? '',
-        style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).focusColor),
+        style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).focusColor),
       ),
     );
   }

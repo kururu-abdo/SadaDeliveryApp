@@ -3,10 +3,10 @@ import 'package:eamar_delivery/utill/dimensions.dart';
 import 'package:eamar_delivery/utill/styles.dart';
 
 class ProfileButton extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final Function onTap;
-  const ProfileButton({Key key, @required this.icon, @required this.title, @required this.onTap}) : super(key: key);
+  final IconData? icon;
+  final String? title;
+  final Function()? onTap;
+  const ProfileButton({Key? key, @required this.icon, @required this.title, @required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ProfileButton extends StatelessWidget {
           children: [
             Icon(icon, size: 20, color: Theme.of(context).highlightColor),
             const SizedBox(width: 20),
-            Text(title, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor))
+            Text(title!, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor))
           ],
         ),
       ),

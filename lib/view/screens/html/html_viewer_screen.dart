@@ -7,15 +7,15 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 
 class HtmlViewerScreen extends StatelessWidget {
-  final bool isPrivacyPolicy;
+  final bool? isPrivacyPolicy;
    // ignore: prefer_const_constructors_in_immutables
-   HtmlViewerScreen({Key key, @required this.isPrivacyPolicy}) : super(key: key);
+   HtmlViewerScreen({Key? key, @required this.isPrivacyPolicy}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    String _data = isPrivacyPolicy ? Get.find<SplashController>().configModel.privacyPolicy
+    String _data = isPrivacyPolicy! ? Get.find<SplashController>().configModel.privacyPolicy
         : Get.find<SplashController>().configModel.termsConditions;
     return Scaffold(
-      appBar: CustomAppBar(title: isPrivacyPolicy ? 'privacy_policy' : 'terms_and_condition'.tr),
+      appBar: CustomAppBar(title: isPrivacyPolicy! ? 'privacy_policy' : 'terms_and_condition'.tr),
       body: Container(
         height: MediaQuery.of(context).size.height,
         color: Theme.of(context).cardColor,
@@ -24,10 +24,10 @@ class HtmlViewerScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: HtmlWidget(
             _data,
-            key: Key(isPrivacyPolicy ? 'privacy_policy' : 'terms_and_condition'),
+            key: Key(isPrivacyPolicy! ? 'privacy_policy' : 'terms_and_condition'),
             // ignore: missing_return
             onTapUrl: (String url) {
-              launch(url);
+            return  launch(url);
             },
           ),
         ),

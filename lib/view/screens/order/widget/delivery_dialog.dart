@@ -12,12 +12,12 @@ import '../order_details_screen.dart';
 import '../order_place_screen.dart';
 
 class DeliveryDialog extends StatelessWidget {
-  final Function onTap;
-  final OrderModel orderModel;
-  final int index;
-  final double totalPrice;
+  final Function()? onTap;
+  final OrderModel? orderModel;
+  final int? index;
+  final double? totalPrice;
 
-  const DeliveryDialog({Key key, @required this.onTap, this.totalPrice, this.orderModel, @required this.index}) : super(key: key);
+  const DeliveryDialog({Key? key, @required this.onTap, this.totalPrice, this.orderModel, @required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +37,13 @@ class DeliveryDialog extends StatelessWidget {
                 Image.asset(Images.money),
                 const SizedBox(height: 20),
                 Center(
-                    child: Text('do_you_collect_money'.tr, style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).focusColor),
+                    child: Text('do_you_collect_money'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).focusColor),
                 )),
                 const SizedBox(height: 20),
                 Center(
                     child: Text(
-                  PriceConverter.convertPrice(totalPrice),
-                  style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).focusColor,fontSize: 30),
+                  PriceConverter.convertPrice(totalPrice!),
+                  style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).focusColor,fontSize: 30),
                 )),
                 const SizedBox(height: 20),
                 Row(
@@ -54,7 +54,7 @@ class DeliveryDialog extends StatelessWidget {
                       isShowBorder: true,
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel, index: index)));
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel!, index: index!)));
                       },
                     )),
                     const SizedBox(width: Dimensions.paddingSizeDefault),
@@ -66,12 +66,12 @@ class DeliveryDialog extends StatelessWidget {
                           onTap: () {
                             Get.find<TrackerController>().updateTrackStart(false);
                             Get.find<OrderController>().updateOrderStatus(
-                                orderId: orderModel.id,context: context,
+                                orderId: orderModel!.id,context: context,
                                 // index: index,
                                 status: 'delivered').then((value) {
                               if (value) {
-                                orderController.updatePaymentStatus(orderId: orderModel.id, status: 'paid');
-                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => OrderPlaceScreen(orderID: orderModel.id.toString())));
+                                orderController.updatePaymentStatus(orderId: orderModel!.id, status: 'paid');
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => OrderPlaceScreen(orderID: orderModel!.id.toString())));
                               }
                             });
                           },
@@ -90,7 +90,7 @@ class DeliveryDialog extends StatelessWidget {
                   icon: const Icon(Icons.clear, size: Dimensions.paddingSizeLarge),
                   onPressed: () {
                     Navigator.pop(context);
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel, index: index)));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel!, index: index!)));
                   }),
             ),
           ],

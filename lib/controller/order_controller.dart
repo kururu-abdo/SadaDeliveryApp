@@ -8,7 +8,7 @@ import 'package:eamar_delivery/data/repository/order_repo.dart';
 import 'package:eamar_delivery/view/base/custom_snackbar.dart';
 
 class OrderController extends GetxController implements GetxService {
-  final OrderRepo orderRepo;
+  final OrderRepo? orderRepo;
   OrderController({@required this.orderRepo});
 
   // get all current order
@@ -20,7 +20,7 @@ class OrderController extends GetxController implements GetxService {
   bool get isLoading => _isLoading;
   Future getAllOrders(BuildContext context) async {
     _isLoading = true;
-    Response response = await orderRepo.getAllOrders();
+    Response response = await orderRepo!.getAllOrders();
     if (response.body != null && response.body != {} && response.statusCode == 200) {
       _currentOrders = [];
       _currentOrdersReverse = [];
@@ -39,42 +39,42 @@ class OrderController extends GetxController implements GetxService {
   final OrderDetailsModel _orderDetailsModel = OrderDetailsModel();
 
   OrderDetailsModel get orderDetailsModel => _orderDetailsModel;
-  List<OrderDetailsModel> _orderDetails;
+  List<OrderDetailsModel>? _orderDetails;
 
-  List<OrderDetailsModel> get orderDetails => _orderDetails;
+  List<OrderDetailsModel> get orderDetails => _orderDetails!;
 
   Future<List<OrderDetailsModel>> getOrderDetails(String orderID, BuildContext context) async {
     _orderDetails = null;
     _isLoading = true;
-    Response response = await orderRepo.getOrderDetails(orderID: orderID);
+    Response response = await orderRepo!.getOrderDetails(orderID: orderID);
     if (response.body != null && response.statusCode == 200) {
       _orderDetails = [];
-      response.body.forEach((orderDetail) => _orderDetails.add(OrderDetailsModel.fromJson(orderDetail)));
+      response.body.forEach((orderDetail) => _orderDetails!.add(OrderDetailsModel.fromJson(orderDetail)));
       _isLoading = false;
     } else {
       ApiChecker.checkApi( response);
       _isLoading = false;
     }
     update();
-    return _orderDetails;
+    return _orderDetails!;
   }
 
   // get all order history
-  List<OrderModel> _allOrderHistory;
-  List<OrderModel> _allOrderReverse;
+  List<OrderModel>? _allOrderHistory;
+  List<OrderModel>? _allOrderReverse;
 
-  List<OrderModel> get allOrderHistory => _allOrderHistory;
+  List<OrderModel> get allOrderHistory => _allOrderHistory!;
 
   Future getAllOrderHistory(BuildContext context) async {
 
-    Response response = await orderRepo.getAllOrderHistory();
+    Response response = await orderRepo!.getAllOrderHistory();
     if (response.body != null && response.statusCode == 200) {
       _allOrderHistory = [];
       _allOrderReverse = [];
       response.body.forEach((order) {
-        _allOrderReverse.add(OrderModel.fromJson(order));
+        _allOrderReverse!.add(OrderModel.fromJson(order));
       });
-      _allOrderHistory = List.from(_allOrderReverse.reversed);
+      _allOrderHistory = List.from(_allOrderReverse!.reversed);
     } else {
       ApiChecker.checkApi(response);
     }
@@ -101,33 +101,33 @@ class OrderController extends GetxController implements GetxService {
 
   // update Order Status
 
-  String _feedbackMessage;
+  String? _feedbackMessage;
 
-  String get feedbackMessage => _feedbackMessage;
+  String get feedbackMessage => _feedbackMessage!;
 
-  Future<bool> updateOrderStatus({int orderId, String status,BuildContext context}) async {
+  Future<bool> updateOrderStatus({int? orderId, String? status,BuildContext? context}) async {
     _isLoading = true;
     update();
-    Response response = await orderRepo.updateOrderStatus(orderId: orderId, status: status);
+    Response response = await orderRepo!.updateOrderStatus(orderId: orderId!, status: status!);
     Get.back();
     bool _isSuccess;
     if(response.body != null && response.statusCode == 200) {
       // _currentOrders[index].orderStatus = status;
       showCustomSnackBar(response.body['message'], isError: false);
       _isSuccess = true;
-      getAllOrders(context);
+      getAllOrders(context!);
     }else {
       ApiChecker.checkApi(response);
       _isSuccess = false;
     }
     _isLoading = false;
-    getAllOrders(context);
+    getAllOrders(context!);
     update();
     return _isSuccess;
   }
 
-  Future updatePaymentStatus({int orderId, String status}) async {
-    Response apiResponse = await orderRepo.updatePaymentStatus(orderId: orderId, status: status);
+  Future updatePaymentStatus({int? orderId, String? status}) async {
+    Response apiResponse = await orderRepo!.updatePaymentStatus(orderId: orderId!, status: status!);
 
     if (apiResponse.statusCode == 200) {
 

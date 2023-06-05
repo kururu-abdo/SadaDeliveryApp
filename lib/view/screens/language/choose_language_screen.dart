@@ -12,8 +12,8 @@ import 'package:eamar_delivery/view/screens/auth/login_screen.dart';
 
 
 class ChooseLanguageScreen extends StatelessWidget {
-  final bool fromHomeScreen;
-  const ChooseLanguageScreen({Key key, this.fromHomeScreen = false}) : super(key: key);
+  final bool? fromHomeScreen;
+  const ChooseLanguageScreen({Key? key, this.fromHomeScreen = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class ChooseLanguageScreen extends StatelessWidget {
                 const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall, top: Dimensions.paddingSizeSmall),
-                  child: Text('choose_the_language'.tr, style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 22, color: Theme.of(context).highlightColor),),
+                  child: Text('choose_the_language'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 22, color: Theme.of(context).highlightColor),),
                 ),
                 const SizedBox(height: 20),
                 const SizedBox(height: 20),
@@ -48,10 +48,10 @@ class ChooseLanguageScreen extends StatelessWidget {
                     onTap: () {
                       if(languageController.languages.isNotEmpty && languageController.selectIndex != -1) {
                         Get.find<LocalizationController>().setLanguage(Locale(
-                          AppConstants.languages[languageController.selectIndex].languageCode,
+                          AppConstants.languages[languageController.selectIndex].languageCode!,
                           AppConstants.languages[languageController.selectIndex].countryCode,
                         ));
-                        if (fromHomeScreen) {
+                        if (fromHomeScreen!) {
                           Navigator.pop(context);
                         } else {
                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) =>  LoginScreen()));
@@ -71,22 +71,22 @@ class ChooseLanguageScreen extends StatelessWidget {
     );
   }
 
-  Widget _languageWidget({BuildContext context, LanguageModel languageModel, LanguageController languageController, int index}) {
+  Widget _languageWidget({BuildContext? context, LanguageModel? languageModel, LanguageController? languageController, int? index}) {
     return InkWell(
       onTap: () {
-        languageController.setSelectIndex(index);
+        languageController!.setSelectIndex(index!);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          color: languageController.selectIndex == index ? Theme.of(context).primaryColor.withOpacity(.15) : null,
+          color: languageController!.selectIndex == index ? Theme.of(context!).primaryColor.withOpacity(.15) : null,
           border: Border(
               top: BorderSide(
                   width: languageController.selectIndex == index ? 1.0 : 0.0,
-                  color: languageController.selectIndex == index ? Theme.of(context).primaryColor : Colors.transparent),
+                  color: languageController.selectIndex == index ? Theme.of(context!).primaryColor : Colors.transparent),
               bottom: BorderSide(
                   width: languageController.selectIndex == index ? 1.0 : 0.0,
-                  color: languageController.selectIndex == index ? Theme.of(context).primaryColor : Colors.transparent)),
+                  color: languageController.selectIndex == index ? Theme.of(context!).primaryColor : Colors.transparent)),
         ),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -96,20 +96,20 @@ class ChooseLanguageScreen extends StatelessWidget {
                     width: 1.0,
                     color: languageController.selectIndex == index
                         ? Colors.transparent
-                        : (languageController.selectIndex - 1) == (index - 1)
+                        : (languageController.selectIndex - 1) == (index! - 1)
                             ? Colors.transparent
-                            : Theme.of(context).dividerColor.withOpacity(.2))),
+                            : Theme.of(context!).dividerColor.withOpacity(.2))),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Image.asset(languageModel.imageUrl, width: 34, height: 34),
+                  Image.asset(languageModel!.imageUrl!, width: 34, height: 34),
                   const SizedBox(width: 30),
                   Text(
-                    languageModel.languageName,
-                    style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                    languageModel.languageName!,
+                    style: Theme.of(context!).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ],
               ),

@@ -1,29 +1,29 @@
 class OrderModel {
-  int id;
-  int customerId;
-  String customerType;
-  String paymentStatus;
-  String orderStatus;
-  String paymentMethod;
-  String transactionRef;
-  double orderAmount;
-  ShippingAddress shippingAddress;
-  String createdAt;
-  String updatedAt;
-  double discountAmount;
-  String discountType;
-  String couponCode;
-  int shippingMethodId;
-  double shippingCost;
-  String orderGroupId;
-  String verificationCode;
-  int sellerId;
-  String sellerIs;
-  String shippingAddressData;
-  int deliveryManId;
-  Customer customer;
-  String orderNote;
-  String billingAddress;
+  int? id;
+  int? customerId;
+  String? customerType;
+  String? paymentStatus;
+  String? orderStatus;
+  String? paymentMethod;
+  String? transactionRef;
+  double? orderAmount;
+  ShippingAddress? shippingAddress;
+  String? createdAt;
+  String? updatedAt;
+  double? discountAmount;
+  String? discountType;
+  String? couponCode;
+  int? shippingMethodId;
+  double? shippingCost;
+  String? orderGroupId;
+  String? verificationCode;
+  int? sellerId;
+  String? sellerIs;
+  String? shippingAddressData;
+  int? deliveryManId;
+  Customer? customer;
+  String? orderNote;
+  String? billingAddress;
 
   OrderModel(
       {this.id,
@@ -97,7 +97,7 @@ class OrderModel {
     data['transaction_ref'] = transactionRef;
     data['order_amount'] = orderAmount;
     if (shippingAddress != null) {
-      data['shipping_address'] = shippingAddress.toJson();
+      data['shipping_address'] = shippingAddress!.toJson();
     }
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
@@ -113,7 +113,7 @@ class OrderModel {
     data['shipping_address_data'] = shippingAddressData;
     data['delivery_man_id'] = deliveryManId;
     if (customer != null) {
-      data['customer'] = customer.toJson();
+      data['customer'] = customer!.toJson();
     }
     data['order_note'] = orderNote;
     data['billing_address_data'] = billingAddress;
@@ -123,20 +123,20 @@ class OrderModel {
 
 class ShippingAddress {
 
-  int id;
-  int customerId;
-  String contactPersonName;
-  String addressType;
-  String address;
-  String city;
-  String zip;
-  String phone;
-  String createdAt;
-  String updatedAt;
-  String state;
-  String country;
-  String latitude;
-  String longitude;
+  int? id;
+  int? customerId;
+  String? contactPersonName;
+  String? addressType;
+  String? address;
+  String? city;
+  String? zip;
+  String? phone;
+  String? createdAt;
+  String? updatedAt;
+  String? state;
+  String? country;
+  String? latitude;
+  String? longitude;
 
 
   ShippingAddress(
@@ -201,32 +201,32 @@ class ShippingAddress {
 }
 
 class Customer {
-  int id;
-  String name;
-  String fName;
-  String lName;
-  String phone;
-  String image;
-  String email;
-  String emailVerifiedAt;
-  String createdAt;
-  String updatedAt;
-  String streetAddress;
-  String country;
-  String city;
-  String zip;
-  String houseNo;
-  String apartmentNo;
-  String cmFirebaseToken;
-  int isActive;
-  String loginMedium;
-  String socialId;
-  int isPhoneVerified;
-  String temporaryToken;
-  String paymentCardLastFour;
-  String paymentCardBrand;
-  String paymentCardFawryToken;
-  int isEmailVerified;
+  int? id;
+  String? name;
+  String? fName;
+  String? lName;
+  String? phone;
+  String? image;
+  String? email;
+  String? emailVerifiedAt;
+  String? createdAt;
+  String? updatedAt;
+  String? streetAddress;
+  String? country;
+  String? city;
+  String? zip;
+  String? houseNo;
+  String? apartmentNo;
+  String? cmFirebaseToken;
+  int? isActive;
+  String? loginMedium;
+  String? socialId;
+  int? isPhoneVerified;
+  String? temporaryToken;
+  String? paymentCardLastFour;
+  String ?paymentCardBrand;
+  String? paymentCardFawryToken;
+  int? isEmailVerified;
 
   Customer(
       {this.id,

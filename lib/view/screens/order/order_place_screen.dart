@@ -6,8 +6,8 @@ import 'package:eamar_delivery/view/base/custom_button.dart';
 import 'package:eamar_delivery/view/screens/dashboard/dashboard_screen.dart';
 
 class OrderPlaceScreen extends StatelessWidget {
-  final String orderID;
-  const OrderPlaceScreen({Key key, this.orderID}) : super(key: key);
+  final String? orderID;
+  const OrderPlaceScreen({Key? key, this.orderID}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class OrderPlaceScreen extends StatelessWidget {
               const SizedBox(height: 20),
               Text(
                 'Order Successfully Delivered',
-                style: Theme.of(context).textTheme.headline3.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
+                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
               ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('order_id'.tr, style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).highlightColor),),
-                  Text(' #$orderID', style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).highlightColor),),
+                  Text('order_id'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).highlightColor),),
+                  Text(' #$orderID', style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).highlightColor),),
                 ],
               ),
               const SizedBox(height: 30),

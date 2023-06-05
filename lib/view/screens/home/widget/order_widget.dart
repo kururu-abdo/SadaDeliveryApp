@@ -10,9 +10,9 @@ import 'package:eamar_delivery/view/screens/order/order_details_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OrderWidget extends StatelessWidget {
-  final OrderModel orderModel;
-  final int index;
-  const OrderWidget({Key key, this.orderModel, @required this.index}) : super(key: key);
+  final OrderModel? orderModel;
+  final int? index;
+  const OrderWidget({Key? key, this.orderModel, @required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +30,11 @@ class OrderWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text('order_id'.tr, style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                  Text('order_id'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                   Text(
-                    ' # ${orderModel.id.toString()}',
-                    style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                    ' # ${orderModel!.id.toString()}',
+                    style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ],
               ),
@@ -52,7 +52,7 @@ class OrderWidget extends StatelessWidget {
                                 borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(Dimensions.paddingSizeSmall),
                                     bottomLeft: Radius.circular(Dimensions.paddingSizeSmall))),
-                            child: Text(orderModel.orderStatus.tr, style: Theme.of(context).textTheme.headline1.copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeSmall),),
+                            child: Text(orderModel!.orderStatus!.tr, style: Theme.of(context).textTheme.headline1!.copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeSmall),),
                           ),
                         )
                       : Positioned(
@@ -65,8 +65,8 @@ class OrderWidget extends StatelessWidget {
                                 borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(Dimensions.paddingSizeSmall),
                                     bottomLeft: Radius.circular(Dimensions.paddingSizeSmall))),
-                            child: Text(orderModel.orderStatus.tr, style: Theme.of(context).textTheme.headline1
-                                  .copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeSmall),
+                            child: Text(orderModel!.orderStatus!.tr, style: Theme.of(context).textTheme.headline1
+                                  !.copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeSmall),
                             ),
                           ),
                         )
@@ -77,12 +77,12 @@ class OrderWidget extends StatelessWidget {
           const SizedBox(height: 25),
           Row(
             children: [
-              Image.asset(Images.location, color: Theme.of(context).textTheme.bodyText1.color, width: 15, height: 20),
+              Image.asset(Images.location, color: Theme.of(context).textTheme.bodyText1!.color, width: 15, height: 20),
               const SizedBox(width: 10),
-              orderModel.shippingAddress!=null?
+              orderModel!.shippingAddress!=null?
               Expanded(
-                  child: Text(' ${orderModel.shippingAddress.address ?? ''} ${orderModel.shippingAddress.city ?? ''}  ${orderModel.shippingAddress.zip ?? ''} ${orderModel.shippingAddress.country ?? ''}' ?? 'Address not found',
-                style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                  child: Text(' ${orderModel!.shippingAddress!.address ?? ''} ${orderModel!.shippingAddress!.city ?? ''}  ${orderModel!.shippingAddress!.zip ?? ''} ${orderModel!.shippingAddress!.country ?? ''}' ?? 'Address not found',
+                style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
               )):const SizedBox(),
             ],
           ),
@@ -93,14 +93,14 @@ class OrderWidget extends StatelessWidget {
                   child: CustomButton(
                 btnTxt: 'view_details'.tr,
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel, index: index)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel!, index: index!)));
                 },
                 isShowBorder: true,
               )),
               const SizedBox(width: 25),
               GetBuilder<LocationController>(
                 builder: (locationController) => Expanded(
-                    child:orderModel.shippingAddress != null? CustomButton(
+                    child:orderModel!.shippingAddress != null? CustomButton(
                         btnTxt: 'direction'.tr,
                         onTap: () {
 
@@ -114,8 +114,8 @@ class OrderWidget extends StatelessWidget {
 
                                MapUtils.openAppleMap(
                                 // 18.518496,73.879259,18.519513,73.868315
-                              double.parse(orderModel.shippingAddress.latitude) ?? 23.8103,
-                              double.parse(orderModel.shippingAddress.longitude) ?? 90.4125,
+                              double.parse(orderModel!.shippingAddress!.latitude!) ?? 23.8103,
+                              double.parse(orderModel!.shippingAddress!.longitude!) ?? 90.4125,
                               locationController.currentLocation.latitude ?? 23.9103,
                               locationController.currentLocation.longitude ?? 90.8125
                               
@@ -123,8 +123,8 @@ class OrderWidget extends StatelessWidget {
 
                           }else {
                                MapUtils.openMap(
-                              double.parse(orderModel.shippingAddress.latitude) ?? 23.8103,
-                              double.parse(orderModel.shippingAddress.longitude) ?? 90.4125,
+                              double.parse(orderModel!.shippingAddress!.latitude!) ?? 23.8103,
+                              double.parse(orderModel!.shippingAddress!.longitude!) ?? 90.4125,
                               locationController.currentLocation.latitude ?? 23.9103,
                               locationController.currentLocation.longitude ?? 90.8125);
 

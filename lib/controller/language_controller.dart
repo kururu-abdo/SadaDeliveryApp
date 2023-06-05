@@ -6,7 +6,7 @@ import 'package:eamar_delivery/data/model/response/language_model.dart';
 import 'package:eamar_delivery/utill/app_constants.dart';
 
 class LanguageController extends GetxController implements GetxService {
-  final SharedPreferences sharedPreferences;
+  final SharedPreferences? sharedPreferences;
   LanguageController({this.sharedPreferences});
 
   int _selectIndex = 0;
@@ -30,7 +30,7 @@ class LanguageController extends GetxController implements GetxService {
       _languages = [];
       // ignore: avoid_function_literals_in_foreach_calls
       AppConstants.languages.forEach((product) async {
-        if (product.languageName.toLowerCase().contains(query.toLowerCase())) {
+        if (product.languageName!.toLowerCase().contains(query.toLowerCase())) {
           _languages.add(product);
         }
       });

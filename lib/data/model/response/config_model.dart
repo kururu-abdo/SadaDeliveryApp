@@ -1,48 +1,48 @@
 class ConfigModel {
-  int _systemDefaultCurrency;
-  bool _digitalPayment;
-  BaseUrls _baseUrls;
-  StaticUrls _staticUrls;
-  String _aboutUs;
-  String _privacyPolicy;
-  List<Faq> _faq;
-  String _termsConditions;
-  List<CurrencyList> _currencyList;
-  String _currencySymbolPosition;
-  bool _maintenanceMode;
-  List<String> _language;
-  List<Colors> _colors;
-  List<String> _unit;
-  String _shippingMethod;
-  String _currencyModel;
-  bool _emailVerification;
-  bool _phoneVerification;
-  String _countryCode;
-  List<SocialLogin> _socialLogin;
-  String _forgetPasswordVerification;
+  int? _systemDefaultCurrency;
+  bool? _digitalPayment;
+  BaseUrls? _baseUrls;
+  StaticUrls? _staticUrls;
+  String? _aboutUs;
+  String? _privacyPolicy;
+  List<Faq>? _faq;
+  String? _termsConditions;
+  List<CurrencyList>? _currencyList;
+  String? _currencySymbolPosition;
+  bool? _maintenanceMode;
+  List<String>? _language;
+  List<Colors>? _colors;
+  List<String>? _unit;
+  String? _shippingMethod;
+  String? _currencyModel;
+  bool? _emailVerification;
+  bool? _phoneVerification;
+  String? _countryCode;
+  List<SocialLogin>? _socialLogin;
+  String? _forgetPasswordVerification;
 
   ConfigModel(
-      {int systemDefaultCurrency,
-        bool digitalPayment,
-        BaseUrls baseUrls,
-        StaticUrls staticUrls,
-        String aboutUs,
-        String privacyPolicy,
-        List<Faq> faq,
-        String termsConditions,
-        List<CurrencyList> currencyList,
-        String currencySymbolPosition,
-        bool maintenanceMode,
-        List<String> language,
-        List<Colors> colors,
-        List<String> unit,
-        String shippingMethod,
-        String currencyModel,
-        bool emailVerification,
-        bool phoneVerification,
-        String countryCode,
-        List<SocialLogin> socialLogin,
-        String forgetPasswordVerification,
+      {int? systemDefaultCurrency,
+        bool? digitalPayment,
+        BaseUrls? baseUrls,
+        StaticUrls? staticUrls,
+        String? aboutUs,
+        String? privacyPolicy,
+        List<Faq>? faq,
+        String? termsConditions,
+        List<CurrencyList>? currencyList,
+        String? currencySymbolPosition,
+        bool? maintenanceMode,
+        List<String>? language,
+        List<Colors>? colors,
+        List<String>? unit,
+        String? shippingMethod,
+        String ?currencyModel,
+        bool? emailVerification,
+        bool? phoneVerification,
+        String? countryCode,
+        List<SocialLogin>? socialLogin,
+        String? forgetPasswordVerification,
 
       }) {
     _systemDefaultCurrency = systemDefaultCurrency;
@@ -68,27 +68,27 @@ class ConfigModel {
     _forgetPasswordVerification = forgetPasswordVerification;
   }
 
-  int get systemDefaultCurrency => _systemDefaultCurrency;
-  bool get digitalPayment => _digitalPayment;
-  BaseUrls get baseUrls => _baseUrls;
-  StaticUrls get staticUrls => _staticUrls;
-  String get aboutUs => _aboutUs;
-  String get privacyPolicy => _privacyPolicy;
-  List<Faq> get faq => _faq;
-  String get termsConditions => _termsConditions;
-  List<CurrencyList> get currencyList => _currencyList;
-  String get currencySymbolPosition => _currencySymbolPosition;
-  bool get maintenanceMode => _maintenanceMode;
-  List<String> get language => _language;
-  List<Colors> get colors => _colors;
-  List<String> get unit => _unit;
-  String get shippingMethod => _shippingMethod;
-  String get currencyModel => _currencyModel;
-  bool get emailVerification => _emailVerification;
-  bool get phoneVerification => _phoneVerification;
-  String get countryCode =>_countryCode;
-  List<SocialLogin> get socialLogin => _socialLogin;
-  String get forgetPasswordVerification => _forgetPasswordVerification;
+  int get systemDefaultCurrency => _systemDefaultCurrency!;
+  bool get digitalPayment => _digitalPayment!;
+  BaseUrls get baseUrls => _baseUrls!;
+  StaticUrls get staticUrls => _staticUrls!;
+  String get aboutUs => _aboutUs!;
+  String get privacyPolicy => _privacyPolicy!;
+  List<Faq> get faq => _faq!;
+  String get termsConditions => _termsConditions!;
+  List<CurrencyList> get currencyList => _currencyList!;
+  String get currencySymbolPosition => _currencySymbolPosition!;
+  bool get maintenanceMode => _maintenanceMode!;
+  List<String> get language => _language!;
+  List<Colors> get colors => _colors!;
+  List<String> get unit => _unit!;
+  String get shippingMethod => _shippingMethod!;
+  String get currencyModel => _currencyModel!;
+  bool get emailVerification => _emailVerification!;
+  bool get phoneVerification => _phoneVerification!;
+  String get countryCode =>_countryCode!;
+  List<SocialLogin> get socialLogin => _socialLogin!;
+  String get forgetPasswordVerification => _forgetPasswordVerification!;
 
   ConfigModel.fromJson(Map<String, dynamic> json) {
     _systemDefaultCurrency = json['system_default_currency'];
@@ -103,13 +103,13 @@ class ConfigModel {
     _privacyPolicy = json['privacy_policy'];
    if (json['faq'] != null) {
       _faq = [];
-      json['faq'].forEach((v) {_faq.add(Faq.fromJson(v));
+      json['faq'].forEach((v) {_faq!.add(Faq.fromJson(v));
       });
     }
     _termsConditions = json['terms_&_conditions'];
     if (json['currency_list'] != null) {
       _currencyList = [];
-      json['currency_list'].forEach((v) {_currencyList.add(CurrencyList.fromJson(v));
+      json['currency_list'].forEach((v) {_currencyList!.add(CurrencyList.fromJson(v));
       });
     }
     _currencySymbolPosition = json['currency_symbol_position'];
@@ -117,7 +117,7 @@ class ConfigModel {
     _language = json['language'].cast<String>();
     if (json['colors'] != null) {
       _colors = [];
-      json['colors'].forEach((v) {_colors.add(Colors.fromJson(v));
+      json['colors'].forEach((v) {_colors!.add(Colors.fromJson(v));
       });
     }
 
@@ -129,7 +129,7 @@ class ConfigModel {
     _countryCode = json['country_code'];
     if (json['social_login'] != null) {
       _socialLogin = [];
-      json['social_login'].forEach((v) { _socialLogin.add(SocialLogin.fromJson(v)); });
+      json['social_login'].forEach((v) { _socialLogin!.add(SocialLogin.fromJson(v)); });
     }
     _forgetPasswordVerification = json['forgot_password_verification'];
 
@@ -140,26 +140,26 @@ class ConfigModel {
     data['system_default_currency'] = _systemDefaultCurrency;
     data['digital_payment'] = _digitalPayment;
     if (_baseUrls != null) {
-      data['base_urls'] = _baseUrls.toJson();
+      data['base_urls'] = _baseUrls!.toJson();
     }
     if (_staticUrls != null) {
-      data['static_urls'] = _staticUrls.toJson();
+      data['static_urls'] = _staticUrls!.toJson();
     }
     data['about_us'] = _aboutUs;
     data['privacy_policy'] = _privacyPolicy;
     if (_faq != null) {
-      data['faq'] = _faq.map((v) => v.toJson()).toList();
+      data['faq'] = _faq!.map((v) => v.toJson()).toList();
     }
     data['terms_&_conditions'] = _termsConditions;
     if (_currencyList != null) {
       data['currency_list'] =
-          _currencyList.map((v) => v.toJson()).toList();
+          _currencyList!.map((v) => v.toJson()).toList();
     }
     data['currency_symbol_position'] = _currencySymbolPosition;
     data['maintenance_mode'] = _maintenanceMode;
     data['language'] = _language;
     if (_colors != null) {
-      data['colors'] = _colors.map((v) => v.toJson()).toList();
+      data['colors'] = _colors!.map((v) => v.toJson()).toList();
     }
     data['unit'] = _unit;
     data['shipping_method'] = _shippingMethod;
@@ -168,7 +168,7 @@ class ConfigModel {
     data['phone_verification'] = _phoneVerification;
     data['country_code'] = _countryCode;
     if (_socialLogin != null) {
-      data['social_login'] = _socialLogin.map((v) => v.toJson()).toList();
+      data['social_login'] = _socialLogin!.map((v) => v.toJson()).toList();
     }
     data['forgot_password_verification'] = _forgetPasswordVerification;
 
@@ -177,28 +177,28 @@ class ConfigModel {
 }
 
 class BaseUrls {
-  String _productImageUrl;
-  String _productThumbnailUrl;
-  String _brandImageUrl;
-  String _customerImageUrl;
-  String _bannerImageUrl;
-  String _categoryImageUrl;
-  String _reviewImageUrl;
-  String _sellerImageUrl;
-  String _shopImageUrl;
-  String _notificationImageUrl;
+  String? _productImageUrl;
+  String? _productThumbnailUrl;
+  String? _brandImageUrl;
+  String ?_customerImageUrl;
+  String? _bannerImageUrl;
+  String? _categoryImageUrl;
+  String? _reviewImageUrl;
+  String? _sellerImageUrl;
+  String? _shopImageUrl;
+  String? _notificationImageUrl;
 
   BaseUrls(
-      {String productImageUrl,
-        String productThumbnailUrl,
-        String brandImageUrl,
-        String customerImageUrl,
-        String bannerImageUrl,
-        String categoryImageUrl,
-        String reviewImageUrl,
-        String sellerImageUrl,
-        String shopImageUrl,
-        String notificationImageUrl}) {
+      {String? productImageUrl,
+        String? productThumbnailUrl,
+        String? brandImageUrl,
+        String? customerImageUrl,
+        String? bannerImageUrl,
+        String? categoryImageUrl,
+        String? reviewImageUrl,
+        String? sellerImageUrl,
+        String? shopImageUrl,
+        String? notificationImageUrl}) {
     _productImageUrl = productImageUrl;
     _productThumbnailUrl = productThumbnailUrl;
     _brandImageUrl = brandImageUrl;
@@ -211,16 +211,16 @@ class BaseUrls {
     _notificationImageUrl = notificationImageUrl;
   }
 
-  String get productImageUrl => _productImageUrl;
-  String get productThumbnailUrl => _productThumbnailUrl;
-  String get brandImageUrl => _brandImageUrl;
-  String get customerImageUrl => _customerImageUrl;
-  String get bannerImageUrl => _bannerImageUrl;
-  String get categoryImageUrl => _categoryImageUrl;
-  String get reviewImageUrl => _reviewImageUrl;
-  String get sellerImageUrl => _sellerImageUrl;
-  String get shopImageUrl => _shopImageUrl;
-  String get notificationImageUrl => _notificationImageUrl;
+  String get productImageUrl => _productImageUrl!;
+  String get productThumbnailUrl => _productThumbnailUrl!;
+  String get brandImageUrl => _brandImageUrl!;
+  String get customerImageUrl => _customerImageUrl!;
+  String get bannerImageUrl => _bannerImageUrl!;
+  String get categoryImageUrl => _categoryImageUrl!;
+  String get reviewImageUrl => _reviewImageUrl!;
+  String get sellerImageUrl => _sellerImageUrl!;
+  String get shopImageUrl => _shopImageUrl!;
+  String get notificationImageUrl => _notificationImageUrl!;
 
 
   BaseUrls.fromJson(Map<String, dynamic> json) {
@@ -253,26 +253,26 @@ class BaseUrls {
 }
 
 class StaticUrls {
-  String _contactUs;
-  String _brands;
-  String _categories;
-  String _customerAccount;
+  String? _contactUs;
+  String? _brands;
+  String? _categories;
+  String? _customerAccount;
 
   StaticUrls(
-      {String contactUs,
-        String brands,
-        String categories,
-        String customerAccount}) {
+      {String? contactUs,
+        String? brands,
+        String? categories,
+        String? customerAccount}) {
     _contactUs = contactUs;
     _brands = brands;
     _categories = categories;
     _customerAccount = customerAccount;
   }
 
-  String get contactUs => _contactUs;
-  String get brands => _brands;
-  String get categories => _categories;
-  String get customerAccount => _customerAccount;
+  String get contactUs => _contactUs!;
+  String get brands => _brands!;
+  String get categories => _categories!;
+  String get customerAccount => _customerAccount!;
 
 
   StaticUrls.fromJson(Map<String, dynamic> json) {
@@ -293,16 +293,16 @@ class StaticUrls {
 }
 
 class SocialLogin {
-  String _loginMedium;
-  bool _status;
+  String? _loginMedium;
+  bool? _status;
 
-  SocialLogin({String loginMedium, bool status}) {
+  SocialLogin({String? loginMedium, bool? status}) {
     _loginMedium = loginMedium;
     _status = status;
   }
 
-  String get loginMedium => _loginMedium;
-  bool get status => _status;
+  String get loginMedium => _loginMedium!;
+  bool get status => _status!;
 
   SocialLogin.fromJson(Map<String, dynamic> json) {
     _loginMedium = json['login_medium'];
@@ -318,22 +318,22 @@ class SocialLogin {
 }
 
 class Faq {
-  int _id;
-  String _question;
-  String _answer;
-  int _ranking;
-  int _status;
-  String _createdAt;
-  String _updatedAt;
+  int? _id;
+  String? _question;
+  String? _answer;
+  int? _ranking;
+  int? _status;
+  String? _createdAt;
+  String ?_updatedAt;
 
   Faq(
-      {int id,
-        String question,
-        String answer,
-        int ranking,
-        int status,
-        String createdAt,
-        String updatedAt}) {
+      {int? id,
+        String ?question,
+        String ?answer,
+        int? ranking,
+        int? status,
+        String? createdAt,
+        String? updatedAt}) {
     _id = id;
     _question = question;
     _answer = answer;
@@ -343,13 +343,13 @@ class Faq {
     _updatedAt = updatedAt;
   }
 
-  int get id => _id;
-  String get question => _question;
-  String get answer => _answer;
-  int get ranking => _ranking;
-  int get status => _status;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
+  int get id => _id!;
+  String get question => _question!;
+  String get answer => _answer!;
+  int get ranking => _ranking!;
+  int get status => _status!;
+  String get createdAt => _createdAt!;
+  String get updatedAt => _updatedAt!;
 
 
   Faq.fromJson(Map<String, dynamic> json) {
@@ -376,24 +376,24 @@ class Faq {
 }
 
 class CurrencyList {
-  int _id;
-  String _name;
-  String _symbol;
-  String _code;
-  double _exchangeRate;
-  int _status;
-  String _createdAt;
-  String _updatedAt;
+  int? _id;
+  String? _name;
+  String? _symbol;
+  String? _code;
+  double? _exchangeRate;
+  int? _status;
+  String? _createdAt;
+  String? _updatedAt;
 
   CurrencyList(
-      {int id,
-        String name,
-        String symbol,
-        String code,
-        double exchangeRate,
-        int status,
-        String createdAt,
-        String updatedAt}) {
+      {int? id,
+        String? name,
+        String? symbol,
+        String? code,
+        double? exchangeRate,
+        int? status,
+        String? createdAt,
+        String? updatedAt}) {
     _id = id;
     _name = name;
     _symbol = symbol;
@@ -404,14 +404,14 @@ class CurrencyList {
     _updatedAt = updatedAt;
   }
 
-  int get id => _id;
-  String get name => _name;
-  String get symbol => _symbol;
-  String get code => _code;
-  double get exchangeRate => _exchangeRate;
-  int get status => _status;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
+  int get id => _id!;
+  String get name => _name!;
+  String get symbol => _symbol!;
+  String get code => _code!;
+  double get exchangeRate => _exchangeRate!;
+  int get status => _status!;
+  String get createdAt => _createdAt!;
+  String get updatedAt => _updatedAt!;
 
 
   CurrencyList.fromJson(Map<String, dynamic> json) {
@@ -440,14 +440,14 @@ class CurrencyList {
 }
 
 class Colors {
-  int _id;
-  String _name;
-  String _code;
-  String _createdAt;
-  String _updatedAt;
+  int? _id;
+  String? _name;
+  String? _code;
+  String? _createdAt;
+  String? _updatedAt;
 
   Colors(
-      {int id, String name, String code, String createdAt, String updatedAt}) {
+      {int? id, String? name, String? code, String? createdAt, String? updatedAt}) {
     _id = id;
     _name = name;
     _code = code;
@@ -455,11 +455,11 @@ class Colors {
     _updatedAt = updatedAt;
   }
 
-  int get id => _id;
-  String get name => _name;
-  String get code => _code;
-  String get createdAt => _createdAt;
-  String get updatedAt => _updatedAt;
+  int get id => _id!;
+  String get name => _name!;
+  String get code => _code!;
+  String get createdAt => _createdAt!;
+  String get updatedAt => _updatedAt!;
 
 
   Colors.fromJson(Map<String, dynamic> json) {

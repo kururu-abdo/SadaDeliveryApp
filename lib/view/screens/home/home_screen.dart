@@ -11,7 +11,7 @@ import 'package:eamar_delivery/view/screens/home/widget/order_widget.dart';
 import 'package:eamar_delivery/view/screens/language/choose_language_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
 
@@ -35,28 +35,29 @@ class HomeScreen extends StatelessWidget {
 
             Get.find<OrderController>().currentOrders.isNotEmpty
                   ? IconButton(
-                      icon: Icon(Icons.refresh, color: Theme.of(context).textTheme.bodyText1.color),
+                      icon: Icon(Icons.refresh, color: Theme.of(context).textTheme.bodyText1!.color),
                       onPressed: () {Get.find<OrderController>().orderRefresh(context);}):const SizedBox.shrink(),
 
             PopupMenuButton<String>(
               onSelected: (value) {
                 switch (value) {
                   case 'language':
-                   Navigator.of(context).push(MaterialPageRoute(builder: (_) =>  const ChooseLanguageScreen(fromHomeScreen: true)));
+                   Navigator.of(context).push(MaterialPageRoute(builder: (_) =>  
+                   const ChooseLanguageScreen(fromHomeScreen: true)));
                 }
               },
               icon: Icon(
                 Icons.more_vert_outlined,
-                color: Theme.of(context).textTheme.bodyText1.color,
+                color: Theme.of(context).textTheme.bodyText1!.color,
               ),
               itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                 PopupMenuItem<String>(
                   value: 'language',
                   child: Row(
                     children: [
-                      Icon(Icons.language, color: Theme.of(context).textTheme.bodyText1.color),
+                      Icon(Icons.language, color: Theme.of(context).textTheme.bodyText1!.color),
                       const SizedBox(width: Dimensions.paddingSizeLarge),
-                      Text('change_language'.tr, style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                      Text('change_language'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
                       ),
                     ],
                   ),
@@ -79,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                     placeholder: Images.placeholder,
 
                     fit: BoxFit.fill,
-                    image: '${Get.find<SplashController>().baseUrls.reviewImageUrl}/delivery-man/${Get.find<AuthController>().profileModel.image}',
+                    image: '${Get.find<SplashController>().baseUrls!.reviewImageUrl}/delivery-man/${Get.find<AuthController>().profileModel.image}',
                   ),
                 ),
               ),
@@ -87,7 +88,7 @@ class HomeScreen extends StatelessWidget {
               Text(Get.find<AuthController>().profileModel.fName != null
                     ? '${Get.find<AuthController>().profileModel.fName ?? ''} ${Get.find<AuthController>().profileModel.lName ?? ''}'
                     : "",
-                style: Theme.of(context).textTheme.headline3.copyWith(fontSize: Dimensions.fontSizeDefault, color: Theme.of(context).textTheme.bodyText1.color),
+                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeDefault, color: Theme.of(context).textTheme.bodyText1!.color),
               )
             ],
           )
@@ -98,7 +99,7 @@ class HomeScreen extends StatelessWidget {
           child:  GetBuilder<OrderController>(builder: (orderController) {
             return Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('active_order'.tr, style: Theme.of(context).textTheme.headline3.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                Text('active_order'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                 const SizedBox(height: 10),
                 Expanded(child: RefreshIndicator(
                   child: orderController.currentOrders != null ? orderController.currentOrders.isNotEmpty ? ListView.builder(

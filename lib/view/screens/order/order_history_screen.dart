@@ -12,7 +12,7 @@ import 'order_details_screen.dart';
 class OrderHistoryScreen extends StatelessWidget {
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
-  OrderHistoryScreen({Key key}) : super(key: key);
+  OrderHistoryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class OrderHistoryScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Theme.of(context).cardColor,
-        title: Text('order_history'.tr, style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).textTheme.bodyText1.color, fontSize: Dimensions.fontSizeLarge),),
+        title: Text('order_history'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color, fontSize: Dimensions.fontSizeLarge),),
       ),
         body: GetBuilder<OrderController>(builder: (orderController) {
           return orderController.allOrderHistory != null ? orderController.allOrderHistory.isNotEmpty
@@ -59,24 +59,24 @@ class OrderHistoryScreen extends StatelessWidget {
                                   child: Text(
                                     '${'order_id'.tr} #${orderController.allOrderHistory[index].id}',
                                     style:
-                                    rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyText1.color),
+                                    rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyText1!.color),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                Text('amount'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyText1.color)),
+                                Text('amount'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyText1!.color)),
                               ],
                             ),
                             const SizedBox(height: Dimensions.paddingSizeExtraSmall),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                               Row(
                                 children: [
-                                  Text('status'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyText1.color)),
-                                  Text(orderController.allOrderHistory[index].orderStatus.tr,
+                                  Text('status'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyText1!.color)),
+                                  Text(orderController.allOrderHistory[index].orderStatus!.tr,
                                       style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
                                 ],
                               ),
-                              Text(PriceConverter.convertPrice(orderController.allOrderHistory[index].orderAmount),
+                              Text(PriceConverter.convertPrice(orderController.allOrderHistory[index].orderAmount!),
                                   style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
                             ]),
                             const SizedBox(height: Dimensions.paddingSizeSmall),
@@ -84,12 +84,12 @@ class OrderHistoryScreen extends StatelessWidget {
                               Container(
                                   height: 10,
                                   width: 10,
-                                  decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyText1.color)),
+                                  decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyText1!.color)),
                               const SizedBox(width: Dimensions.paddingSizeExtraSmall),
                               Text(
-                                '${'order_at'.tr}${DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderController.allOrderHistory[index].updatedAt))
+                                '${'order_at'.tr}${DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderController.allOrderHistory[index].updatedAt!))
                                 }',
-                                style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyText1.color),
+                                style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyText1!.color),
                               ),
                             ]),
                           ]),
@@ -100,7 +100,7 @@ class OrderHistoryScreen extends StatelessWidget {
                 ))
                 : Center(child: Padding(
               padding: const EdgeInsets.only(top: 130),
-              child: Text('no_data_found'.tr, style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).primaryColor),),
+              child: Text('no_data_found'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).primaryColor),),
             ),
             ),
 

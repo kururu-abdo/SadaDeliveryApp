@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:eamar_delivery/controller/splash_controller.dart';
 
 class PriceConverter {
-  static String convertPrice(double price, {double discount, String discountType, int asFixed = 2}) {
+  static String convertPrice(double price, {double? discount, String? discountType, int asFixed = 2}) {
     if(discount != null && discountType != null){
       if(discountType == 'amount') {
         price = price - discount;

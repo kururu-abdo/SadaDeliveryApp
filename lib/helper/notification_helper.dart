@@ -21,7 +21,7 @@ class NotificationHelper {
     String _title;
     String _body;
     String _orderID;
-    String _image;
+    String? _image;
     if(data) {
       _title = message.data['title'];
       _body = message.data['body'];
@@ -30,17 +30,23 @@ class NotificationHelper {
           ? message.data['image'].startsWith('http') ? message.data['image']
           : '${AppConstants.baseUri}/storage/app/public/notification/${message.data['image']}' : null;
     }else {
-      _title = message.notification.title;
-      _body = message.notification.body;
-      _orderID = message.notification.titleLocKey;
+      _title = message.notification!.title!;
+      _body = message.notification!.body!;
+      _orderID = message.notification!.titleLocKey!;
       if(GetPlatform.isAndroid) {
-        _image = (message.notification.android.imageUrl != null && message.notification.android.imageUrl.isNotEmpty)
-            ? message.notification.android.imageUrl.startsWith('http') ? message.notification.android.imageUrl
-            : '${AppConstants.baseUri}/storage/app/public/notification/${message.notification.android.imageUrl}' : null;
+        _image = (message.notification!.android!.imageUrl != null 
+        && message.notification!.android!.imageUrl!.isNotEmpty)
+            ? message.notification!.android!.imageUrl!.startsWith('http') 
+            ? message.notification!.android!.imageUrl!
+            : '${AppConstants.baseUri}/storage/app/public/notification/${message.notification!.android!.imageUrl!}' : null;
       }else if(GetPlatform.isIOS) {
-        _image = (message.notification.apple.imageUrl != null && message.notification.apple.imageUrl.isNotEmpty)
-            ? message.notification.apple.imageUrl.startsWith('http') ? message.notification.apple.imageUrl
-            : '${AppConstants.baseUri}/storage/app/public/notification/${message.notification.apple.imageUrl}' : null;
+        _image = (message.notification!.apple!.imageUrl != null && message.notification!.apple!.imageUrl!.isNotEmpty)
+            ? message.notification!.apple!.imageUrl!.startsWith('http') ? message.notification!.apple!.imageUrl!
+
+            : '${AppConstants.baseUri}/storage/app/public/notification/${message.notification!.apple!.imageUrl}' 
+            : 
+            
+            null;
       }
     }
 
@@ -108,7 +114,7 @@ class NotificationHelper {
 }
 
 Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
-  debugPrint("onBackground: ${message.notification.title}/${message.notification.body}/${message.notification.titleLocKey}");
+  debugPrint("onBackground: ${message.notification!.title}/${message.notification!.body}/${message.notification!.titleLocKey}");
   // var androidInitialize = const AndroidInitializationSettings('notification_icon');
   // var iOSInitialize = const IOSInitializationSettings();
   // var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);

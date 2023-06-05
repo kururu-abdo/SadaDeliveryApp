@@ -7,23 +7,23 @@ import 'package:eamar_delivery/utill/images.dart';
 
 class SearchWidget extends StatefulWidget {
 
-  const SearchWidget({Key key}) : super(key: key);
+  const SearchWidget({Key? key}) : super(key: key);
 
   @override
   State<SearchWidget> createState() => _SearchWidgetState();
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-  LanguageController languageController;
+  LanguageController? languageController;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
         cursorColor: Theme.of(context).primaryColor,
         onChanged: (String query) {
-          languageController.searchLanguage(query, context);
+          languageController!.searchLanguage(query, context);
         },
-        style: Theme.of(context).textTheme.headline2.copyWith(color: ColorResources.colorBlack, fontSize: Dimensions.fontSizeLarge),
+        style: Theme.of(context).textTheme.headline2!.copyWith(color: ColorResources.colorBlack, fontSize: Dimensions.fontSizeLarge),
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 9, horizontal: 10),
@@ -34,7 +34,7 @@ class _SearchWidgetState extends State<SearchWidget> {
           isDense: true,
           hintText: 'find_language'.tr,
           fillColor: ColorResources.colorWhite,
-          hintStyle: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
+          hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
           filled: true,
           suffixIcon: Padding(
             padding: const EdgeInsets.only(left: Dimensions.paddingSizeLarge, right: Dimensions.paddingSizeSmall),

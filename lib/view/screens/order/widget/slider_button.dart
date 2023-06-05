@@ -4,7 +4,7 @@ import 'package:vibration/vibration.dart';
 
 class SliderButton extends StatefulWidget {
   ///To make button more customizable add your child widget
-  final Widget child;
+  final Widget? child;
 
   ///Sets the radius of corners of a button.
   final double radius;
@@ -27,7 +27,7 @@ class SliderButton extends StatefulWidget {
   final Alignment alignLabel;
   final BoxShadow boxShadow;
   final Widget icon;
-  final Function action;
+  final Function? action;
 
   ///Make it false if you want to deactivate the shimmer effect.
   final bool shimmer;
@@ -43,7 +43,7 @@ class SliderButton extends StatefulWidget {
   final double dismissThresholds;
 
   final bool disable;
-  const SliderButton({Key key,
+  const SliderButton({Key? key,
     @required this.action,
     this.radius = 100,
     this.boxShadow = const BoxShadow(
@@ -81,7 +81,7 @@ class SliderButton extends StatefulWidget {
 }
 
 class _SliderButtonState extends State<SliderButton> {
-  bool flag;
+  bool? flag;
 
   @override
   void initState() {
@@ -161,13 +161,14 @@ class _SliderButtonState extends State<SliderButton> {
               if (widget.dismissible) {
                 flag = false;
               } else {
-                flag = !flag;
+                flag = !flag!;
               }
             });
 
-            widget.action();
+            widget.action!();
+            bool? hasVibrator =   await Vibration.hasVibrator();
             if (widget.vibrationFlag &&
-                await Vibration.hasVibrator()) {
+               hasVibrator!) {
               try {
                 Vibration.vibrate(duration: 200);
               } catch (e) {

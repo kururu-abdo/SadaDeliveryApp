@@ -3,13 +3,13 @@ import 'package:eamar_delivery/utill/styles.dart';
 import 'package:eamar_delivery/utill/dimensions.dart';
 
 class ConfirmationDialog extends StatelessWidget {
-  final String icon;
-  final String title;
-  final String description;
-  final Function onYesPressed;
-  final bool isLogOut;
-  final bool hasCancel;
-  const ConfirmationDialog({Key key, @required this.icon, this.title, @required this.description, @required this.onYesPressed, this.isLogOut = false, this.hasCancel = true}) : super(key: key);
+  final String? icon;
+  final String? title;
+  final String? description;
+  final Function? onYesPressed;
+  final bool? isLogOut;
+  final bool? hasCancel;
+  const ConfirmationDialog({Key? key, @required this.icon, this.title, @required this.description, @required this.onYesPressed, this.isLogOut = false, this.hasCancel = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +21,20 @@ class ConfirmationDialog extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
-            child: Image.asset(icon, width: 50, height: 50),
+            child: Image.asset(icon!, width: 50, height: 50),
           ),
 
           title != null ? Padding(
             padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge),
             child: Text(
-              title, textAlign: TextAlign.center,
+              title!, textAlign: TextAlign.center,
               style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Colors.red),
             ),
           ) : const SizedBox(),
 
           Padding(
             padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-            child: Text(description, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge), textAlign: TextAlign.center),
+            child: Text(description!, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge), textAlign: TextAlign.center),
           ),
           const SizedBox(height: Dimensions.paddingSizeLarge),
 
