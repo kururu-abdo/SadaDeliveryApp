@@ -25,6 +25,7 @@ class AuthController extends GetxController implements GetxService {
   bool get isLoading => _isLoading;
   bool get notification => _notification;
   UserInfoModel get profileModel => _profileModel!;
+   UserInfoModel? get profileModel2 => _profileModel!;
   XFile get pickedFile => _pickedFile!;
 
   Future<ResponseModel> login(String email, String password) async {
@@ -49,7 +50,7 @@ class AuthController extends GetxController implements GetxService {
     Response response = await authRepo!.getProfileInfo();
     if (response.statusCode == 200) {
       _profileModel = UserInfoModel.fromJson(response.body);
-
+// profileModel2 =  UserInfoModel.fromJson(response.body);
     } else {
       ApiChecker.checkApi(response);
     }

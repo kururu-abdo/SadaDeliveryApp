@@ -78,7 +78,8 @@ class ProfileScreen extends StatelessWidget {
                       _userInfoWidget(context: context, text: profileController.profileModel.phone!),
                       const SizedBox(height: 20),
                       ProfileButton(icon: Icons.privacy_tip, title: 'privacy_policy'.tr, onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) =>  HtmlViewerScreen(isPrivacyPolicy: true)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) =>  
+                        HtmlViewerScreen(isPrivacyPolicy: true)));
                       }),
                       const SizedBox(height: 10),
                       ProfileButton(icon: Icons.list, title: 'terms_and_condition'.tr, onTap: () {

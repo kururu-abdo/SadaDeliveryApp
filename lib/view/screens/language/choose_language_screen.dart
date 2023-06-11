@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:eamar_delivery/controller/language_controller.dart';
 import 'package:eamar_delivery/controller/localization_controller.dart';
@@ -13,7 +16,9 @@ import 'package:eamar_delivery/view/screens/auth/login_screen.dart';
 
 class ChooseLanguageScreen extends StatelessWidget {
   final bool? fromHomeScreen;
-  const ChooseLanguageScreen({Key? key, this.fromHomeScreen = false}) : super(key: key);
+    final AdvancedDrawerController? advancedDrawerController;
+  final Function? handleMenuePressed;
+  const ChooseLanguageScreen({Key? key, this.fromHomeScreen = false, this.advancedDrawerController, this.handleMenuePressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,48 @@ class ChooseLanguageScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
+      appBar: AppBar(
+centerTitle: true, 
+backgroundColor: Theme.of(context).primaryColor,
+        title: Text('choose_the_language'.tr ,
+        
+        ),
+
+        leading: 
+        fromHomeScreen!?
+IconButton(onPressed: (){
+
+  Navigator.pop(context);
+}, icon: Icon(
+  Icons.arrow_back_ios ,color: Colors.white,
+)):
+
+            
+      IconButton(
+            onPressed: (){
+              log('PRESSED');
+              handleMenuePressed!();
+            },
+            icon: ValueListenableBuilder<AdvancedDrawerValue>(
+              valueListenable: advancedDrawerController!,
+              builder: (_, value, __) {
+                return AnimatedSwitcher(
+                  duration: Duration(milliseconds: 250),
+                  child: Icon(
+                    value.visible ? Icons.clear : Icons.menu,
+                    key: ValueKey<bool>(value.visible),
+                  ),
+                );
+              },
+            ),
+         
+         
+      ),
+          
+      
+        
+        
+      ),
       body: SafeArea(
         child: GetBuilder<LanguageController>(
           builder: (languageController){

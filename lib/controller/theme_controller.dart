@@ -5,7 +5,7 @@ import 'package:eamar_delivery/utill/app_constants.dart';
 
 class ThemeController extends GetxController implements GetxService {
   final SharedPreferences? sharedPreferences;
-  ThemeController({@required this.sharedPreferences}) {
+  ThemeController({ this.sharedPreferences}) {
     _loadCurrentTheme();
   }
 

@@ -1,4 +1,9 @@
+import 'dart:developer';
+
+import 'package:eamar_delivery/controller/localization_controller.dart';
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:eamar_delivery/controller/order_controller.dart';
 import 'package:eamar_delivery/helper/date_converter.dart';
@@ -10,9 +15,11 @@ import 'package:eamar_delivery/utill/styles.dart';
 import 'order_details_screen.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
+    final AdvancedDrawerController? advancedDrawerController;
+  final Function? handleMenuePressed;
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
-  OrderHistoryScreen({Key? key}) : super(key: key);
+  OrderHistoryScreen({Key? key, this.advancedDrawerController, this.handleMenuePressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +27,68 @@ class OrderHistoryScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-        leading: const SizedBox.shrink(),
+        // leading: const SizedBox.shrink(),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Theme.of(context).cardColor,
-        title: Text('order_history'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color, fontSize: Dimensions.fontSizeLarge),),
+        backgroundColor: Theme.of(context).primaryColor,
+
+
+leading: 
+
+      
+      IconButton(
+            onPressed: (){
+              log('PRESSED');
+              handleMenuePressed!();
+            },
+            icon: ValueListenableBuilder<AdvancedDrawerValue>(
+              valueListenable: advancedDrawerController!,
+              builder: (_, value, __) {
+                return AnimatedSwitcher(
+                  duration: Duration(milliseconds: 250),
+                  child: Icon(
+                    value.visible ? Icons.clear : Icons.menu,
+                    key: ValueKey<bool>(value.visible),
+                  ),
+                );
+              },
+            ),
+         
+         
+      ),
+       
+
+
+
+
+
+        title: Text('order_history'.tr, 
+        
+        style:
+        TextStyle(
+          color: Colors.white
+        )
+        //  Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color, fontSize: Dimensions.fontSizeLarge),
+         
+         
+         
+         ),
       ),
         body: GetBuilder<OrderController>(builder: (orderController) {
-          return orderController.allOrderHistory != null ? orderController.allOrderHistory.isNotEmpty
-              ? RefreshIndicator(
-            child: orderController.allOrderHistory.isNotEmpty
-                ? ListView.builder(
+          return
+         !orderController.isHistoryLoading?  
+          
+           orderController.allOrderHistory != null ?
+          
+           orderController.allOrderHistory.isNotEmpty
+              ? 
+              
+              
+              RefreshIndicator(
+            child: 
+            orderController.allOrderHistory.isNotEmpty
+                ?
+                 ListView.builder(
                 itemCount: orderController.allOrderHistory.length,
                 padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
                 itemBuilder: (context, index) => InkWell(
@@ -77,7 +135,12 @@ class OrderHistoryScreen extends StatelessWidget {
                                 ],
                               ),
                               Text(PriceConverter.convertPrice(orderController.allOrderHistory[index].orderAmount!),
-                                  style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
+                                  style: rubikMedium.copyWith(color: 
+                                  Colors.red
+                                  // Theme.of(context)
+                                
+                                  
+                                  )),
                             ]),
                             const SizedBox(height: Dimensions.paddingSizeSmall),
                             Row(children: [
@@ -87,8 +150,16 @@ class OrderHistoryScreen extends StatelessWidget {
                                   decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyText1!.color)),
                               const SizedBox(width: Dimensions.paddingSizeExtraSmall),
                               Text(
-                                '${'order_at'.tr}${DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderController.allOrderHistory[index].updatedAt!))
-                                }',
+                                // '${'order_at'.tr} ${DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderController.allOrderHistory[index].updatedAt!))
+                                // }'
+                                
+                                 '${'order_at'.tr}:   ${timeUntil(DateTime.parse(orderController.allOrderHistory[index].updatedAt!) ,
+                                 
+                                 Get.find<LocalizationController>().locale.languageCode)}'
+                                //  ${DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderController.allOrderHistory[index].updatedAt!))
+                                
+                                
+                                ,
                                 style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyText1!.color),
                               ),
                             ]),
@@ -110,7 +181,18 @@ class OrderHistoryScreen extends StatelessWidget {
             backgroundColor: Theme.of(context).primaryColor,
             key: _refreshIndicatorKey,
           ) : Center(child: Text('no_history_available'.tr, style: Theme.of(context).textTheme.headline3,
-          )) : Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)));
+          )) :
+          
+           Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)))
+           :
+
+                      Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)))
+
+
+           
+           
+           
+           ;
         }
 
         ));

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 
 import 'package:flutter/services.dart';
@@ -22,35 +23,135 @@ import 'package:eamar_delivery/data/repository/profile_repo.dart';
 import 'package:eamar_delivery/data/repository/splash_repo.dart';
 import 'package:eamar_delivery/data/repository/tracker_repo.dart';
 import 'package:eamar_delivery/utill/app_constants.dart';
+// class MainBindings extends Bindings {
+//   @override
+ Future<void> dependencies() async {
+// try {
+  
+     
+// Core
+SharedPreferences 
+ sharedPreferences = await SharedPreferences.getInstance();
+  Get.put<SharedPreferences>(sharedPreferences ,
+  
+  permanent: true
+  );
 
-Future<Map<String, Map<String, String>>> init() async {
-  // Core
-  final sharedPreferences = await SharedPreferences.getInstance();
-  Get.lazyPut(() => sharedPreferences);
-  Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: Get.find()));
+  Get.put<ApiClient>( ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  ));
+
+
+
+
+
 
   // Repository
-  Get.lazyPut(() => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  Get.lazyPut(() => LanguageRepo());
-  Get.lazyPut(() => ProfileRepo(apiClient: Get.find(), sharedPreferences: sharedPreferences));
-  Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
-  Get.lazyPut(() => OrderRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
-  Get.lazyPut(() => TrackerRepo(apiClient: Get.find(), sharedPreferences:  Get.find()));
+  Get.put( SplashRepo(sharedPreferences: sharedPreferences, apiClient: 
+ 
+  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  )
+  
+  
+  ));
+  Get.put( LanguageRepo());
+  Get.put( ProfileRepo(apiClient:
+  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  )
+   
+   , sharedPreferences: 
+  
+  
+  sharedPreferences));
+  Get.put( AuthRepo(apiClient:  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  ), sharedPreferences: sharedPreferences));
+  Get.put( OrderRepo(apiClient:  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  ), sharedPreferences: sharedPreferences));
+  Get.put( TrackerRepo(apiClient:  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  ), sharedPreferences: sharedPreferences));
   // Get.lazyPut(() => NotificationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   // Controller
-  Get.lazyPut(() => ThemeController(sharedPreferences: Get.find()));
-  Get.lazyPut(() => SplashController(splashRepo: Get.find()));
-  Get.lazyPut(() => LocalizationController(sharedPreferences: Get.find()));
-  Get.lazyPut(() => LanguageController(sharedPreferences: Get.find()));
-  Get.lazyPut(() => AuthController(authRepo: Get.find()));
-  Get.lazyPut(() => OrderController(orderRepo: Get.find()));
-  Get.lazyPut(() => ProfileController(profileRepo: Get.find()));
-  Get.lazyPut(() => LocalizationController(sharedPreferences: sharedPreferences));
-  Get.lazyPut(() => LocationController(sharedPreferences: sharedPreferences));
-  Get.lazyPut(() => TrackerController(trackerRepo: Get.find()));
+      Get.put( ThemeController(sharedPreferences: sharedPreferences));
+
+  Get.put( SplashController(splashRepo: SplashRepo(sharedPreferences: sharedPreferences, apiClient: 
+ 
+  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  )
+  
+  
+  )));
+  Get.put(  LocalizationController(sharedPreferences:sharedPreferences));
+  Get.put( LanguageController(sharedPreferences: sharedPreferences));
+  Get.put( AuthController(authRepo:AuthRepo(apiClient:  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  ), sharedPreferences: sharedPreferences)));
+
+  Get.put( AuthRepo(apiClient:  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  ), sharedPreferences: sharedPreferences));
+  Get.put( ProfileController(profileRepo: ProfileRepo(apiClient:
+  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  )
+   
+   , sharedPreferences: 
+  
+  
+  sharedPreferences)));
+  Get.put( LocalizationController(sharedPreferences: sharedPreferences));
+  Get.put( LocationController(sharedPreferences: sharedPreferences));
+  Get.put( TrackerController(trackerRepo: TrackerRepo(apiClient:  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  ), sharedPreferences: sharedPreferences)));
+  
+Get.put(
+
+  OrderController(orderRepo:  OrderRepo(apiClient:  ApiClient(appBaseUrl: AppConstants.baseUri, sharedPreferences: 
+  sharedPreferences
+  
+  ), sharedPreferences:
+  sharedPreferences
+  ), 
+  
+  )
+
+
+ ,permanent: true
+
+);
+
+  log('ALL DEPENENCIES INJECTED');
+  
   // Get.lazyPut(() => NotificationController(notificationRepo: Get.find()));
 
+// } catch (e) {
+//   log(e.toString());
+  
+// }
+
+  }
+  
+// }
+Future<Map<String, Map<String, String>>> init() async {
+  
   // Retrieving localized data
   Map<String, Map<String, String>> _languages = {};
   for(LanguageModel languageModel in AppConstants.languages) {

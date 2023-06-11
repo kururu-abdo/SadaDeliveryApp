@@ -34,30 +34,35 @@ class OrderDetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).cardColor,
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Theme.of(context).textTheme.bodyText1!.color,
+            color: Colors.white
           ),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         title: Text('order_details'.tr,
-          style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyText1!.color),
+          style: Theme.of(context).textTheme.headline3!.copyWith(
+            
+            
+            fontSize: Dimensions.fontSizeLarge, color: Colors.white),
         ),
       ),
       body: GetBuilder<OrderController>(
         builder: (orderController) {
+
+
           double _itemsPrice = 0;
           double _discount = 0;
           double _tax = 0;
-          if (orderController.orderDetails != null) {
-            for (var orderDetails in orderController.orderDetails) {
-              _itemsPrice = _itemsPrice + (orderDetails.price * orderDetails.qty);
+          if (orderController.orderDetails!=null) {
+            for (var orderDetails in orderController.orderDetails!) {
+              _itemsPrice = _itemsPrice + (orderDetails!.price * orderDetails.qty);
               _discount = _discount + orderDetails.discount;
               _tax = _tax + orderDetails.tax;
             }
@@ -97,7 +102,218 @@ class OrderDetailsScreen extends StatelessWidget {
                           ),
                         ]),
                         const SizedBox(height: 20),
+Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(children: [
+                              Text('${'item'.tr}:', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
+                              const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                              Text(orderController.orderDetails!.length.toString(), style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
+                            ]),
+                            orderModel!.orderStatus == 'processing' || orderModel!.orderStatus == 'out_for_delivery'
+                                ? Row(children: [
+                                    Text('${'payment_status'.tr}:', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
+                                    const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                                    Text(orderModel!.paymentStatus!.tr , style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
+                                  ])
+                                : const SizedBox.shrink(),
+                          ],
+                        ),
+                     
+                     
+                     //   items
+                        const Divider(height: 20),
 
+                        SizedBox(
+                          height: 200,
+                          
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: orderController.orderDetails!.length,
+                                                          scrollDirection: Axis.horizontal,
+                        
+                            itemBuilder: (context, index) {
+                              return 
+                              
+                        Center(
+                          child:   Container(
+                          margin: EdgeInsets.all(
+                            8
+                          ),
+                          height: 150, width:MediaQuery.of(context).size.width/3 ,
+                          
+                          decoration: BoxDecoration(
+                          
+                            border: Border.all(
+                              width: .5,color: Theme.of(context).primaryColor
+                            )
+                          ),
+
+                          child: 
+                          
+                          Column(
+                            children: [
+
+SizedBox(
+                                    height: 70, width: double.infinity,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(0),
+                                      child: FadeInImage.assetNetwork(
+                                        imageErrorBuilder: (c,o,s) => Image.asset(Images.placeholder,
+                                        height: 70, width: double.infinity, fit: BoxFit.cover,
+                                        ),
+                                        placeholder: Images.placeholder,
+                                        image: '${Get.find<SplashController>().baseUrls!.productThumbnailUrl}/${orderController.orderDetails![index]!.productDetails.thumbnail}',
+                                        height: 70, width: double.infinity, fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+
+                                  Expanded(child: 
+                                  
+                                  Container(
+                                    padding: EdgeInsets.all(5),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+
+                                      SizedBox(
+                                        width: double.infinity,
+
+                                        child: Text(' ${orderController.orderDetails![index]!.productDetails.name}', 
+                                        overflow: TextOverflow.ellipsis,
+                                        
+                                        style: rubikMedium.copyWith(
+                                          color: Theme.of(context).primaryColor ,
+
+                                          fontSize: 14 ,fontWeight: FontWeight.w400
+                                        ),),
+                                      ),
+
+ Row(
+  mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text('${'quantity'.tr}:',
+                                                style: rubikRegular.copyWith(color: Theme.of(context).highlightColor
+                                                
+                                                
+                                                ,
+
+                                                                                                                          fontSize: 10,
+
+                                                fontWeight: FontWeight.w400
+                                                )),
+                                            Text(' ${orderController.orderDetails![index]!.qty}',
+                                                style: rubikMedium.copyWith(color: Theme.of(context).primaryColor
+                                                
+                                                ,                                                fontSize: 10,
+
+                                                fontWeight: FontWeight.w400
+
+                                                
+                                                ),
+                                                
+                                                
+                                                
+                                                ),
+                                          ],
+                                        ),
+
+ Row(
+  mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text('${'price'.tr}:',
+                                                style: rubikRegular.copyWith(color: Theme.of(context).highlightColor,
+                                                                                                fontSize: 10  ,                                              fontWeight: FontWeight.w400
+
+                                                )),
+                                            Text( PriceConverter.convertPrice(orderController.orderDetails![index]!.price),
+                                                style: rubikMedium.copyWith(color: Colors.red ,
+                                                
+                                                fontSize: 10  ,                                              fontWeight: FontWeight.w400
+
+                                                
+                                                )),
+                                          ],
+                                        ),
+
+
+
+                                      ],
+                                    ),
+                                  )
+                                  
+                                  )
+                            ],
+                          )
+                          
+                          ,
+                          ),
+                        );
+                        
+                        
+                              
+                              ListView(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                scrollDirection: Axis.vertical,
+                                
+                                 children: [
+                                Row(children: [
+                                  SizedBox(
+                                    height: 70, width: 70,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: FadeInImage.assetNetwork(
+                                        imageErrorBuilder: (c,o,s) => Image.asset(Images.placeholder),
+                                        placeholder: Images.placeholder,
+                                        image: '${Get.find<SplashController>().baseUrls!.productThumbnailUrl}/${orderController.orderDetails![index]!.productDetails.thumbnail}',
+                                        height: 70, width: 70, fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: Dimensions.paddingSizeSmall),
+                                  Expanded(
+                                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              orderController.orderDetails![index]!.productDetails.name,
+                                              style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).highlightColor),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                          Text('amount'.tr, style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
+                                        ],
+                                      ),
+                                      const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+                                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                        Row(
+                                          children: [
+                                            Text('${'quantity'.tr}:',
+                                                style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
+                                            Text(' ${orderController.orderDetails![index]!.qty}',
+                                                style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
+                                          ],
+                                        ),
+                                        Text(
+                                          PriceConverter.convertPrice(orderController.orderDetails![index]!.price),
+                                          style: rubikMedium.copyWith(color: Theme.of(context).primaryColor),
+                                        ),
+                                      ]),
+                                      const SizedBox(height: Dimensions.paddingSizeSmall),
+                                      Text(' ${orderController.orderDetails![index]!.variant}', style: rubikMedium.copyWith(),),
+                                    ]),
+                                  ),
+                                ]),
+                                const Divider(height: 20),
+                              ]);
+                            },
+                          ),
+                        ),
+SizedBox(height: 20,),
                         Container(
                           padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
                           decoration: BoxDecoration(
@@ -130,8 +346,12 @@ class OrderDetailsScreen extends StatelessWidget {
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
-                                  decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).shadowColor),
-                                  child: const Icon(Icons.call_outlined, color: Colors.black),
+                                  decoration: BoxDecoration(shape: BoxShape.circle, 
+                                  color: Colors.green
+                                  //  Theme.of(context).shadowColor
+                                  
+                                  ),
+                                  child: const Icon(Icons.call_outlined, color: Colors.white),
                                 ),
                               ),
                             ),
@@ -146,84 +366,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(children: [
-                              Text('${'item'.tr}:', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                              const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                              Text(orderController.orderDetails.length.toString(), style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
-                            ]),
-                            orderModel!.orderStatus == 'processing' || orderModel!.orderStatus == 'out_for_delivery'
-                                ? Row(children: [
-                                    Text('${'payment_status'.tr}:', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                                    const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                                    Text(orderModel!.paymentStatus!.tr , style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
-                                  ])
-                                : const SizedBox.shrink(),
-                          ],
-                        ),
-                        const Divider(height: 20),
 
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: orderController.orderDetails.length,
-                          itemBuilder: (context, index) {
-                            return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                              Row(children: [
-                                SizedBox(
-                                  height: 70, width: 70,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: FadeInImage.assetNetwork(
-                                      imageErrorBuilder: (c,o,s) => Image.asset(Images.placeholder),
-                                      placeholder: Images.placeholder,
-                                      image: '${Get.find<SplashController>().baseUrls!.productThumbnailUrl}/${orderController.orderDetails[index].productDetails.thumbnail}',
-                                      height: 70, width: 70, fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: Dimensions.paddingSizeSmall),
-                                Expanded(
-                                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            orderController.orderDetails[index].productDetails.name,
-                                            style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).highlightColor),
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                        Text('amount'.tr, style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-                                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                      Row(
-                                        children: [
-                                          Text('${'quantity'.tr}:',
-                                              style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                                          Text(' ${orderController.orderDetails[index].qty}',
-                                              style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
-                                        ],
-                                      ),
-                                      Text(
-                                        PriceConverter.convertPrice(orderController.orderDetails[index].price),
-                                        style: rubikMedium.copyWith(color: Theme.of(context).primaryColor),
-                                      ),
-                                    ]),
-                                    const SizedBox(height: Dimensions.paddingSizeSmall),
-                                    Text(' ${orderController.orderDetails[index].variant}', style: rubikMedium.copyWith(),),
-                                  ]),
-                                ),
-                              ]),
-                              const Divider(height: 20),
-                            ]);
-                          },
-                        ),
 
                         // (orderModel.orderNote != null && orderModel.orderNote.isNotEmpty) ? Container(
                         //   padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
@@ -237,61 +380,185 @@ class OrderDetailsScreen extends StatelessWidget {
                         // ) : SizedBox(),
 
                         // Total
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('items_price'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
-                          Text(PriceConverter.convertPrice( _itemsPrice), style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
-                        ]),
+
+
+
+   Row(children: [
+                              Text('${'order_summary'.tr} :', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
+                              const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+
+
+                            ]),
+
+
+
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 5
+                          ),
+                          decoration: BoxDecoration(
+
+                            border: Border(
+                              top: BorderSide(
+                                width: 1,color: Theme.of(context).primaryColor
+                              )
+                            )
+                          ),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                            Text('items_price'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
+                            Text(PriceConverter.convertPrice( _itemsPrice), style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
+                          ]),
+                        )
+                        
+                        
+                        ,
                         const SizedBox(height: 10),
 
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('tax'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                          Text('(+) ${PriceConverter.convertPrice( _tax)}',
-                              style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                        ]),
+                           Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 5
+                          ),
+                          decoration: BoxDecoration(
+
+                            border: Border(
+                              top: BorderSide(
+                                width: 1,color: Theme.of(context).primaryColor
+                              )
+                            )
+                          ),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                            Text('tax'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                            Text('(+) ${PriceConverter.convertPrice( _tax)}',
+                                style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                          ]),
+                        ),
                         const SizedBox(height: 10),
 
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
-                          child: CustomDivider(),
+                        // const Padding(
+                        //   padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
+                        //   child: CustomDivider(),
+                        // ),
+
+                              Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 5
+                          ),
+                          decoration: BoxDecoration(
+
+                            border: Border(
+                              // bottom: BorderSide(
+                              //   width: 1,color: Theme.of(context).primaryColor
+                              // ),
+                              top: BorderSide(
+                                width: 1,color: Theme.of(context).primaryColor
+                              )
+                            )
+                          ),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                            Text('subtotal'.tr, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                            Text(PriceConverter.convertPrice( _subTotal),
+                                style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                          ]),
+                        ),
+                        const SizedBox(height: 10),
+
+//  const Padding(
+//                           padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
+//                           child: CustomDivider(),
+//                         ),
+
+SizedBox(height: 10,),
+                        Container(
+                           padding: EdgeInsets.symmetric(
+                            vertical: 5
+                          ),
+                          decoration: BoxDecoration(
+
+                            border: Border(
+                              top: BorderSide(
+                                width: 1,color: Theme.of(context).primaryColor
+                              )
+                            )
+                          ),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                            Text('discount'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                            Text('(-) ${PriceConverter.convertPrice( _discount)}', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                          ]),
+                        ),
+                        const SizedBox(height: 10),
+
+                        Container(
+
+                           padding: EdgeInsets.symmetric(
+                            vertical: 5
+                          ),
+                          decoration: BoxDecoration(
+
+                            border: Border(
+                              top: BorderSide(
+                                width: 1,color: Theme.of(context).primaryColor
+                              )
+                            )
+                          ),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                            Text('coupon_discount'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                            Text(
+                              '(-) ${PriceConverter.convertPrice(orderModel!.discountAmount!)}',
+                              style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
+                            ),
+                          ]),
+                        ),
+                        const SizedBox(height: 10),
+
+                        Container(
+                           padding: EdgeInsets.symmetric(
+                            vertical: 5
+                          ),
+                          decoration: BoxDecoration(
+
+                            border: Border(
+                              top: BorderSide(
+                                width: 1,color: Theme.of(context).primaryColor
+                              )
+                            )
+                          ),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                            Text('delivery_fee'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                            Text('(+) ${PriceConverter.convertPrice( deliveryCharge)}', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                          ]),
                         ),
 
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('subtotal'.tr, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                          Text(PriceConverter.convertPrice( _subTotal),
-                              style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                        ]),
-                        const SizedBox(height: 10),
+                        // const Padding(
+                        //   padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
+                        //   child: CustomDivider(),
+                        // ),
 
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('discount'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                          Text('(-) ${PriceConverter.convertPrice( _discount)}', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                        ]),
-                        const SizedBox(height: 10),
-
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('coupon_discount'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                          Text(
-                            '(-) ${PriceConverter.convertPrice(orderModel!.discountAmount!)}',
-                            style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
+                        Container(
+                           padding: EdgeInsets.symmetric(
+                            vertical: 5
                           ),
-                        ]),
-                        const SizedBox(height: 10),
+                          decoration: BoxDecoration(
 
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('delivery_fee'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                          Text('(+) ${PriceConverter.convertPrice( deliveryCharge)}', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                        ]),
+                            border: Border(
 
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
-                          child: CustomDivider(),
+
+                              top: 
+                              
+                              BorderSide(
+                                width: 1, color: Theme.of(context).primaryColor
+                              )
+                              ,
+                              bottom: BorderSide(
+                                width: 1,color: Theme.of(context).primaryColor
+                              )
+                            )
+                          ),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                            Text('total_amount'.tr, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor)),
+                            Text(PriceConverter.convertPrice( totalPrice), style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor),
+                            ),
+                          ]),
                         ),
-
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                          Text('total_amount'.tr, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor)),
-                          Text(PriceConverter.convertPrice( totalPrice), style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor),
-                          ),
-                        ]),
                         const SizedBox(height: 30),
 
                         /* //Direction Button..................................

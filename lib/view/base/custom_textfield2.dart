@@ -45,7 +45,122 @@ class PhoneField extends StatelessWidget {
   @override
   Widget build(context) {
     var isRtl = Directionality.of(context)==TextDirection.rtl;
-    return Container(
+    return 
+    
+    Container(
+      height: 60,
+        decoration: BoxDecoration(
+          // color: Colors.grey,
+          borderRadius: new BorderRadius.circular(10.0),
+        ),
+        child: TextFormField(        cursorColor: Theme.of(context).primaryColor,
+
+  textAlign: 
+        
+        // isBorder? TextAlign.center:
+        isRtl?TextAlign.end:
+        TextAlign.start,
+controller: controller,
+        maxLines: maxLine ?? 1,
+        textCapitalization: capitalization!,
+        maxLength: isPhoneNumber! ? 10 : null,
+
+       focusNode: focusNode,
+        keyboardType: textInputType ?? TextInputType.text,
+        //keyboardType: TextInputType.number,
+        initialValue: null,
+        textInputAction: textInputAction ?? TextInputAction.next,
+
+
+        
+        onFieldSubmitted: (v) {
+          FocusScope.of(context).requestFocus(nextNode);
+        },
+        //autovalidate: true,
+        inputFormatters: [isPhoneNumber! ? FilteringTextInputFormatter.digitsOnly : FilteringTextInputFormatter.singleLineFormatter],
+        validator: (input){
+          if(input!.isEmpty){
+            if(isValidator!){
+              return validatorMessage??"";
+            }
+          }
+          return null;
+
+        },
+
+            decoration: InputDecoration(hintTextDirection: TextDirection.ltr,
+
+counterText: '',
+  filled: fillColor != null,
+          fillColor: fillColor,
+prefixIcon:isRtl?null: Container(
+        padding: EdgeInsets.zero,
+        width: 30,
+        child: Center(
+          child: Text(
+       '966',
+    // showFlagMain: true,
+        style: TextStyle(
+        // color: Colors.black
+        
+     color:       Theme.of(context).textTheme.headline1!.color ,
+     fontWeight: FontWeight.bold
+        
+        ),
+      ),
+        ),
+          ),
+ suffixIcon:isRtl? Container(
+        padding: EdgeInsets.zero,
+        width: 30,
+        child: Center(
+          child: Text(
+       '966',
+    // showFlagMain: true,
+        style: TextStyle(
+        // color: Colors.black
+        
+     color:       Theme.of(context).textTheme.headline1!.color ,
+     fontWeight: FontWeight.bold
+        
+        ),
+      ),
+        ),
+          ):null,
+
+
+
+
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              width: .8,
+                color:
+        // widget.isShowBorder ?
+           ColorResources.colorMap[200] !
+            )
+          ),
+        
+        
+        
+          hintText : hintText??'',
+
+           focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+               hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
+
+          errorStyle: TextStyle(height: 1.5),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+
+        )
+        ,
+
+        
+        
+        )
+            );
+    
+    
+    
+    Container(
        height: 60,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),

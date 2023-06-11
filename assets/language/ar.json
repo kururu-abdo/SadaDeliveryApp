@@ -7,6 +7,8 @@
   "mobile_payment": "دفع فاتورة التليفون",
   "order_tracking": "تتبع الطلب",
   "order_details": "تفاصيل الطلب",
+  "unknowon":"غير معروف",
+  "km":" كم",
   "order_accepted": "تم قبول الطلب",
   "order_history": "تاريخ الطلب",
   "view_in_map": "عرض في الخريطة",
@@ -84,7 +86,8 @@
   "active_order": "الطلبات الجديدة",
   "change_language": "تغيير اللغة",
   "status": "الحالة:",
-  "order_at": "اطلب في",
+  "order_at": "تم الطلب قبل",
+  "order_summary":"ملخص الطلب",
   "dark": "داكن ",
   "light": "ضوء ",
   "start_delivery": "ابدأ التسليم",
@@ -105,7 +108,7 @@
   "settings": "إعدادات",
   "terms_and_condition": "أحكام وشروط",
   "privacy_policy": "سياسة خاصة",
-  "order_note": "مذكرة النظام",
+  "order_note": "عناوين التسليم",
   "address": "عنوان الشحن",
   "billing_address": "عنوان وصول الفواتير"
 }

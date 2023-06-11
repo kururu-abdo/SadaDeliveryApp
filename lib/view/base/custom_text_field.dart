@@ -60,15 +60,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
   bool _obscureText = true;
 
   @override
-  Widget build(BuildContext context) {
+  Widget 
+  
+  
+  build(BuildContext context) {
     return Container(
       height: 60,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
           color: Theme.of(context).cardColor,
-          border: Border.all(color: widget.isShowBorder! ? ColorResources.colorMap[200]! : Colors.transparent)),
+          border: Border.all(color: widget.isShowBorder! ? 
+          ColorResources.colorMap[200]! :
+           Colors.transparent)),
       child: TextFormField(
-               maxLines: widget.maxLine ,
+
+        
+               maxLines: widget.isPassword! ?
+               1:
+               widget.maxLine ,
 
         controller: widget.controller,
         focusNode: widget.focusNode,
@@ -122,7 +131,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       : null
               : null,
         ),
-        onTap: widget.onTap!,
+        onTap:(){
+widget.onTap!();
+        } 
         // onSubmitted: (text) => widget.nextFocus != null ? FocusScope.of(context).requestFocus(widget.nextFocus) : null,
       ),
     );

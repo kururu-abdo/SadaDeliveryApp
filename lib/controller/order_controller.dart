@@ -39,12 +39,12 @@ class OrderController extends GetxController implements GetxService {
   final OrderDetailsModel _orderDetailsModel = OrderDetailsModel();
 
   OrderDetailsModel get orderDetailsModel => _orderDetailsModel;
-  List<OrderDetailsModel>? _orderDetails;
+  List<OrderDetailsModel?>? _orderDetails;
 
-  List<OrderDetailsModel> get orderDetails => _orderDetails!;
+  List<OrderDetailsModel?>? get orderDetails => _orderDetails!;
 
-  Future<List<OrderDetailsModel>> getOrderDetails(String orderID, BuildContext context) async {
-    _orderDetails = null;
+  Future<List<OrderDetailsModel?>>? getOrderDetails(String orderID, BuildContext context) async {
+    _orderDetails = [];
     _isLoading = true;
     Response response = await orderRepo!.getOrderDetails(orderID: orderID);
     if (response.body != null && response.statusCode == 200) {
@@ -60,13 +60,14 @@ class OrderController extends GetxController implements GetxService {
   }
 
   // get all order history
-  List<OrderModel>? _allOrderHistory;
+  List<OrderModel>? _allOrderHistory=[];
   List<OrderModel>? _allOrderReverse;
 
   List<OrderModel> get allOrderHistory => _allOrderHistory!;
-
+bool isHistoryLoading=false;
   Future getAllOrderHistory(BuildContext context) async {
-
+isHistoryLoading= true;
+update();
     Response response = await orderRepo!.getAllOrderHistory();
     if (response.body != null && response.statusCode == 200) {
       _allOrderHistory = [];
@@ -78,6 +79,7 @@ class OrderController extends GetxController implements GetxService {
     } else {
       ApiChecker.checkApi(response);
     }
+    isHistoryLoading=false;
     update();
   }
 

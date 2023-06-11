@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:country_code_picker/country_code.dart';
+import 'package:eamar_delivery/view/base/password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:eamar_delivery/controller/auth_controller.dart';
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Image.asset(
-                      Images.login,
+                    "assets/image/delivery.png",
                       height: MediaQuery.of(context).size.height / 4.5,
                       fit: BoxFit.scaleDown,
                       matchTextDirection: true,
@@ -155,10 +155,11 @@ child:
                   const SizedBox(height: Dimensions.paddingSizeLarge),
                   Text('password'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).highlightColor),),
                   const SizedBox(height: Dimensions.paddingSizeSmall),
-                  CustomTextField(
+                  PasswordField(
                     hintText: 'password_hint'.tr,
                     isShowBorder: true,
                     isPhoneNumber: false,
+                    isBorder: true,
                     isPassword: true,
                     isShowSuffixIcon: true,
                     focusNode: _passwordFocus,
