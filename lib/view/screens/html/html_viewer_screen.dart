@@ -25,7 +25,7 @@ class HtmlViewerScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
 
         title: Text(
-          isPrivacyPolicy! ? 'privacy_policy' :
+          isPrivacyPolicy! ? 'privacy_policy'.tr :
        'terms_and_condition'.tr ,
         ),
         centerTitle: true,

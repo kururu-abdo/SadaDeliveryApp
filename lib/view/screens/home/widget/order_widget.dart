@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:eamar_delivery/utill/utils.dart';
+import 'package:eamar_delivery/view/screens/track/track_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:eamar_delivery/controller/localization_controller.dart';
@@ -10,6 +11,7 @@ import 'package:eamar_delivery/utill/dimensions.dart';
 import 'package:eamar_delivery/utill/images.dart';
 import 'package:eamar_delivery/view/base/custom_button.dart';
 import 'package:eamar_delivery/view/screens/order/order_details_screen.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OrderWidget extends StatelessWidget {
@@ -111,31 +113,60 @@ scrollDirection: Axis.horizontal,
                       
                       
                       }else {
+                      Navigator.of(context)
+
+                      .push(
+                        
+                        MaterialPageRoute(builder: 
+                        (_)=> TrackPage(
+title: 
+orderModel!.shippingAddress!.address!, 
+
+source: 
+
+LatLng(
+  
+    Get.find<LocationController>().currentLocation.latitude ?? 23.9103 ,
+        Get.find<LocationController>().currentLocation.longitude ?? 23.9103 ,
+
+
+  )
+
+
+ , destination:
+ 
+ LatLng(
+   double.parse(orderModel!.shippingAddress!.latitude!) ?? 23.8103,
+   double.parse(orderModel!.shippingAddress!.longitude!) ?? 90.4125) , 
+
+                        )
+                        )
+                      );
+                      
+
+                  //  if (GetPlatform.isIOS) {
                       
                       
-                   if (GetPlatform.isIOS) {
                       
                       
                       
-                      
-                      
-                                   MapUtils.openAppleMap(
-                                    // 18.518496,73.879259,18.519513,73.868315
-                                  double.parse(orderModel!.shippingAddress!.latitude!) ?? 23.8103,
-                                  double.parse(orderModel!.shippingAddress!.longitude!) ?? 90.4125,
-                                   Get.find<LocationController>().currentLocation.latitude ?? 23.9103,
-                                  Get.find<LocationController>().currentLocation.longitude ?? 90.8125
+                  //                  MapUtils.openAppleMap(
+                  //                   // 18.518496,73.879259,18.519513,73.868315
+                  //                 double.parse(orderModel!.shippingAddress!.latitude!) ?? 23.8103,
+                  //                 double.parse(orderModel!.shippingAddress!.longitude!) ?? 90.4125,
+                  //                  Get.find<LocationController>().currentLocation.latitude ?? 23.9103,
+                  //                 Get.find<LocationController>().currentLocation.longitude ?? 90.8125
                                   
-                                  );
+                  //                 );
                       
-                              }else {
-                                   MapUtils.openMap(
-                                  double.parse(orderModel!.shippingAddress!.latitude!) ?? 23.8103,
-                                  double.parse(orderModel!.shippingAddress!.longitude!) ?? 90.4125,
-                                   Get.find<LocationController>().currentLocation.latitude ?? 23.9103,
-                                   Get.find<LocationController>().currentLocation.longitude ?? 90.8125);
+                  //             }else {
+                  //                  MapUtils.openMap(
+                  //                 double.parse(orderModel!.shippingAddress!.latitude!) ?? 23.8103,
+                  //                 double.parse(orderModel!.shippingAddress!.longitude!) ?? 90.4125,
+                  //                  Get.find<LocationController>().currentLocation.latitude ?? 23.9103,
+                  //                  Get.find<LocationController>().currentLocation.longitude ?? 90.8125);
                       
-                             }
+                  //            }
                       
                       }
                          

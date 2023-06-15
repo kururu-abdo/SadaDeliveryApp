@@ -32,6 +32,8 @@ class AppConstants {
 
   static const String currency = 'currency';
   static const String topic = 'six_valley_delivery';
+  static const String googleMapKey="AIzaSyCsE5KDJqjPpbTHsQFqSjnJHclQuCBw8c4";
+  
 
   static List<LanguageModel> languages = [
     LanguageModel(imageUrl: Images.unitedKindom, languageName: 'English', countryCode: 'US', languageCode: 'en'),

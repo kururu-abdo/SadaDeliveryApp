@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ColorResources {
   static const Color colorGrey = Color(0xFFA0A4A8);
   static const Color colorBlack = Color(0xFF000000);
+  static const Color polyLineColor = Color.fromARGB(255,199, 169, 24);
   static const Color colorNero = Color(0xFF1F1F1F);
   static const Color colorWhite = Color(0xFFFFFFFF);
   static const Color colorHint = Color(0xFF52575C);
