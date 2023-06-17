@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:eamar_delivery/controller/location_controller.dart';
+import 'package:eamar_delivery/controller/order_controller.dart';
+import 'package:eamar_delivery/controller/tracker_controller.dart';
 import 'package:eamar_delivery/utill/color_resources.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dash/flutter_dash.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -11,10 +14,11 @@ import 'package:location/location.dart';
 import '../../../services/map_services.dart';
 
 class TrackPage extends StatefulWidget {
+  final int? orderId;
   final LatLng? source;
   final LatLng? destination;
   final String? title;
-  const TrackPage({ Key? key, this.source, this.destination, this.title }) : super(key: key);
+  const TrackPage({ Key? key, this.source, this.destination, this.title, this.orderId }) : super(key: key);
 
   @override
   _TrackPageState createState() => _TrackPageState();
@@ -525,31 +529,377 @@ Center(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          '${widget.title}', 
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+  'distance'.tr+ ': '
+),
+            Text(
 
+'${calculateDistance(
+currentLocation!.latitude, 
+currentLocation!.longitude , 
+
+widget.destination!.latitude , 
+
+widget.destination!.longitude
+)}'
+
+              // '${widget.title}', 
+
+            ),
+          
+          
+          SizedBox(width: 5,),
+                  Text(
+  'k.m'
+),
+          ],
         ),
+
+        SizedBox(
+          height: 200*.60,
+          child: Row(
+
+          mainAxisAlignment: MainAxisAlignment.start,
+
+          children: [
+
+  Container(
+        height: double.infinity,
+        padding: EdgeInsets.zero,
+        width: 200,
+child:
+
+   SingleChildScrollView(
+     child: Column(
+       children: [
+//pickup
+
+   
+         Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              // margin: EdgeInsets.only(top: 16),
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                  // shape: BoxShape.circle,
+                                  // border:
+                                  //     Border.all(width: 1.5, color: Colors.greenAccent)
+                                      
+                                      
+                   image: DecorationImage(image: AssetImage('assets/icon/pickup.png')
+
+,
+fit: BoxFit.cover
+)                   
+                                      
+                                      
+                                      ),
+                            ),
+   
+   SizedBox(width: 9) ,
+   
+                           Dash(
+                                direction: Axis.vertical,
+                                length: 15,
+                                dashLength: 5,
+                                dashColor: Colors.grey),
+                          ],
+                        ),
+   
+   
+   SizedBox(width: 6,),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'pickup'.tr
+                              
+                              
+                              
+                              ),
+                          )
+                          ],
+                        ),
+
+//   
+
+
+
+
+                        // Container(
+                        //   height: 25,
+                        //   width: 25,
+                        //   decoration: BoxDecoration(
+                        //       shape: BoxShape.rectangle,
+                        //       border: Border.all(width: 2, color: Colors.red)),
+                        //   child: Container(
+                        //     height: 20,
+                        //   ),
+                        // ),
+                      ],
+                    ),
+//my adddress
+
+
+
+
+  Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              // margin: EdgeInsets.only(top: 16),
+                              height: 10,
+                              width: 10,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border:
+                                      Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
+                            ),
+   
+   SizedBox(width: 9) ,
+   
+                           Dash(
+                                direction: Axis.vertical,
+                                length: 20,
+                                dashLength: 8,
+                                dashColor: Colors.grey),
+                          ],
+                        ),
+   
+   
+   SizedBox(width: 6,),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                          SizedBox(
+                            width: 100,
+                            child: Text('my_address'.tr ,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold
+                            ),
+                            ),
+                          )
+                          ],
+                        ),
+                        // Container(
+                        //   height: 25,
+                        //   width: 25,
+                        //   decoration: BoxDecoration(
+                        //       shape: BoxShape.rectangle,
+                        //       border: Border.all(width: 2, color: Colors.red)),
+                        //   child: Container(
+                        //     height: 20,
+                        //   ),
+                        // ),
+                      ],
+                    ),
+        
+
+//drop off
+
+
+    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              // margin: EdgeInsets.only(top: 16),
+                              height: 20,
+                              width: 20,
+                              decoration: 
+                              BoxDecoration(
+                                  // shape: BoxShape.circle,
+                                  // border:
+                                  //     Border.all(width: 1.5, color: Colors.greenAccent)
+                                      
+                                      
+
+image: DecorationImage(image: AssetImage('assets/icon/dropoff.png')
+
+,
+fit: BoxFit.cover
+)
+
+
+
+
+                                      ),
+                            )
+                            
+                            ,
+   
+   SizedBox(width: 9) ,
+   
+                           Dash(
+                                direction: Axis.vertical,
+                                length: 20,
+                                dashLength: 5,
+                                dashColor: Colors.grey),
+                          ],
+                        ),
+   
+   
+   SizedBox(width: 6,),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                            
+                              
+                              'dropoff'.tr),
+                          )
+                          ],
+                        ),
+                       
+                      ],
+                    ),
+       
+      //deliver address 
+    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+
+
+  //                       Column(
+  //                         mainAxisSize: MainAxisSize.min,
+  //                         mainAxisAlignment: MainAxisAlignment.start,
+  //                         crossAxisAlignment: CrossAxisAlignment.center,
+  //                         children: [
+  //                           Container(
+  //                             // margin: EdgeInsets.only(top: 16),
+  //                             height: 10,
+  //                             width: 10,
+  //                             decoration: BoxDecoration(
+  //                                 shape: BoxShape.circle,
+  //                                 border:
+  //                                     Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
+  //                           ),
+   
+  // //  SizedBox(width: 9) ,
+   
+  // //                          Dash(
+  // //                               direction: Axis.vertical,
+  // //                               length: 30,
+  // //                               dashLength: 8,
+  // //                               dashColor: Colors.grey),
+  //                         ],
+  //                       ),
+      Container(
+                              // margin: EdgeInsets.only(top: 16),
+                              height: 10,
+                              width: 10,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border:
+                                      Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
+                            ),
+   
+   SizedBox(width: 6,),
+                        SizedBox(
+                          width: 100,
+                          child: Text('${ widget.title}' ,
+                                overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold
+                          ),
+                          ),
+                        ),
+                        
+                      ],
+                    ),
+        
+  
+
+
+
+       ] 
+       )
+       )
+
+
+  )
+
+          ],
+        )),
         Spacer(), 
 
-        Container(
-          width: 250 ,height: 40,
-decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor ,
-         borderRadius: BorderRadius.circular(20)
+        GestureDetector(
 
-),
-child: Center(
-  child: Text(
-    'MARK AS DELIVERED', 
-    style: TextStyle(
-      color: Colors.white ,fontSize: 15
-    ),
-  ),
-),
+          onTap: 
+           Get.find<OrderController>().isLoading?
+           null:
+          
+          
+          ()async{
 
+
+         await   Get.find<OrderController>().updateOrderStatus(orderId: widget.orderId, status: 'delivered',context: context);
+            await                  Get.find<TrackerController>().updateTrackStart(false);
+         
+        Get.back();
+         
+          },
+          child: Container(
+            width: 250 ,height: 40,
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor ,
+           borderRadius: BorderRadius.circular(10)
+        
+        ),
+        child: Center(
+          child: 
+          
+           Get.find<OrderController>()
+           .isLoading?
+           CircularProgressIndicator(
+            color: Colors.white,
+           ):
+          
+          Text(
+            'mark_as_delivered'.tr, 
+            style: TextStyle(
+              color: Colors.white ,fontSize: 15
+            ),
+          ),
+        ),
+        
+          ),
         ) ,
 
-        SizedBox(height: 8,),
+        SizedBox(height: 10,),
       ],
     ),
   ),

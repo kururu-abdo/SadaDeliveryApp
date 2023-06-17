@@ -110,5 +110,10 @@
   "privacy_policy": "سياسة  الخصوصية",
   "order_note": "عناوين التسليم",
   "address": "عنوان الشحن",
-  "billing_address": "عنوان وصول الفواتير"
+  "billing_address": "عنوان وصول الفواتير",
+
+  "my_address":"عنواني",
+  "mark_as_delivered":"تأكيد التسليم",
+  "dropoff":"عنوان التسليم" ,
+  "pickup":"عنوان الانطلاق"
 }

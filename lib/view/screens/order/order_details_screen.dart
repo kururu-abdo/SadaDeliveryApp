@@ -644,6 +644,8 @@ SizedBox(height: 10,),
                               Get.find<TrackerController>().updateTrackStart(false);
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(builder: (_) => OrderPlaceScreen(orderID: orderModel!.id.toString())));
+                          
+                          
                             } else {
                               showDialog(context: context,
                                   barrierDismissible: false,

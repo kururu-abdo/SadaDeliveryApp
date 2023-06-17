@@ -113,4 +113,16 @@
   "order_note": "Addresses",
   "address": "Shipping Address",
   "billing_address": "Billing Address"
+
+  ,
+
+
+  "my_address":"My Adress",
+  "mark_as_delivered":"MARK AS DELIVERD"
+
+  ,
+
+
+  "dropoff":"Dropoff" ,
+  "pickup":"Pickup"
 }
