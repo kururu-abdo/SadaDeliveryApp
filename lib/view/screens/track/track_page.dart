@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:eamar_delivery/controller/auth_controller.dart';
 import 'package:eamar_delivery/controller/location_controller.dart';
 import 'package:eamar_delivery/controller/order_controller.dart';
 import 'package:eamar_delivery/controller/tracker_controller.dart';
 import 'package:eamar_delivery/utill/color_resources.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 
 import '../../../services/map_services.dart';
@@ -420,51 +423,54 @@ setState(() {
   Widget build(BuildContext context) {
     // loadLocation();
     return Scaffold(
-      body: SizedBox.expand(
+      body:
+       GetBuilder<AuthController>(builder: (profileController)
+        {
+          return SizedBox.expand(
 
-        child: 
-        currentLocation==null
-        
-        
-        &&_cameraPosition==null?
-        Center(child: Text('Loading...'),):
-        Stack(
+            child: 
+            currentLocation==null
+            
+            
+            &&_cameraPosition==null?
+            Center(child: Text('Loading...'),):
+            Stack(
 children: [
 
 
 GoogleMap(initialCameraPosition: _cameraPosition!,
 zoomControlsEnabled: true,
   minMaxZoomPreference: MinMaxZoomPreference(0, 16),
-                      mapType: MapType.normal,
+                          mapType: MapType.normal,
 
-                    polylines: _polyline,
-                      markers: markers,
-                      // compassEnabled: false,
-                      indoorViewEnabled: true,
-                      // mapToolbarEnabled: false,
-                      onCameraIdle: () {
-                        // if (widget.address != null && !widget.fromCheckout) {
-                        //   locationProvider.updatePosition(
-                        //       _cameraPosition, true, null, context, true);
-                        //   _updateAddress = true;
-                        // } else {
-                        //   if (_updateAddress) {
-                        //     locationProvider.updatePosition(
-                        //         _cameraPosition, true, null, context, true);
-                        //   } else {
-                        //     _updateAddress = true;
-                        //   }
-                        // }
-                      },
-                      onCameraMove: (_position) {
-             
-                      },
-                      onMapCreated: (GoogleMapController controller) {
-                                        _controller.complete(controller);
+                        polylines: _polyline,
+                          markers: markers,
+                          // compassEnabled: false,
+                          indoorViewEnabled: true,
+                          // mapToolbarEnabled: false,
+                          onCameraIdle: () {
+                            // if (widget.address != null && !widget.fromCheckout) {
+                            //   locationProvider.updatePosition(
+                            //       _cameraPosition, true, null, context, true);
+                            //   _updateAddress = true;
+                            // } else {
+                            //   if (_updateAddress) {
+                            //     locationProvider.updatePosition(
+                            //         _cameraPosition, true, null, context, true);
+                            //   } else {
+                            //     _updateAddress = true;
+                            //   }
+                            // }
+                          },
+                          onCameraMove: (_position) {
+                 
+                          },
+                          onMapCreated: (GoogleMapController controller) {
+                                            _controller.complete(controller);
 _drawOrignalPolyLine();
 
 
-                      },
+                          },
 
 )
 
@@ -491,14 +497,14 @@ Positioned(
   border: Border.all(
     width: .8 ,color: Colors.black
   ),
-      boxShadow: [
+          boxShadow: [
   
-        BoxShadow(
-          offset: Offset(0, 3),
-          blurRadius: 6 ,
-          color: Color(0xFF0000000).withOpacity(.31)
-        )
-      ]
+            BoxShadow(
+              offset: Offset(0, 3),
+              blurRadius: 6 ,
+              color: Color(0xFF0000000).withOpacity(.31)
+            )
+          ]
     ),
   
     child: Center(child: 
@@ -523,20 +529,20 @@ Center(
   child:   Container(
     height: 200,width: 350 ,decoration: BoxDecoration(
   
-      color: Colors.white , borderRadius: BorderRadius.circular(15)
+          color: Colors.white , borderRadius: BorderRadius.circular(15)
     ),
 
     child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
   'distance'.tr+ ': '
 ),
-            Text(
+                Text(
 
 '${calculateDistance(
 currentLocation!.latitude, 
@@ -547,201 +553,201 @@ widget.destination!.latitude ,
 widget.destination!.longitude
 )}'
 
-              // '${widget.title}', 
+                  // '${widget.title}', 
 
-            ),
-          
-          
-          SizedBox(width: 5,),
-                  Text(
+                ),
+              
+              
+              SizedBox(width: 5,),
+                      Text(
   'k.m'
 ),
-          ],
-        ),
+              ],
+            ),
 
-        SizedBox(
-          height: 200*.60,
-          child: Row(
+            SizedBox(
+              height: 200*.60,
+              child: Row(
 
-          mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
 
-          children: [
+              children: [
 
   Container(
-        height: double.infinity,
-        padding: EdgeInsets.zero,
-        width: 200,
+            height: double.infinity,
+            padding: EdgeInsets.zero,
+            width: 200,
 child:
 
    SingleChildScrollView(
      child: Column(
-       children: [
+           children: [
 //pickup
 
    
-         Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
+             Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           // mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              // margin: EdgeInsets.only(top: 16),
-                              height: 20,
-                              width: 20,
-                              decoration: BoxDecoration(
-                                  // shape: BoxShape.circle,
-                                  // border:
-                                  //     Border.all(width: 1.5, color: Colors.greenAccent)
-                                      
-                                      
-                   image: DecorationImage(image: AssetImage('assets/icon/pickup.png')
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              // mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  // margin: EdgeInsets.only(top: 16),
+                                  height: 20,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                      // shape: BoxShape.circle,
+                                      // border:
+                                      //     Border.all(width: 1.5, color: Colors.greenAccent)
+                                          
+                                          
+                       image: DecorationImage(image: AssetImage('assets/icon/pickup.png')
 
 ,
 fit: BoxFit.cover
 )                   
-                                      
-                                      
-                                      ),
-                            ),
+                                          
+                                          
+                                          ),
+                                ),
    
    SizedBox(width: 9) ,
    
-                           Dash(
-                                direction: Axis.vertical,
-                                length: 15,
-                                dashLength: 5,
-                                dashColor: Colors.grey),
-                          ],
-                        ),
+                               Dash(
+                                    direction: Axis.vertical,
+                                    length: 15,
+                                    dashLength: 5,
+                                    dashColor: Colors.grey),
+                              ],
+                            ),
    
    
    SizedBox(width: 6,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                          SizedBox(
-                            width: 100,
-                            child: Text(
-                              'pickup'.tr
-                              
-                              
-                              
-                              ),
-                          )
-                          ],
-                        ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                  'pickup'.tr
+                                  
+                                  
+                                  
+                                  ),
+                              )
+                              ],
+                            ),
 
 //   
 
 
 
 
-                        // Container(
-                        //   height: 25,
-                        //   width: 25,
-                        //   decoration: BoxDecoration(
-                        //       shape: BoxShape.rectangle,
-                        //       border: Border.all(width: 2, color: Colors.red)),
-                        //   child: Container(
-                        //     height: 20,
-                        //   ),
-                        // ),
-                      ],
-                    ),
+                            // Container(
+                            //   height: 25,
+                            //   width: 25,
+                            //   decoration: BoxDecoration(
+                            //       shape: BoxShape.rectangle,
+                            //       border: Border.all(width: 2, color: Colors.red)),
+                            //   child: Container(
+                            //     height: 20,
+                            //   ),
+                            // ),
+                          ],
+                        ),
 //my adddress
 
 
 
 
   Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              // margin: EdgeInsets.only(top: 16),
-                              height: 10,
-                              width: 10,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border:
-                                      Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
-                            ),
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  // margin: EdgeInsets.only(top: 16),
+                                  height: 10,
+                                  width: 10,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border:
+                                          Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
+                                ),
    
    SizedBox(width: 9) ,
    
-                           Dash(
-                                direction: Axis.vertical,
-                                length: 20,
-                                dashLength: 8,
-                                dashColor: Colors.grey),
-                          ],
-                        ),
+                               Dash(
+                                    direction: Axis.vertical,
+                                    length: 20,
+                                    dashLength: 8,
+                                    dashColor: Colors.grey),
+                              ],
+                            ),
    
    
    SizedBox(width: 6,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                          SizedBox(
-                            width: 100,
-                            child: Text('my_address'.tr ,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                              SizedBox(
+                                width: 100,
+                                child: Text('my_address'.tr ,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold
+                                ),
+                                ),
+                              )
+                              ],
                             ),
-                            ),
-                          )
+                            // Container(
+                            //   height: 25,
+                            //   width: 25,
+                            //   decoration: BoxDecoration(
+                            //       shape: BoxShape.rectangle,
+                            //       border: Border.all(width: 2, color: Colors.red)),
+                            //   child: Container(
+                            //     height: 20,
+                            //   ),
+                            // ),
                           ],
                         ),
-                        // Container(
-                        //   height: 25,
-                        //   width: 25,
-                        //   decoration: BoxDecoration(
-                        //       shape: BoxShape.rectangle,
-                        //       border: Border.all(width: 2, color: Colors.red)),
-                        //   child: Container(
-                        //     height: 20,
-                        //   ),
-                        // ),
-                      ],
-                    ),
-        
+            
 
 //drop off
 
 
     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           // mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              // margin: EdgeInsets.only(top: 16),
-                              height: 20,
-                              width: 20,
-                              decoration: 
-                              BoxDecoration(
-                                  // shape: BoxShape.circle,
-                                  // border:
-                                  //     Border.all(width: 1.5, color: Colors.greenAccent)
-                                      
-                                      
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              // mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  // margin: EdgeInsets.only(top: 16),
+                                  height: 20,
+                                  width: 20,
+                                  decoration: 
+                                  BoxDecoration(
+                                      // shape: BoxShape.circle,
+                                      // border:
+                                      //     Border.all(width: 1.5, color: Colors.greenAccent)
+                                          
+                                          
 
 image: DecorationImage(image: AssetImage('assets/icon/dropoff.png')
 
@@ -752,45 +758,45 @@ fit: BoxFit.cover
 
 
 
-                                      ),
-                            )
-                            
-                            ,
+                                          ),
+                                )
+                                
+                                ,
    
    SizedBox(width: 9) ,
    
-                           Dash(
-                                direction: Axis.vertical,
-                                length: 20,
-                                dashLength: 5,
-                                dashColor: Colors.grey),
-                          ],
-                        ),
+                               Dash(
+                                    direction: Axis.vertical,
+                                    length: 20,
+                                    dashLength: 5,
+                                    dashColor: Colors.grey),
+                              ],
+                            ),
    
    
    SizedBox(width: 6,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                          SizedBox(
-                            width: 100,
-                            child: Text(
-                            
-                              
-                              'dropoff'.tr),
-                          )
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                
+                                  
+                                  'dropoff'.tr),
+                              )
+                              ],
+                            ),
+                           
                           ],
                         ),
-                       
-                      ],
-                    ),
-       
-      //deliver address 
+           
+          //deliver address 
     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
 
 
   //                       Column(
@@ -817,90 +823,105 @@ fit: BoxFit.cover
   // //                               dashColor: Colors.grey),
   //                         ],
   //                       ),
-      Container(
-                              // margin: EdgeInsets.only(top: 16),
-                              height: 10,
-                              width: 10,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border:
-                                      Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
-                            ),
+          Container(
+                                  // margin: EdgeInsets.only(top: 16),
+                                  height: 10,
+                                  width: 10,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border:
+                                          Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
+                                ),
    
    SizedBox(width: 6,),
-                        SizedBox(
-                          width: 100,
-                          child: Text('${ widget.title}' ,
-                                overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold
-                          ),
-                          ),
+                            SizedBox(
+                              width: 100,
+                              child: Text('${ widget.title}' ,
+                                    overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold
+                              ),
+                              ),
+                            ),
+                            
+                          ],
                         ),
-                        
-                      ],
-                    ),
-        
+            
   
 
 
 
-       ] 
-       )
-       )
+           ] 
+           )
+           )
 
 
   )
 
-          ],
-        )),
-        Spacer(), 
+              ],
+            )),
+            Spacer(), 
 
-        GestureDetector(
+            GestureDetector(
 
-          onTap: 
-           Get.find<OrderController>().isLoading?
-           null:
-          
-          
-          ()async{
+              onTap: 
+               Get.find<OrderController>().isLoading?
+               null:
+              
+              
+              ()async{
+ FirebaseAnalytics.instance.logEvent(
+    name: "shipping_done",
+    parameters: {
+          'order_id':widget.orderId,
+          'destination_lat':widget.destination!.latitude,
+          'destination_lng':widget.destination!.longitude,
 
+            "delivery_man_id":profileController.profileModel.id,
+            'delivery_man_name': profileController.profileModel.fName!
+            
+            +' '+ profileController.profileModel.lName!
+             ,
+            "date": DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
+    },
+);
+   
 
-         await   Get.find<OrderController>().updateOrderStatus(orderId: widget.orderId, status: 'delivered',context: context);
-            await                  Get.find<TrackerController>().updateTrackStart(false);
-         
-        Get.back();
-         
-          },
-          child: Container(
-            width: 250 ,height: 40,
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor ,
-           borderRadius: BorderRadius.circular(10)
-        
-        ),
-        child: Center(
-          child: 
-          
-           Get.find<OrderController>()
-           .isLoading?
-           CircularProgressIndicator(
-            color: Colors.white,
-           ):
-          
-          Text(
-            'mark_as_delivered'.tr, 
-            style: TextStyle(
-              color: Colors.white ,fontSize: 15
+             await   Get.find<OrderController>().updateOrderStatus(orderId: widget.orderId, status: 'delivered',context: context);
+                await                  Get.find<TrackerController>().updateTrackStart(false);
+             
+            Get.back();
+             
+              },
+              child: Container(
+                width: 250 ,height: 40,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor ,
+               borderRadius: BorderRadius.circular(10)
+            
             ),
-          ),
-        ),
-        
-          ),
-        ) ,
+            child: Center(
+              child: 
+              
+               Get.find<OrderController>()
+               .isLoading?
+               CircularProgressIndicator(
+                color: Colors.white,
+               ):
+              
+              Text(
+                'mark_as_delivered'.tr, 
+                style: TextStyle(
+                  color: Colors.white ,fontSize: 15
+                ),
+              ),
+            ),
+            
+              ),
+            ) ,
 
-        SizedBox(height: 10,),
-      ],
+            SizedBox(height: 10,),
+          ],
     ),
   ),
 
@@ -910,7 +931,9 @@ fit: BoxFit.cover
 )
 ],
 
-        ),
+            ),
+          );
+        }
       ),
       
     );

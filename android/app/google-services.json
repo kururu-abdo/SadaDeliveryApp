@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:715551820384:android:72aa04058cbc4a1e61d105",
+        "mobilesdk_app_id": "1:715551820384:android:4912f8c38bd1551b61d105",
         "android_client_info": {
-          "package_name": "com.store.joseeder"
+          "package_name": "com.eamar.user"
         }
       },
       "oauth_client": [
@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "715551820384-t657krt3greequnvoeoe6647mv16tngs.apps.googleusercontent.com",
+              "client_id": "715551820384-g8t6t7m8h16f98u3vlri394ofmgua7s3.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.sixamtech.sixValley"
+                "bundle_id": "net.eamar.delivery"
               }
             }
           ]
@@ -67,10 +67,10 @@
               "client_type": 3
             },
             {
-              "client_id": "715551820384-t657krt3greequnvoeoe6647mv16tngs.apps.googleusercontent.com",
+              "client_id": "715551820384-g8t6t7m8h16f98u3vlri394ofmgua7s3.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.sixamtech.sixValley"
+                "bundle_id": "net.eamar.delivery"
               }
             }
           ]
@@ -103,10 +103,10 @@
               "client_type": 3
             },
             {
-              "client_id": "715551820384-t657krt3greequnvoeoe6647mv16tngs.apps.googleusercontent.com",
+              "client_id": "715551820384-g8t6t7m8h16f98u3vlri394ofmgua7s3.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.sixamtech.sixValley"
+                "bundle_id": "net.eamar.delivery"
               }
             }
           ]

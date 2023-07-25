@@ -141,6 +141,7 @@ child:
                   focusNode: _emailNode,
                   nextNode: _passwordFocus,
                   controller: _emailController,
+                  fillColor:Theme.of(context).cardColor,
                   isPhoneNumber: true,
                   textInputAction: TextInputAction.next,
                   textInputType: TextInputType.phone,

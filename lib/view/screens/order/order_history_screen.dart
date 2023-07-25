@@ -25,7 +25,7 @@ class OrderHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<OrderController>().getAllOrderHistory(context);
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
         // leading: const SizedBox.shrink(),
         centerTitle: true,
@@ -45,7 +45,7 @@ leading:
               valueListenable: advancedDrawerController!,
               builder: (_, value, __) {
                 return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 250),
                   child: Icon(
                     value.visible ? Icons.clear : Icons.menu,
                     key: ValueKey<bool>(value.visible),
@@ -65,7 +65,7 @@ leading:
         title: Text('order_history'.tr, 
         
         style:
-        TextStyle(
+        const TextStyle(
           color: Colors.white
         )
         //  Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color, fontSize: Dimensions.fontSizeLarge),
@@ -85,6 +85,11 @@ leading:
               
               
               RefreshIndicator(
+            onRefresh: () => orderController.orderRefresh(context),
+            displacement: 20,
+            color: ColorResources.colorWhite,
+            backgroundColor: Theme.of(context).primaryColor,
+            key: _refreshIndicatorKey,
             child: 
             orderController.allOrderHistory.isNotEmpty
                 ?
@@ -117,19 +122,19 @@ leading:
                                   child: Text(
                                     '${'order_id'.tr} #${orderController.allOrderHistory[index].id}',
                                     style:
-                                    rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyText1!.color),
+                                    rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                Text('amount'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyText1!.color)),
+                                Text('amount'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color)),
                               ],
                             ),
                             const SizedBox(height: Dimensions.paddingSizeExtraSmall),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                               Row(
                                 children: [
-                                  Text('status'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyText1!.color)),
+                                  Text('status'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color)),
                                   Text(orderController.allOrderHistory[index].orderStatus!.tr,
                                       style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
                                 ],
@@ -147,7 +152,7 @@ leading:
                               Container(
                                   height: 10,
                                   width: 10,
-                                  decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyText1!.color)),
+                                  decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color)),
                               const SizedBox(width: Dimensions.paddingSizeExtraSmall),
                               Text(
                                 // '${'order_at'.tr} ${DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderController.allOrderHistory[index].updatedAt!))
@@ -160,7 +165,7 @@ leading:
                                 
                                 
                                 ,
-                                style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyText1!.color),
+                                style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color),
                               ),
                             ]),
                           ]),
@@ -171,16 +176,10 @@ leading:
                 ))
                 : Center(child: Padding(
               padding: const EdgeInsets.only(top: 130),
-              child: Text('no_data_found'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).primaryColor),),
+              child: Text('no_data_found'.tr, style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).primaryColor),),
             ),
             ),
-
-            onRefresh: () => orderController.orderRefresh(context),
-            displacement: 20,
-            color: ColorResources.colorWhite,
-            backgroundColor: Theme.of(context).primaryColor,
-            key: _refreshIndicatorKey,
-          ) : Center(child: Text('no_history_available'.tr, style: Theme.of(context).textTheme.headline3,
+          ) : Center(child: Text('no_history_available'.tr, style: Theme.of(context).textTheme.displaySmall,
           )) :
           
            Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)))

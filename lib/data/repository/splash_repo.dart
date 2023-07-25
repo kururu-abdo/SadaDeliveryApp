@@ -10,7 +10,8 @@ class SplashRepo {
   SplashRepo({@required this.sharedPreferences, @required this.apiClient});
 
   Future<Response> getConfigData() async {
-    Response _response = await apiClient!.getData(AppConstants.configUri);
+    Response _response = await 
+    apiClient!.getData(AppConstants.configUri);
     return _response;
   }
 

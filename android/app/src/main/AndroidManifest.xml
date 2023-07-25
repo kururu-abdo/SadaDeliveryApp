@@ -35,6 +35,7 @@
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
+            android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
@@ -67,10 +68,10 @@
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
-       <service
-           android:name="com.sixamtech.joseeder_delivery_boy.BackgroundService"
-           android:enabled="true"
-           android:exported="false" />
+<!--       <service-->
+<!--           android:name="net.eamar.delivery.BackgroundService"-->
+<!--           android:enabled="true"-->
+<!--           android:exported="false" />-->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />

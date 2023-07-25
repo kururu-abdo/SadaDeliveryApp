@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:eamar_delivery/data/api/api_checker.dart';
@@ -28,6 +30,7 @@ class SplashController extends GetxController implements GetxService {
 
   Future<bool> getConfigData() async {
     Response response = await splashRepo!.getConfigData();
+    log(response.body.toString());
     bool _isSuccess = false;
     if(response.statusCode == 200) {
       _configModel = ConfigModel.fromJson(response.body);

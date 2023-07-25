@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -67,6 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if(isSuccess) {
         Timer(const Duration(seconds: 1), () async {
           if (Get.find<AuthController>().isLoggedIn()) {
+            log('I AM LODDED');
             Get.find<AuthController>().updateToken();
             await Get.find<AuthController>().getProfile();
             Get.find<OrderController>().getAllOrders(context);

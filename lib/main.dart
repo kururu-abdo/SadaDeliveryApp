@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 import 'package:eamar_delivery/utill/locale_message.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -95,10 +96,12 @@ void notificationTapBackground(NotificationResponse notificationResponse) {
 
  class MyHttpOverrides extends HttpOverrides{
   @override
+  
   HttpClient createHttpClient(SecurityContext? context){
     return super.createHttpClient(context)
       ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
+  
 }
 
 
@@ -201,6 +204,10 @@ class _MyApp2State extends State<MyApp2> {
 class MyApp extends StatelessWidget {
   final Map<String, Map<String, String>>? languages;
   const MyApp({Key? key, @required this.languages}) : super(key: key);
+
+   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
   @override
   Widget build(BuildContext context) {
    
@@ -230,6 +237,11 @@ class MyApp extends StatelessWidget {
             home: SplashScreen(),
             defaultTransition: Transition.topLevel,
             transitionDuration: const Duration(milliseconds: 500),
+      navigatorObservers: <NavigatorObserver>[
+
+
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
 
 
             // initialBinding: di.init(),
