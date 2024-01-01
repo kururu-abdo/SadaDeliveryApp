@@ -124,5 +124,9 @@
 
 
   "dropoff":"Dropoff" ,
-  "pickup":"Pickup"
+  "pickup":"Pickup",
+
+  "want_to_sign_out":"want to logout?", 
+  "YES":"Yes" , 
+  "NO":"Cancel"
 }

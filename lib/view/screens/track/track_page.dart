@@ -34,7 +34,7 @@ class _TrackPageState extends State<TrackPage> {
 final Set<Polyline>_polyline={};
 final Set<Polyline>  _secondPolyline={};
 
-Completer<GoogleMapController>  _controller =  Completer();
+final Completer<GoogleMapController>  _controller =  Completer();
 CameraPosition? _cameraPosition;
 
 List<LatLng>  polyLines=[];
@@ -42,7 +42,7 @@ Set<Marker> markers={};
 LatLng? currentLocation;
 
 
-List<LatLng> _list = [
+final List<LatLng> _list = [
  // Point D
 ];
 
@@ -203,12 +203,12 @@ try {
 // ]);
  
 _pinDestinationMarker =  await  BitmapDescriptor.fromAssetImage(
-   ImageConfiguration(),
+   const ImageConfiguration(),
     "assets/icon/pin_destination.png",
 );
 
 _currentMarker =   await  BitmapDescriptor.fromAssetImage(
-   ImageConfiguration(),
+   const ImageConfiguration(),
     "assets/icon/pin_current.png",
 );
 if (mounted) {
@@ -229,7 +229,7 @@ _setCurrentIcon()async{
 
 
   var icon =   await  BitmapDescriptor.fromAssetImage(
-   ImageConfiguration(),
+   const ImageConfiguration(),
     "assets/icon/pin_current.png",
 );
 _currentMarker= icon;
@@ -247,7 +247,7 @@ BitmapDescriptor  marker
 = await 
 
 BitmapDescriptor.fromAssetImage(
-   ImageConfiguration(
+   const ImageConfiguration(
     size: Size(20, 20),
    ),
     "assets/icon/pin_source.png",
@@ -356,14 +356,14 @@ void _drawOrignalPolyLine()async{
       var decodedPolyline=    decodePoly(result!);
 
 
-List<LatLng> _points =  convertToLatLng(decodedPolyline);
+List<LatLng> points =  convertToLatLng(decodedPolyline);
 
 
 // for (var points in _points) {
   _polyline.add(
     Polyline(polylineId: 
-    PolylineId('1') ,
-    points: _points ,
+    const PolylineId('1') ,
+    points: points ,
     width: 3, 
     color: ColorResources.colorGray
 
@@ -394,14 +394,14 @@ void _drawSecondPolyLine()async{
       var decodedPolyline=    decodePoly(result!);
 
 
-List<LatLng> _points =  convertToLatLng(decodedPolyline);
+List<LatLng> points =  convertToLatLng(decodedPolyline);
 
 
 // for (var points in _points) {
   _secondPolyline.add(
     Polyline(polylineId: 
-    PolylineId('2') ,
-    points: _points ,
+    const PolylineId('2') ,
+    points: points ,
     width: 5, 
     color: ColorResources.polyLineColor
 
@@ -417,7 +417,9 @@ setState(() {
     
   }
 }
-
+bool isTablet(BuildContext context){
+  return MediaQuery.of(context).size.width>=450;
+}
 
   @override
   Widget build(BuildContext context) {
@@ -433,14 +435,14 @@ setState(() {
             
             
             &&_cameraPosition==null?
-            Center(child: Text('Loading...'),):
+            const Center(child: Text('Loading...'),):
             Stack(
 children: [
 
 
 GoogleMap(initialCameraPosition: _cameraPosition!,
 zoomControlsEnabled: true,
-  minMaxZoomPreference: MinMaxZoomPreference(0, 16),
+  minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
                           mapType: MapType.normal,
 
                         polylines: _polyline,
@@ -462,7 +464,7 @@ zoomControlsEnabled: true,
                             //   }
                             // }
                           },
-                          onCameraMove: (_position) {
+                          onCameraMove: (position) {
                  
                           },
                           onMapCreated: (GoogleMapController controller) {
@@ -490,7 +492,7 @@ Positioned(
     Get.back();
     },
     child: Container(
-  width: 40 ,height: 40,
+  width: isTablet(context)?60:40 ,height: isTablet(context)?60:40,
     decoration: BoxDecoration(
   shape: BoxShape.circle,
   color: Colors.white,
@@ -500,15 +502,15 @@ Positioned(
           boxShadow: [
   
             BoxShadow(
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
               blurRadius: 6 ,
-              color: Color(0xFF0000000).withOpacity(.31)
+              color: const Color(0xff0000000).withOpacity(.31)
             )
           ]
     ),
   
-    child: Center(child: 
-  Icon(Icons.close ,size: 28,)
+    child:  Center(child: 
+  Icon(Icons.close ,size: isTablet(context)?40: 28,)
     
     ),
   ),
@@ -527,7 +529,9 @@ Positioned(
   child: 
 Center(
   child:   Container(
-    height: 200,width: 350 ,decoration: BoxDecoration(
+    height:isTablet(context)? 350: 200,width:
+isTablet(context)? MediaQuery.of(context).size.width:    
+     350 ,decoration: BoxDecoration(
   
           color: Colors.white , borderRadius: BorderRadius.circular(15)
     ),
@@ -540,7 +544,11 @@ Center(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-  'distance'.tr+ ': '
+  '${'distance'.tr}: ' , 
+
+  style:TextStyle(
+    fontSize: isTablet(context)? 20:15
+  )
 ),
                 Text(
 
@@ -552,21 +560,33 @@ widget.destination!.latitude ,
 
 widget.destination!.longitude
 )}'
+, 
 
+  style:TextStyle(
+    fontSize: isTablet(context)? 20:15
+  )
                   // '${widget.title}', 
 
                 ),
               
               
-              SizedBox(width: 5,),
-                      Text(
-  'k.m'
+              const SizedBox(width: 5,),
+                       Text(
+  'k.m', 
+
+  style:TextStyle(
+  fontSize: isTablet(context)? 20:15
+  )
 ),
               ],
             ),
 
             SizedBox(
-              height: 200*.60,
+              height:
+              isTablet(context)?
+              350*.60:
+              
+               200*.60,
               child: Row(
 
               mainAxisAlignment: MainAxisAlignment.start,
@@ -576,7 +596,7 @@ widget.destination!.longitude
   Container(
             height: double.infinity,
             padding: EdgeInsets.zero,
-            width: 200,
+            width:isTablet(context)? 250: 200,
 child:
 
    SingleChildScrollView(
@@ -597,9 +617,13 @@ child:
                               children: [
                                 Container(
                                   // margin: EdgeInsets.only(top: 16),
-                                  height: 20,
-                                  width: 20,
-                                  decoration: BoxDecoration(
+                                  height:
+                                  isTablet(context)? 40:
+                                  
+                                   20,
+                                  width:                                  isTablet(context)? 40:
+ 20,
+                                  decoration: const BoxDecoration(
                                       // shape: BoxShape.circle,
                                       // border:
                                       //     Border.all(width: 1.5, color: Colors.greenAccent)
@@ -615,23 +639,27 @@ fit: BoxFit.cover
                                           ),
                                 ),
    
-   SizedBox(width: 9) ,
+    SizedBox(width:                                   isTablet(context)? 15:
+9) ,
    
-                               Dash(
+                                Dash(
                                     direction: Axis.vertical,
-                                    length: 15,
-                                    dashLength: 5,
+                                    length:                                   isTablet(context)? 20:
+15,
+                                    dashLength:                                   isTablet(context)? 10
+:5,
                                     dashColor: Colors.grey),
                               ],
                             ),
    
    
-   SizedBox(width: 6,),
+   const SizedBox(width: 6,),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                               SizedBox(
-                                width: 100,
+                                width:                                   isTablet(context)? 150:
+100,
                                 child: Text(
                                   'pickup'.tr
                                   
@@ -681,30 +709,36 @@ fit: BoxFit.cover
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border:
-                                          Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
+                                          Border.all(width: 1.5, color: const Color(0xFFDFDFDF))),
                                 ),
    
-   SizedBox(width: 9) ,
+  //  const SizedBox(width: 9) ,
    
-                               Dash(
+    SizedBox(width:                                   isTablet(context)? 15:
+9) ,
+                                Dash(
                                     direction: Axis.vertical,
-                                    length: 20,
-                                    dashLength: 8,
+                                    length:                             
+ 20,
+                                    dashLength:                                  isTablet(context)? 
+16: 8,
                                     dashColor: Colors.grey),
                               ],
                             ),
    
    
-   SizedBox(width: 6,),
+   const SizedBox(width: 6,),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                               SizedBox(
-                                width: 100,
+                                width:   isTablet(context)?150: 100,
                                 child: Text('my_address'.tr ,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold
+                                style:  TextStyle(
+                                  fontWeight: FontWeight.bold , 
+
+                                  fontSize:    isTablet(context)?20:15
                                 ),
                                 ),
                               )
@@ -742,7 +776,7 @@ fit: BoxFit.cover
                                   height: 20,
                                   width: 20,
                                   decoration: 
-                                  BoxDecoration(
+                                  const BoxDecoration(
                                       // shape: BoxShape.circle,
                                       // border:
                                       //     Border.all(width: 1.5, color: Colors.greenAccent)
@@ -763,27 +797,31 @@ fit: BoxFit.cover
                                 
                                 ,
    
-   SizedBox(width: 9) ,
+    SizedBox(width:    isTablet(context)?15:9) ,
    
-                               Dash(
+                                Dash(
                                     direction: Axis.vertical,
-                                    length: 20,
+                                    length:    isTablet(context)?30: 20,
                                     dashLength: 5,
                                     dashColor: Colors.grey),
                               ],
                             ),
    
    
-   SizedBox(width: 6,),
+   const SizedBox(width: 6,),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                               SizedBox(
-                                width: 100,
+                                width:   isTablet(context)?150: 100,
                                 child: Text(
                                 
                                   
-                                  'dropoff'.tr),
+                                  'dropoff'.tr, 
+                                  style: TextStyle(
+                                    fontSize:    isTablet(context)?20:18
+                                  ),
+                                  ),
                               )
                               ],
                             ),
@@ -825,21 +863,21 @@ fit: BoxFit.cover
   //                       ),
           Container(
                                   // margin: EdgeInsets.only(top: 16),
-                                  height: 10,
-                                  width: 10,
+                                  height:   isTablet(context)?20: 10,
+                                  width:   isTablet(context)?20: 10,
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border:
-                                          Border.all(width: 1.5, color: Color(0xFFDFDFDF))),
+                                          Border.all(width: 1.5, color: const Color(0xFFDFDFDF))),
                                 ),
    
-   SizedBox(width: 6,),
+   const SizedBox(width: 6,),
                             SizedBox(
-                              width: 100,
+                              width:   isTablet(context)?150: 100,
                               child: Text('${ widget.title}' ,
                                     overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold
+                              style:  TextStyle(
+                                fontWeight: FontWeight.bold ,fontSize:    isTablet(context)?20:15
                               ),
                               ),
                             ),
@@ -860,7 +898,7 @@ fit: BoxFit.cover
 
               ],
             )),
-            Spacer(), 
+            const Spacer(), 
 
             GestureDetector(
 
@@ -878,9 +916,7 @@ fit: BoxFit.cover
           'destination_lng':widget.destination!.longitude,
 
             "delivery_man_id":profileController.profileModel.id,
-            'delivery_man_name': profileController.profileModel.fName!
-            
-            +' '+ profileController.profileModel.lName!
+            'delivery_man_name': '${profileController.profileModel.fName!} ${profileController.profileModel.lName!}'
              ,
             "date": DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
     },
@@ -894,7 +930,10 @@ fit: BoxFit.cover
              
               },
               child: Container(
-                width: 250 ,height: 40,
+                margin:    isTablet(context)?const EdgeInsets.symmetric(
+                  horizontal: 8
+                ):null,
+                width:    isTablet(context)?double.infinity:250 ,height: isTablet(context)?60: 40,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor ,
                borderRadius: BorderRadius.circular(10)
@@ -905,14 +944,14 @@ fit: BoxFit.cover
               
                Get.find<OrderController>()
                .isLoading?
-               CircularProgressIndicator(
+               const CircularProgressIndicator(
                 color: Colors.white,
                ):
               
               Text(
                 'mark_as_delivered'.tr, 
-                style: TextStyle(
-                  color: Colors.white ,fontSize: 15
+                style:  TextStyle(
+                  color: Colors.white ,fontSize: isTablet(context)?25: 15
                 ),
               ),
             ),
@@ -920,7 +959,7 @@ fit: BoxFit.cover
               ),
             ) ,
 
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
           ],
     ),
   ),

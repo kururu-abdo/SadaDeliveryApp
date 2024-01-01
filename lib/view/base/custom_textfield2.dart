@@ -1,3 +1,4 @@
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eamar_delivery/utill/color_resources.dart';
@@ -26,8 +27,8 @@ class PhoneField extends StatelessWidget {
   final TextCapitalization?capitalization;
   final bool? isBorder;
 
-  PhoneField(
-      {this.controller,
+  const PhoneField(
+      {super.key, this.controller,
       this.hintText,
       this.textInputType,
       this.maxLine,
@@ -51,9 +52,14 @@ class PhoneField extends StatelessWidget {
       height: 60,
         decoration: BoxDecoration(
           // color: Colors.grey,
-          borderRadius: new BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
-        child: TextFormField(        cursorColor: Theme.of(context).primaryColor,
+        child: TextFormField(        
+          onTapOutside: (pointer){
+FocusManager.instance.primaryFocus?.unfocus();
+},
+          
+          cursorColor: Theme.of(context).primaryColor,
 
   textAlign: 
         
@@ -103,8 +109,10 @@ prefixIcon:isRtl?null: Container(
         style: TextStyle(
         // color: Colors.black
         
-     color:       Theme.of(context).textTheme.headline1!.color ,
-     fontWeight: FontWeight.bold
+     color:       Theme.of(context).textTheme.displayLarge!.color ,
+     fontWeight: FontWeight.bold , 
+
+     fontSize:        isTablet(context)? 18: Dimensions.FONT_SIZE_SMALL
         
         ),
       ),
@@ -120,7 +128,7 @@ prefixIcon:isRtl?null: Container(
         style: TextStyle(
         // color: Colors.black
         
-     color:       Theme.of(context).textTheme.headline1!.color ,
+     color:       Theme.of(context).textTheme.displayLarge!.color ,
      fontWeight: FontWeight.bold
         
         ),
@@ -145,9 +153,12 @@ prefixIcon:isRtl?null: Container(
           hintText : hintText??'',
 
            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor)),
-               hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
+               hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 
+                      isTablet(context)? 18:
+               
+               Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
 
-          errorStyle: TextStyle(height: 1.5),
+          errorStyle: const TextStyle(height: 1.5),
           floatingLabelBehavior: FloatingLabelBehavior.always,
 
         )
@@ -221,13 +232,13 @@ hintTextDirection: TextDirection.ltr,
           hintText: hintText ?? '',
           filled: fillColor != null,
           fillColor: fillColor,
-          contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15),
+          contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 15),
           isDense: true,
           counterText: '',
           focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor)),
-                   hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
+                   hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
 
-          errorStyle: TextStyle(height: 1.5),
+          errorStyle: const TextStyle(height: 1.5),
           border: InputBorder.none,
           floatingLabelBehavior: FloatingLabelBehavior.always,
 
@@ -241,7 +252,7 @@ hintTextDirection: TextDirection.ltr,
                       style: TextStyle(
                           // color: Colors.black
                           
-                   color:       Theme.of(context).textTheme.headline1!.color ,
+                   color:       Theme.of(context).textTheme.displayLarge!.color ,
                    fontWeight: FontWeight.bold
                           
                           ),
@@ -258,7 +269,7 @@ hintTextDirection: TextDirection.ltr,
                       style: TextStyle(
                           // color: Colors.black
                           
-                   color:       Theme.of(context).textTheme.headline1!.color ,
+                   color:       Theme.of(context).textTheme.displayLarge!.color ,
                    fontWeight: FontWeight.bold
                           
                           ),

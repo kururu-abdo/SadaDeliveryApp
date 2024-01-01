@@ -67,19 +67,19 @@ class AuthController extends GetxController implements GetxService {
   Future<bool> changePassword(ProfileModel updatedUserModel, String password) async {
     _isLoading = true;
     update();
-    bool _isSuccess;
+    bool isSuccess;
     Response response = await authRepo!.changePassword(updatedUserModel, password);
     _isLoading = false;
     if (response.statusCode == 200) {
       String message = response.body["message"];
       showCustomSnackBar(message, isError: false);
-      _isSuccess = true;
+      isSuccess = true;
     } else {
       ApiChecker.checkApi(response);
-      _isSuccess = false;
+      isSuccess = false;
     }
     update();
-    return _isSuccess;
+    return isSuccess;
   }
 
 

@@ -36,9 +36,10 @@ loadLocation()async{
  Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       margin: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
-      // width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: Theme.of(context).shadowColor.withOpacity(.5), spreadRadius: 1, blurRadius: 1, offset: const Offset(0, 1))],
+          boxShadow: [BoxShadow(color: Theme.of(context).shadowColor.withOpacity(.5),
+           spreadRadius: 1, blurRadius: 1, offset: const Offset(0, 1))],
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)),
       
@@ -48,7 +49,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
 children: [
 
           SizedBox(
-            width: double.infinity,
+            width: MediaQuery.of(context).size.width,
             child: SingleChildScrollView(
 
 scrollDirection: Axis.horizontal,
@@ -58,11 +59,18 @@ scrollDirection: Axis.horizontal,
                 children: [
                   Row(
                     children: [
-                      Text('order_id'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                      Text('order_id'.tr, style: Theme.of(context).textTheme.displayMedium!.
+                      copyWith(
+                        fontSize: isTablet(context)?24:18,
+                        
+                        color: Theme.of(context).textTheme.bodyLarge!.color),
                       ),
                       Text(
                         ' # ${orderModel!.id.toString()}',
-                        style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                          fontSize: isTablet(context)?24:18,
+                          
+                          color: Theme.of(context).textTheme.bodyLarge!.color),
                       ),
                     ],
                   ),
@@ -79,14 +87,14 @@ scrollDirection: Axis.horizontal,
                       Navigator.of(context).push(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel!, index: index!)));
                       
                 }, icon: Icon(Icons.more_horiz ,
-                
-                     color: Theme.of(context).textTheme.bodyText1!.color,
+                size: isTablet(context)?30:24,
+                     color: Theme.of(context).textTheme.bodyLarge!.color,
                 
                 ), label: Text('view_details'.tr ,
                 
                 
                 style: TextStyle(
-                      
+                      fontSize: isTablet(context)?24:15,
                   color: Theme.of(context).primaryColor
                 ),
                 
@@ -174,11 +182,11 @@ LatLng(
                       
                       
                       
-                }, icon: Icon(Icons.location_on
-                
+                }, icon: Icon(Icons.location_on,
+                size: isTablet(context)?30:24
                 ,
                       
-                     color: Theme.of(context).textTheme.bodyText1!.color,
+                     color: Theme.of(context).textTheme.bodyLarge!.color,
                 
                 ), label: Text('direction'.tr
                 
@@ -188,7 +196,7 @@ LatLng(
                       
                       
                   style: TextStyle(
-                      
+                      fontSize: isTablet(context)?24:15,
                   color: Theme.of(context).primaryColor
                 )
                 
@@ -219,14 +227,19 @@ LatLng(
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                      Image.asset(Images.location, color: Theme.of(context).textTheme.bodyText1!.color, width: 15, height: 20),
-SizedBox(width: 10,),
+                      Image.asset(Images.location, 
+                      
+                      color: Theme.of(context).textTheme.bodyLarge!.color, width: isTablet(context)? 30: 24, height: isTablet(context)? 30: 24),
+const SizedBox(width: 10,),
                   Text(
-                    '${'address'.tr}: '
+                    '${'address'.tr}: ', 
+                  style: TextStyle( 
+                    fontSize: isTablet(context)? 24: 15
+                  ),
                   )
                 ],
               ) ,
-SizedBox(width: 10,),
+ SizedBox(width:isTablet(context)? 18: 10,),
 
 
   SizedBox(
@@ -237,7 +250,10 @@ SizedBox(width: 10,),
               overflow: TextOverflow.ellipsis,   
                  
                  
-                  style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      fontSize: isTablet(context)? 24: 15,
+                    
+                    color: Theme.of(context).textTheme.bodyLarge!.color),
                 ),
               )
 
@@ -266,18 +282,24 @@ SizedBox(width: 10,),
 
                         width: 15, height: 20,
                         child: Icon(Icons.near_me, 
-                        color: Theme.of(context).textTheme.bodyText1!.color,
+                        size: isTablet(context)? 30: 24,
+                        color: Theme.of(context).textTheme.bodyLarge!.color,
                         // size: 20,
                         
                         ),
                       ),
-SizedBox(width: 10,),
+ SizedBox(width:isTablet(context)? 18: 10,),
                   Text(
                     '${'distance'.tr}: '
+                     , 
+
+                     style: TextStyle(
+                        fontSize: isTablet(context)? 24: 15
+                     ),
                   )
                 ],
               ) ,
-SizedBox(width: 10,),
+const SizedBox(width: 10,),
 
 
   SizedBox(
@@ -305,14 +327,18 @@ double.parse(Get.find<LocationController>().currentLocation.latitude .toString()
 
 double.parse(Get.find<LocationController>().currentLocation.longitude .toString()),
 
-)}'+' ${'km'.tr}'
+)}'' ${'km'.tr}'
                 ,
               
 
               overflow: TextOverflow.ellipsis,   
                  
                  
-                  style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                    
+                      fontSize: isTablet(context)? 24: 15,
+                    
+                    color: Theme.of(context).textTheme.bodyLarge!.color),
                 ),
               )
 
@@ -322,7 +348,7 @@ double.parse(Get.find<LocationController>().currentLocation.longitude .toString(
 
 
  ,
-SizedBox(
+const SizedBox(
   height: 10,
 )
 , 
@@ -342,25 +368,32 @@ Row(
                           
                           
                           , 
-                          color: Theme.of(context).textTheme.bodyText1!.color,
-                           width: 15,
-                          height: 20
+                          color: Theme.of(context).textTheme.bodyLarge!.color,
+                           width: isTablet(context)? 30: 24,
+                          height:isTablet(context)? 30:  24
                            
                            ),
-SizedBox(width: 10,),
+ SizedBox(width:isTablet(context)? 18: 10,),
                   Text(
-                    '${'status'.tr} '
+                    '${'status'.tr} ', 
+
+                    style: TextStyle(
+                        fontSize: isTablet(context)? 24: 15
+                    ),
                   )
   ],
 )
 
 ,
-SizedBox(width: 10,),
+const SizedBox(width: 10,),
 
 
      Text(orderModel!.orderStatus!.tr, 
      
-                     style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                     style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      
+                        fontSize: isTablet(context)? 24: 15,
+                      color: Theme.of(context).textTheme.bodyLarge!.color),
 
       
       
@@ -401,11 +434,11 @@ SizedBox(width: 10,),
             children: [
               Row(
                 children: [
-                  Text('order_id'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                  Text('order_id'.tr, style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color),
                   ),
                   Text(
                     ' # ${orderModel!.id.toString()}',
-                    style: Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color),
                   ),
                 ],
               ),
@@ -426,7 +459,7 @@ SizedBox(width: 10,),
                                     topRight: Radius.circular(Dimensions.paddingSizeSmall),
                                     bottomLeft: Radius.circular(Dimensions.paddingSizeSmall))),
                             child:
-                             Text(orderModel!.orderStatus!.tr, style: Theme.of(context).textTheme.headline1!.copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeSmall),),
+                             Text(orderModel!.orderStatus!.tr, style: Theme.of(context).textTheme.displayLarge!.copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeSmall),),
                           ),
                         )
                       : Positioned(
@@ -439,7 +472,7 @@ SizedBox(width: 10,),
                                 borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(Dimensions.paddingSizeSmall),
                                     bottomLeft: Radius.circular(Dimensions.paddingSizeSmall))),
-                            child: Text(orderModel!.orderStatus!.tr, style: Theme.of(context).textTheme.headline1
+                            child: Text(orderModel!.orderStatus!.tr, style: Theme.of(context).textTheme.displayLarge
                                   !.copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeSmall),
                             ),
                           ),
@@ -454,12 +487,12 @@ SizedBox(width: 10,),
           const SizedBox(height: 25),
           Row(
             children: [
-              Image.asset(Images.location, color: Theme.of(context).textTheme.bodyText1!.color, width: 15, height: 20),
+              Image.asset(Images.location, color: Theme.of(context).textTheme.bodyLarge!.color, width: 15, height: 20),
               const SizedBox(width: 10),
               orderModel!.shippingAddress!=null?
               Expanded(
                   child: Text(' ${orderModel!.shippingAddress!.address ?? ''} ${orderModel!.shippingAddress!.city ?? ''}  ${orderModel!.shippingAddress!.zip ?? ''} ${orderModel!.shippingAddress!.country ?? ''}' ?? 'Address not found',
-                style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color),
               )):const SizedBox(),
             ],
           ),

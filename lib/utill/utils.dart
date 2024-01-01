@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 double calculateDistance(lat1, lon1,
@@ -19,4 +20,8 @@ double calculateDistance(lat1, lon1,
 
 String timeUntil(DateTime date ,String locale) {
   return timeago.format(date, locale: locale, allowFromNow: true);
+}
+
+bool isTablet(BuildContext context){
+  return MediaQuery.of(context).size.width>=450;
 }

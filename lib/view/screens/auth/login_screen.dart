@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:eamar_delivery/view/base/password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,8 +29,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final FocusNode? _emailFocus = FocusNode();
-  final FocusNode? _passwordFocus = FocusNode();
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
   TextEditingController? _emailController;
   TextEditingController? _passwordController;
   GlobalKey<FormState>? _formKeyLogin;
@@ -52,13 +53,13 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController!.dispose();
     super.dispose();
   }
-  String _countryDialCode = "+966";
-  FocusNode _emailNode = FocusNode();
-    FocusNode _passNode = FocusNode();
+  final String _countryDialCode = "+966";
+  final FocusNode _emailNode = FocusNode();
+    final FocusNode _passNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
         child: Form(
@@ -73,16 +74,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.all(15.0),
                     child: Image.asset(
                     "assets/image/delivery.png",
-                      height: MediaQuery.of(context).size.height / 4.5,
+                      height:
+                      
+                      isTablet(context)? MediaQuery.of(context).size.height / 4
+:                       MediaQuery.of(context).size.height / 4.5,
                       fit: BoxFit.scaleDown,
                       matchTextDirection: true,
                     ),
                   ),
                   //SizedBox(height: 20),
                   Center(
-                      child: Text('login'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 24, color: Theme.of(context).hintColor),)),
-                  const SizedBox(height: 35),
-                  Text('phone_number'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).highlightColor),),
+                      child: Text('login'.tr, style: 
+                      Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 
+                             isTablet(context)?30:
+                      
+                      24, color: Theme.of(context).hintColor),)),
+                   SizedBox(height: 
+                  
+                         isTablet(context)?50:
+                  35),
+                  Text('phone_number'.tr, style: Theme.of(context).textTheme.
+                  displayMedium!.copyWith(
+                    
+                    fontSize:        isTablet(context)?20: 18,
+                    color: Theme.of(context).highlightColor),),
                   const SizedBox(height: Dimensions.paddingSizeSmall),
                   // CustomTextField(
                   //   hintText: 'demo_gmail'.tr,
@@ -130,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
           //   ),
           // ),
 Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
                 // left: Dimensions.MARGIN_SIZE_LARGE,
                 // right: Dimensions.MARGIN_SIZE_LARGE,
                 bottom: Dimensions.MARGIN_SIZE_SMALL),
@@ -153,9 +168,14 @@ child:
 
 
 
-                  const SizedBox(height: Dimensions.paddingSizeLarge),
-                  Text('password'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).highlightColor),),
+                   const SizedBox(height: Dimensions.paddingSizeLarge),
+                  Text('password'.tr, style: 
+                  Theme.of(context).textTheme.displayMedium!.copyWith(
+                    
+                    fontSize:        isTablet(context)? 20:18,
+                    color: Theme.of(context).highlightColor),),
                   const SizedBox(height: Dimensions.paddingSizeSmall),
+                  
                   PasswordField(
                     hintText: 'password_hint'.tr,
                     isShowBorder: true,
@@ -166,6 +186,9 @@ child:
                     focusNode: _passwordFocus,
                     controller: _passwordController,
                     inputAction: TextInputAction.done,
+                    onTap: (){
+                      log('On Tap');
+                    },
                   ),
                   const SizedBox(height: 22),
 
@@ -192,7 +215,7 @@ child:
                                   : const SizedBox.shrink(),
                             ),
                             const SizedBox(width: Dimensions.paddingSizeSmall),
-                            Text('remember_me'.tr, style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).highlightColor),)
+                            Text('remember_me'.tr, style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).highlightColor),)
                           ],
                         ),
                       )
@@ -210,7 +233,7 @@ child:
                       Expanded(
                         child: Text(
                           authController.loginErrorMessage ?? "",
-                          style: Theme.of(context).textTheme.headline2!.copyWith(
+                          style: Theme.of(context).textTheme.displayMedium!.copyWith(
                             fontSize: Dimensions.fontSizeSmall,
                             color: Colors.red,
                           ),
@@ -225,29 +248,29 @@ child:
                     btnTxt: 'login'.tr,
                     onTap: () async {
                       var ksaNumber = KsaNumber();
-                      String _email =_countryDialCode.trim()+
+                      String email =_countryDialCode.trim()+
                     
                     PhoneNumberUtils.getPhoneNumberFromInputs( _emailController!.text.trim())
                     ;
-                      String _password = _passwordController!.text.trim();
-                      log(_email);
-                      if (_email.isEmpty) {
+                      String password = _passwordController!.text.trim();
+                      log(email);
+                      if (email.isEmpty) {
                         showCustomSnackBar('enter_phone_number'.tr);
                       }
                       
-                      else if (!ksaNumber.isValidNumber(_email)) {
+                      else if (!ksaNumber.isValidNumber(email)) {
                         showCustomSnackBar('enter_valid_phone'.tr);
                       }
                       
-                      else if (_password.isEmpty) {
+                      else if (password.isEmpty) {
                         showCustomSnackBar('enter_password'.tr);
-                      }else if (_password.length < 6) {
+                      }else if (password.length < 6) {
                         showCustomSnackBar('password_should_be'.tr);
                       }else {
-                        authController.login(_email, _password).then((status) async {
+                        authController.login(email, password).then((status) async {
                           if (status.isSuccess) {
                             if (authController.isActiveRememberMe) {
-                              authController.saveUserNumberAndPassword(_emailController!.text.toString().trim(), _password);
+                              authController.saveUserNumberAndPassword(_emailController!.text.toString().trim(), password);
                             } else {
                               authController.clearUserEmailAndPassword();
                             }

@@ -2,6 +2,9 @@ import 'package:eamar_delivery/controller/auth_controller.dart';
 import 'package:eamar_delivery/controller/splash_controller.dart';
 import 'package:eamar_delivery/utill/dimensions.dart';
 import 'package:eamar_delivery/utill/images.dart';
+import 'package:eamar_delivery/utill/utils.dart';
+import 'package:eamar_delivery/view/base/confirmation_dialog.dart';
+import 'package:eamar_delivery/view/base/signout_confirmation_dialog.dart';
 import 'package:eamar_delivery/view/screens/auth/login_screen.dart';
 import 'package:eamar_delivery/view/screens/html/html_viewer_screen.dart';
 import 'package:eamar_delivery/view/screens/language/choose_language_screen.dart';
@@ -172,9 +175,8 @@ Widget? mainPage;
         //     blurRadius: 0.0,
         //   ),
         // ],
-        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
-      child:mainPage!,
       
       //  Scaffold(
       //   appBar: AppBar(
@@ -208,7 +210,7 @@ Widget? mainPage;
         child: Container(
           padding: 
           
-          EdgeInsets.only(
+          const EdgeInsets.only(
             left: 15 , right: 15
           ),
           child: ListTileTheme(
@@ -241,14 +243,14 @@ Align(
     
             BoxShadow(
               blurRadius: 6,
-              color: Color(0xFFF000000).withOpacity(.31),
-              offset: Offset(0, 1)
+              color: const Color(0xfff000000).withOpacity(.31),
+              offset: const Offset(0, 1)
             )
           
            ]
         ),
     
-        child: Center(
+        child: const Center(
           child:Icon(
             Icons.clear,
             color: Colors.white , 
@@ -271,25 +273,28 @@ Align(
                         bottom: 10.0,
                       ),
                       clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.black26,
                         shape: BoxShape.circle,
                       ),
                       child: 
                       Get.find<AuthController>().profileModel2 != null?
 
-                      Image.network('${Get.find<SplashController>().baseUrls!.reviewImageUrl}/delivery-man/${Get.find<AuthController>().profileModel.image}')
+                      Image.network('${Get.find<SplashController>().baseUrls!.reviewImageUrl}/delivery-man/${Get.find<AuthController>().profileModel2!.image}')
                       :
                       Image.asset(Images.placeholder)
                       
                       
                       ,
                     ),
-               Text(Get.find<AuthController>().profileModel.fName != null
+               Text(Get.find<AuthController>().profileModel2!.fName != null
                ?
-                '${Get.find<AuthController>().profileModel.fName ?? ''} ${Get.find<AuthController>().profileModel.lName ?? ''}'
+                '${Get.find<AuthController>().profileModel2!.fName ?? ''} ${Get.find<AuthController>().profileModel2!.lName ?? ''}'
                     : "",
-                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeDefault, color: 
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 
+                
+                isTablet(context)? 30:
+                Dimensions.fontSizeDefault, color: 
                 
                 Colors.white
                 ),
@@ -301,10 +306,13 @@ Align(
 
 
 
-           Text(Get.find<AuthController>().profileModel.phone != null
-               ? '${Get.find<AuthController>().profileModel.phone ?? ''} '
+           Text(Get.find<AuthController>().profileModel2!.phone != null
+               ? '${Get.find<AuthController>().profileModel2!.phone ?? ''} '
                     : "",
-                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeDefault, color: 
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize:
+                
+                isTablet(context)? 30:
+                 Dimensions.fontSizeDefault, color: 
                 
                 Colors.white
                 ),
@@ -317,7 +325,7 @@ Align(
 
 
 
-SizedBox(height: 50,),
+const SizedBox(height: 50,),
 
                 ListTile(
                   onTap: () {
@@ -333,8 +341,14 @@ setState(() {
   _advancedDrawerController.hideDrawer();
 
                   },
-                  leading: Icon(Icons.home),
-                  title: Text('home'.tr),
+                  leading:  Icon(Icons.home ,  size: isTablet(context)?30:24,),
+                  title: Text('home'.tr,  
+                  
+                  style: TextStyle(
+                    fontSize:isTablet(context)?25: 18
+                  ),
+                  
+                  ),
                 ),
                 ListTile(
                   onTap: () {
@@ -351,10 +365,17 @@ setState(() {
 
 
                   },
-                  leading: Icon(Icons.history),
+                  leading:  Icon(Icons.history,  
+                  
+                  size: isTablet(context)? 30: 24,
+                  ),
                   title: Text(
 
-                     'order_history'.tr,
+                     'order_history'.tr,  
+                  
+                  style: TextStyle(
+                    fontSize:isTablet(context)?25: 18
+                  ),
                   ),
                 ),
                 ListTile(
@@ -363,7 +384,7 @@ setState(() {
                     mainPage =  ChooseLanguageScreen(
                     handleMenuePressed: _handleMenuButtonPressed,
                     
-                    advancedDrawerController: _advancedDrawerController!,
+                    advancedDrawerController: _advancedDrawerController,
                     fromHomeScreen: false);
                     setState(() {
                       
@@ -371,10 +392,14 @@ setState(() {
 
                     _advancedDrawerController.hideDrawer();
                   },
-                  leading: Icon(Icons.language),
+                  leading:  Icon(Icons.language,  size: isTablet(context)? 30: 24,),
                   title: Text(
 
-                     'change_language'.tr,
+                     'change_language'.tr, 
+                  
+                  style: TextStyle(
+                    fontSize:isTablet(context)?25: 18
+                  ),
                   ),
                 ),
                  ListTile(
@@ -399,8 +424,12 @@ mainPage =     HtmlViewerScreen(isPrivacyPolicy: false ,
 
 
                   },
-                  leading: Icon(Icons.list),
-                  title: Text('terms_and_condition'.tr),
+                  leading:  Icon(Icons.list , size: isTablet(context)? 30:24,),
+                  title: Text('terms_and_condition'.tr,  
+                  
+                  style: TextStyle(
+                    fontSize:isTablet(context)?25: 18
+                  ),),
                 ),
                  ListTile(
                   onTap: () {
@@ -419,15 +448,22 @@ mainPage =     HtmlViewerScreen(isPrivacyPolicy: false ,
 
                     _advancedDrawerController.hideDrawer();
                   },
-                  leading: Icon(Icons.privacy_tip),
-                  title: Text('privacy_policy'.tr),
+                  leading:  Icon(Icons.privacy_tip,  
+                  size: isTablet(context)? 30:24,
+                  
+                  ),
+                  title: Text('privacy_policy'.tr,  
+                  
+                  style: TextStyle(
+                    fontSize:isTablet(context)?25: 18
+                  ),),
                 ),
                 
                
                
-                Spacer(),
+                const Spacer(),
                 DefaultTextStyle(
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     color: Colors.white
                   ),
@@ -443,17 +479,27 @@ mainPage =     HtmlViewerScreen(isPrivacyPolicy: false ,
                     
                     
                     TextButton.icon(onPressed: (){
- Get.find<AuthController>().clearSharedData().then((condition) {
-                          Navigator.pop(context);
-                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  LoginScreen()),
-                           (route) => false);
-                        });
 
-                    }, icon: Icon(
+showDialog(context: context, builder: (_)=>   SignOutConfirmationDialog(
+ ));
+
+
+
+//  Get.find<AuthController>().clearSharedData().then((condition) {
+//                           Navigator.pop(context);
+//                           Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  LoginScreen()),
+//                            (route) => false);
+//                         });
+
+                    }, icon:  Icon(
                       Icons.logout ,color: Colors.white,
+                      size: isTablet(context)? 30: 24,
                     ), label: Text('logout'.tr ,
                     
-                    style: TextStyle(
+                    style:  TextStyle(
+                    
+                    fontSize:isTablet(context)?25: 18
+                  ,
                       color: Colors.white
                     ),
                     ))
@@ -466,6 +512,7 @@ mainPage =     HtmlViewerScreen(isPrivacyPolicy: false ,
           ),
         ),
       ),
+      child:mainPage!,
     );
    
    
