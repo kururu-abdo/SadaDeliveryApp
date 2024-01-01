@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
@@ -25,12 +26,17 @@ class ChooseLanguageScreen extends StatelessWidget {
     Get.find<LanguageController>().initializeAllLanguages(context);
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
 centerTitle: true, 
 backgroundColor: Theme.of(context).primaryColor,
         title: Text('choose_the_language'.tr ,
-        
+        style: TextStyle(
+
+           fontSize:
+                                  isTablet(context)? 24:  18,
+                                  color: Colors.white
+        ),
         ),
 
         leading: 
@@ -38,8 +44,10 @@ backgroundColor: Theme.of(context).primaryColor,
 IconButton(onPressed: (){
 
   Navigator.pop(context);
-}, icon: Icon(
+}, icon:  Icon(
   Icons.arrow_back_ios ,color: Colors.white,
+
+  size: isTablet(context)? 30: 24,
 )):
 
             
@@ -52,10 +60,10 @@ IconButton(onPressed: (){
               valueListenable: advancedDrawerController!,
               builder: (_, value, __) {
                 return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 250),
                   child: Icon(
                     value.visible ? Icons.clear : Icons.menu,
-                    key: ValueKey<bool>(value.visible),
+                    key: ValueKey<bool>(value.visible),  size: isTablet(context)? 30: 24,
                   ),
                 );
               },
@@ -77,7 +85,12 @@ IconButton(onPressed: (){
                 const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall, top: Dimensions.paddingSizeSmall),
-                  child: Text('choose_the_language'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 22, color: Theme.of(context).highlightColor),),
+                  child: Text('choose_the_language'.tr, 
+                  
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: 
+                  
+                     isTablet(context)? 30:
+                  22, color: Theme.of(context).highlightColor),),
                 ),
                 const SizedBox(height: 20),
                 const SizedBox(height: 20),
@@ -98,11 +111,11 @@ IconButton(onPressed: (){
                           AppConstants.languages[languageController.selectIndex].languageCode!,
                           AppConstants.languages[languageController.selectIndex].countryCode,
                         ));
-                        if (fromHomeScreen!) {
+                        // if (fromHomeScreen!) {
                           Navigator.pop(context);
-                        } else {
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) =>  LoginScreen()));
-                        }
+                        // } else {
+                        //   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) =>  LoginScreen()));
+                        // }
                       }else {
                         showCustomSnackBar('select_a_language'.tr);
                       }
@@ -121,19 +134,20 @@ IconButton(onPressed: (){
   Widget _languageWidget({BuildContext? context, LanguageModel? languageModel, LanguageController? languageController, int? index}) {
     return InkWell(
       onTap: () {
-        languageController!.setSelectIndex(index!);
+        languageController.setSelectIndex(index!);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding:  EdgeInsets.symmetric(horizontal:isTablet(context!)?40: 20),
         decoration: BoxDecoration(
-          color: languageController!.selectIndex == index ? Theme.of(context!).primaryColor.withOpacity(.15) : null,
+          color: languageController!.selectIndex == index ? 
+          Theme.of(context).primaryColor.withOpacity(.15) : null,
           border: Border(
               top: BorderSide(
                   width: languageController.selectIndex == index ? 1.0 : 0.0,
-                  color: languageController.selectIndex == index ? Theme.of(context!).primaryColor : Colors.transparent),
+                  color: languageController.selectIndex == index ? Theme.of(context).primaryColor : Colors.transparent),
               bottom: BorderSide(
                   width: languageController.selectIndex == index ? 1.0 : 0.0,
-                  color: languageController.selectIndex == index ? Theme.of(context!).primaryColor : Colors.transparent)),
+                  color: languageController.selectIndex == index ? Theme.of(context).primaryColor : Colors.transparent)),
         ),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -145,26 +159,33 @@ IconButton(onPressed: (){
                         ? Colors.transparent
                         : (languageController.selectIndex - 1) == (index! - 1)
                             ? Colors.transparent
-                            : Theme.of(context!).dividerColor.withOpacity(.2))),
+                            : Theme.of(context).dividerColor.withOpacity(.2))),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Image.asset(languageModel!.imageUrl!, width: 34, height: 34),
+                  Image.asset(languageModel!.imageUrl!, width:
+                  
+                  isTablet(context)?50:
+                   34, height: isTablet(context)?50:34),
                   const SizedBox(width: 30),
                   Text(
                     languageModel.languageName!,
-                    style: Theme.of(context!).textTheme.headline2!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color),
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      fontSize: isTablet(context)? 30:20,
+                      
+                      color:
+                     Theme.of(context).textTheme.bodyLarge!.color),
                   ),
                 ],
               ),
               languageController.selectIndex == index
                   ? Image.asset(
                       Images.done,
-                      width: 17,
-                      height: 17,
+                      width:isTablet(context)?30: 17,
+                      height:isTablet(context)?30: 17,
                       color: Theme.of(context).primaryColorLight,
                     )
                   : const SizedBox.shrink()

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -17,7 +18,7 @@ class HtmlViewerScreen extends StatelessWidget {
    HtmlViewerScreen({Key? key, @required this.isPrivacyPolicy, this.advancedDrawerController, this.handleMenuePressed}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    String _data = isPrivacyPolicy! ? Get.find<SplashController>().configModel.privacyPolicy
+    String data = isPrivacyPolicy! ? Get.find<SplashController>().configModel.privacyPolicy
         : Get.find<SplashController>().configModel.termsConditions;
     return Scaffold(
       appBar:
@@ -27,6 +28,10 @@ class HtmlViewerScreen extends StatelessWidget {
         title: Text(
           isPrivacyPolicy! ? 'privacy_policy'.tr :
        'terms_and_condition'.tr ,
+       style: TextStyle(
+        fontSize: isTablet(context)? 25: 18, 
+        color: Colors.white 
+       ),
         ),
         centerTitle: true,
 
@@ -43,10 +48,12 @@ class HtmlViewerScreen extends StatelessWidget {
               valueListenable: advancedDrawerController!,
               builder: (_, value, __) {
                 return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 250),
                   child: Icon(
                     value.visible ? Icons.clear : Icons.menu,
                     key: ValueKey<bool>(value.visible),
+
+                    size: isTablet(context)?  30: 24,
                   ),
                 );
               },
@@ -72,7 +79,7 @@ class HtmlViewerScreen extends StatelessWidget {
           padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
           physics: const BouncingScrollPhysics(),
           child: HtmlWidget(
-            _data,
+            data,
             key: Key(isPrivacyPolicy! ? 'privacy_policy' : 'terms_and_condition'),
             // ignore: missing_return
             onTapUrl: (String url) {

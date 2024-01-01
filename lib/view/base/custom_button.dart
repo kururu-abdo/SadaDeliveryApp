@@ -1,3 +1,4 @@
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:eamar_delivery/utill/color_resources.dart';
 import 'package:eamar_delivery/utill/dimensions.dart';
@@ -12,7 +13,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height:  isTablet(context)? 70: 50,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           boxShadow: [
@@ -25,8 +26,11 @@ class CustomButton extends StatelessWidget {
         onPressed: onTap!,
         style: TextButton.styleFrom(padding: const EdgeInsets.all(0)),
         child: Text(btnTxt ?? "",
-            style: Theme.of(context).textTheme.headline3!.copyWith(
-                color: isShowBorder! ? Theme.of(context).textTheme.bodyText1!.color : Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeLarge)),
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                color: isShowBorder! ? Theme.of(context).textTheme.bodyLarge!.color : Theme.of(context).primaryColorDark, fontSize: 
+                isTablet(context)?30:
+                
+                Dimensions.fontSizeLarge)),
       ),
     );
   }

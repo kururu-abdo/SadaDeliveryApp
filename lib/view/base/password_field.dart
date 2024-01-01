@@ -1,3 +1,4 @@
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:eamar_delivery/utill/color_resources.dart';
 import 'package:eamar_delivery/utill/dimensions.dart';
@@ -71,22 +72,25 @@ class _CustomTextFieldState extends State<PasswordField> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
           color: Theme.of(context).cardColor,
-          border: Border.all(color: widget.isShowBorder! ? 
-          ColorResources.colorMap[200]! :
-           Colors.transparent)),
+          // border: Border.all(color: widget.isShowBorder! ? 
+          // ColorResources.colorMap[200]! :
+          //  Colors.transparent)
+           ),
        child: 
        
        
                 TextFormField(
 
-
+onTapOutside: (pointer){
+FocusManager.instance.primaryFocus?.unfocus();
+},
                       maxLines: widget.isPassword! ?
                1:
                widget.maxLine ,
 
         controller: widget.controller,
         focusNode: widget.focusNode,
-        style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).highlightColor, fontSize: Dimensions.fontSizeLarge),
+        style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).highlightColor, fontSize: Dimensions.fontSizeLarge),
         textInputAction: widget.inputAction,
         // keyboardType: widget.inputType,
         cursorColor: Theme.of(context).primaryColor,
@@ -102,7 +106,7 @@ class _CustomTextFieldState extends State<PasswordField> {
                    //  obscureText: true,
 
 decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 22),
+          contentPadding: const EdgeInsets.symmetric(vertical: 30, horizontal: 22),
          
           border: OutlineInputBorder(
             borderSide: BorderSide(
@@ -120,13 +124,15 @@ decoration: InputDecoration(
            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor)),
               //  hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
 
-          errorStyle: TextStyle(height: 1.5),
+          errorStyle: const TextStyle(height: 1.5),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           isDense: true,
           helperText: null,
           // hintText: widget.hintText,
           fillColor: widget.fillColor ?? Theme.of(context).cardColor,
-          hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
+          hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize:
+                 isTablet(context)? 18: 
+           Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
           filled: true,
            counterText: '',
           prefixIcon: widget.isShowPrefixIcon!
@@ -279,7 +285,7 @@ widget.onTap!();
 
         controller: widget.controller,
         focusNode: widget.focusNode,
-        style: Theme.of(context).textTheme.headline2!.copyWith(color: Theme.of(context).highlightColor, fontSize: Dimensions.fontSizeLarge),
+        style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).highlightColor, fontSize: Dimensions.fontSizeLarge),
         textInputAction: widget.inputAction,
         // keyboardType: widget.inputType,
         cursorColor: Theme.of(context).primaryColor,
@@ -302,7 +308,7 @@ widget.onTap!();
           helperText: null,
           hintText: widget.hintText,
           fillColor: widget.fillColor ?? Theme.of(context).cardColor,
-          hintStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
+          hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.colorGreyChateau),
           filled: true,
            counterText: '',
           prefixIcon: widget.isShowPrefixIcon!

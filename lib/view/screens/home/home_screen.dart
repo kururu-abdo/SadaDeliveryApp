@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:eamar_delivery/view/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
     _loadData(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           // leadingWidth: 0,
@@ -55,6 +56,7 @@ class HomeScreen extends StatelessWidget {
                      Text('logout'.tr ,
                     
                     style: TextStyle(
+                      fontSize: isTablet(context)?  25:18,
                       color: Colors.white
                     ),
                     )
@@ -125,10 +127,11 @@ class HomeScreen extends StatelessWidget {
               valueListenable: advancedDrawerController!,
               builder: (_, value, __) {
                 return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 250),
                   child: Icon(
                     value.visible ? Icons.clear : Icons.menu,
                     key: ValueKey<bool>(value.visible),
+                    size: isTablet(context)? 30: 24,
                   ),
                 );
               },
@@ -140,7 +143,13 @@ class HomeScreen extends StatelessWidget {
           
           
           title:
-          Text('home'.tr) , centerTitle: true,
+          Text('home'.tr,  
+          
+          style: TextStyle(
+            fontSize: isTablet(context)?25:18
+          ),
+          
+          ) , centerTitle: true,
           
           
           
@@ -177,47 +186,52 @@ class HomeScreen extends StatelessWidget {
 
 
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-          child:  GetBuilder<OrderController>(builder: (orderController) {
-            return Column(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('active_order'.tr, style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                const SizedBox(height: 10),
-                Expanded(child: RefreshIndicator(
-                  child:
+        body: SizedBox.expand(
+          child: Padding(
+            padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+            child:  GetBuilder<OrderController>(builder: (orderController) {
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('active_order'.tr, style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize:
                   
-!orderController.isLoading?                  
-                  //  orderController.currentOrders != null ?
-                   orderController.currentOrders.isNotEmpty ?
-
-
-                    ListView.builder(
-                    itemCount: orderController.currentOrders.length,
-                    physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                    itemBuilder: (context, index) => 
-                    OrderWidget(orderModel: orderController.currentOrders[index], index: index,),
-                  ) : Center(child: Text('no_order_found'.tr, style: Theme.of(context).textTheme.headline3,),
-                  ) 
-                  : 
-                  
-                  
-                  Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor),),
-
-
-
-                  key: _refreshIndicatorKey,
-                  displacement: 0,
-                  color: ColorResources.colorWhite,
-                  backgroundColor: Theme.of(context).primaryColor,
-                  onRefresh: () {
-                    return orderController.orderRefresh(context);
-                  },
-                ),
-                ),
-              ],
-            );
-          }),
+                  isTablet(context)?30:
+                   Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                  const SizedBox(height: 10),
+                  Expanded(child: RefreshIndicator(
+                    key: _refreshIndicatorKey,
+                    displacement: 0,
+                    color: ColorResources.colorWhite,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    onRefresh: () {
+                      return orderController.orderRefresh(context);
+                    },
+                    child:
+                    
+          !orderController.isLoading?                  
+                    //  orderController.currentOrders != null ?
+                     orderController.currentOrders.isNotEmpty ?
+          
+          
+                      ListView.builder(
+                      itemCount: orderController.currentOrders.length,
+                      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                      itemBuilder: (context, index) => 
+                      OrderWidget(orderModel: orderController.currentOrders[index], index: index,),
+                    ) : Center(child: Text('no_order_found'.tr, style:
+                     Theme.of(context).textTheme.displaySmall!.copyWith(
+                      fontSize: isTablet(context)?30: 20
+                     ),),
+                    ) 
+                    : 
+                    
+                    
+                    Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor),),
+                  ),
+                  ),
+                ],
+              );
+            }),
+          ),
         ),
       ),
     );

@@ -47,8 +47,10 @@ leading:
                 return AnimatedSwitcher(
                   duration: const Duration(milliseconds: 250),
                   child: Icon(
+                    
                     value.visible ? Icons.clear : Icons.menu,
                     key: ValueKey<bool>(value.visible),
+                  size: isTablet(context)? 30:24,
                   ),
                 );
               },
@@ -65,7 +67,8 @@ leading:
         title: Text('order_history'.tr, 
         
         style:
-        const TextStyle(
+         TextStyle(
+          fontSize: isTablet(context)?24:18 ,
           color: Colors.white
         )
         //  Theme.of(context).textTheme.headline3!.copyWith(color: Theme.of(context).textTheme.bodyText1!.color, fontSize: Dimensions.fontSizeLarge),
@@ -122,28 +125,47 @@ leading:
                                   child: Text(
                                     '${'order_id'.tr} #${orderController.allOrderHistory[index].id}',
                                     style:
-                                    rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color),
+                                    rubikMedium.copyWith(fontSize: 
+                                    
+                                    isTablet(context)? 20:
+                                    
+                                    Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                Text('amount'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color)),
+                                Text('amount'.tr, style: rubikRegular.copyWith(
+                                  fontSize:
+                                  isTablet(context)? 20:  Dimensions.fontSizeSmall,
+                                  
+                                  
+                                  color: Theme.of(context).textTheme.bodyLarge!.color)),
                               ],
                             ),
                             const SizedBox(height: Dimensions.paddingSizeExtraSmall),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                               Row(
                                 children: [
-                                  Text('status'.tr, style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color)),
+                                  Text('status'.tr, style: rubikRegular.copyWith(
+                                     fontSize:
+                                  isTablet(context)? 20:  Dimensions.fontSizeSmall,
+                                    
+                                    
+                                    color: Theme.of(context).textTheme.bodyLarge!.color)),
                                   Text(orderController.allOrderHistory[index].orderStatus!.tr,
-                                      style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
+                                      style: rubikMedium.copyWith(
+                                        
+                                         fontSize:
+                                  isTablet(context)? 20:  Dimensions.fontSizeSmall,
+                                        color: Theme.of(context).primaryColor)),
                                 ],
                               ),
                               Text(PriceConverter.convertPrice(orderController.allOrderHistory[index].orderAmount!),
                                   style: rubikMedium.copyWith(color: 
-                                  Colors.red
+                                  Colors.red,
                                   // Theme.of(context)
-                                
+                                 fontSize:
+                                  isTablet(context)? 20:  Dimensions.fontSizeSmall,
                                   
                                   )),
                             ]),
@@ -165,7 +187,13 @@ leading:
                                 
                                 
                                 ,
-                                style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color),
+                                style: rubikRegular.copyWith(fontSize: 
+                                
+                                
+                               
+                                  isTablet(context)? 20:  
+                                
+                                Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color),
                               ),
                             ]),
                           ]),

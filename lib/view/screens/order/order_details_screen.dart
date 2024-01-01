@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:convert';
 import 'package:eamar_delivery/controller/auth_controller.dart';
+import 'package:eamar_delivery/utill/utils.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:eamar_delivery/controller/localization_controller.dart';
@@ -41,9 +42,11 @@ class OrderDetailsScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(
+          icon:  Icon(
             Icons.arrow_back_ios,
-            color: Colors.white
+            color: Colors.white , 
+
+            size: isTablet(context)?  30:24,
           ),
           onPressed: () {
             Navigator.of(context).pop();
@@ -53,7 +56,10 @@ class OrderDetailsScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.displaySmall!.copyWith(
             
             
-            fontSize: Dimensions.fontSizeLarge, color: Colors.white),
+            fontSize: 
+            isTablet(context)? 30:
+            
+            Dimensions.fontSizeLarge, color: Colors.white),
         ),
       ),
       body: GetBuilder<OrderController>(
@@ -90,8 +96,15 @@ class OrderDetailsScreen extends StatelessWidget {
                               Expanded(
                                 child: Row(mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text('order_id'.tr, style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                                    Text(' # ${orderModel!.id}', style: rubikMedium.copyWith(color: Theme.of(context).highlightColor)),
+                                    Text('order_id'.tr, style: rubikRegular.copyWith(
+                                      fontSize: isTablet(context)? 30:24,
+                                      
+                                      
+                                      color: Theme.of(context).highlightColor)),
+                                    Text(' # ${orderModel!.id}', style: rubikMedium.copyWith(
+                                      
+                                      fontSize: isTablet(context)? 30:24,
+                                      color: Theme.of(context).highlightColor)),
                                   ],
                                 ),
                               ),
@@ -99,11 +112,14 @@ class OrderDetailsScreen extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    const Icon(Icons.watch_later, size: 17),
+                                     Icon(Icons.watch_later, size:isTablet(context)? 25: 17),
                                     const SizedBox(width: Dimensions.paddingSizeExtraSmall),
                                     Padding(
                                       padding: const EdgeInsets.only(right: 2.0),
-                                      child: Text(DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderModel!.createdAt!)), maxLines: 1, overflow: TextOverflow.ellipsis, style: rubikRegular.copyWith(color: Theme.of(context).highlightColor,fontSize: Dimensions.fontSizeExtraSmall)),
+                                      child: Text(DateConverter.localDateToIsoStringAMPM(DateTime.parse(orderModel!.createdAt!)), maxLines: 1, overflow: TextOverflow.ellipsis, style: rubikRegular.copyWith(color: Theme.of(context).highlightColor,fontSize:
+                                      isTablet(context)? 30:
+                                      
+                                       Dimensions.fontSizeExtraSmall)),
                                     ),
                                   ],
                                 ),
@@ -114,15 +130,38 @@ Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(children: [
-                                  Text('${'item'.tr}:', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
+                                  Text('${'item'.tr}:', style: rubikRegular.copyWith(
+                                    fontSize: isTablet(context)? 20:15,
+                                    
+                                    color: 
+                                  Theme.of(context).highlightColor)),
                                   const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                                  Text(orderController.orderDetails!.length.toString(), style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
+                                  Text(orderController.orderDetails!.length.toString(), 
+                                  style: rubikMedium.copyWith(
+                                    fontSize: isTablet(context)? 20:15,
+                                    
+                                    color: Theme.of(context).primaryColor)),
                                 ]),
                                 orderModel!.orderStatus == 'processing' || orderModel!.orderStatus == 'out_for_delivery'
                                     ? Row(children: [
-                                        Text('${'payment_status'.tr}:', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
+                                        Text('${'payment_status'.tr}:',
+                                        
+                                         style: rubikRegular.copyWith(
+                                          fontSize: isTablet(context)? 20:15,
+                                          
+                                          color: Theme.of(context).highlightColor)),
                                         const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                                        Text(orderModel!.paymentStatus!.tr , style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),
+
+
+
+
+                                        Text(orderModel!.paymentStatus!.tr , style: rubikMedium.copyWith(color: 
+                                        Theme.of(context).primaryColor, 
+
+                                        fontSize: isTablet(context)? 20:15
+                                        
+                                        
+                                        )),
                                       ])
                                     : const SizedBox.shrink(),
                               ],
@@ -133,7 +172,7 @@ Row(
                             const Divider(height: 20),
 
                             SizedBox(
-                              height: 200,
+                              height:isTablet(context)? 300: 200,
                               
                               child: ListView.builder(
                                 shrinkWrap: true,
@@ -149,7 +188,10 @@ Row(
                               margin: const EdgeInsets.all(
                                 8
                               ),
-                              height: 150, width:MediaQuery.of(context).size.width/3 ,
+                              height: 
+                              isTablet(context)? 350:
+                              
+                              150, width:MediaQuery.of(context).size.width/3 ,
                               
                               decoration: BoxDecoration(
                               
@@ -164,7 +206,7 @@ Row(
                                 children: [
 
 SizedBox(
-                                        height: 70, width: double.infinity,
+                                        height:isTablet(context)? 200: 70, width: double.infinity,
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(0),
                                           child: FadeInImage.assetNetwork(
@@ -173,7 +215,7 @@ SizedBox(
                                             ),
                                             placeholder: Images.placeholder,
                                             image: '${Get.find<SplashController>().baseUrls!.productThumbnailUrl}/${orderController.orderDetails![index]!.productDetails.thumbnail}',
-                                            height: 70, width: double.infinity, fit: BoxFit.cover,
+                                            height:isTablet(context)? 200: 70, width: double.infinity, fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
@@ -190,12 +232,13 @@ SizedBox(
                                             width: double.infinity,
 
                                             child: Text(' ${orderController.orderDetails![index]!.productDetails.name}', 
+
                                             overflow: TextOverflow.ellipsis,
                                             
                                             style: rubikMedium.copyWith(
                                               color: Theme.of(context).primaryColor ,
 
-                                              fontSize: 14 ,fontWeight: FontWeight.w400
+                                              fontSize: isTablet(context)? 20:14 ,fontWeight: FontWeight.w400
                                             ),),
                                           ),
 
@@ -208,16 +251,23 @@ SizedBox(
                                                     
                                                     ,
 
-                                                                                                                              fontSize: 10,
+                                                                                                                              fontSize:
+                                                                                                                              
+                                                                                                                              isTablet(context)? 15:
+                                                                                                                              
+                                                                                                                               10,
 
                                                     fontWeight: FontWeight.w400
                                                     )),
                                                 Text(' ${orderController.orderDetails![index]!.qty}',
                                                     style: rubikMedium.copyWith(color: Theme.of(context).primaryColor
                                                     
-                                                    ,                                                fontSize: 10,
+                                                    ,                                                fontSize: 
+                                                    
+                                                    isTablet(context)? 15:
+                                                    10,
 
-                                                    fontWeight: FontWeight.w400
+                                                    fontWeight:isTablet(context)? FontWeight.bold: FontWeight.w400
 
                                                     
                                                     ),
@@ -233,13 +283,20 @@ SizedBox(
                                               children: [
                                                 Text('${'price'.tr}:',
                                                     style: rubikRegular.copyWith(color: Theme.of(context).highlightColor,
-                                                                                                    fontSize: 10  ,                                              fontWeight: FontWeight.w400
+                                                                                                    fontSize:isTablet(context)? 15: 10 
+                                                                                                     ,                                              fontWeight: 
+                                                                                                     
+                                                                                                     isTablet(context)? FontWeight.bold:
+                                                                                                     FontWeight.w400
 
                                                     )),
                                                 Text( PriceConverter.convertPrice(orderController.orderDetails![index]!.price),
                                                     style: rubikMedium.copyWith(color: Colors.red ,
                                                     
-                                                    fontSize: 10  ,                                              fontWeight: FontWeight.w400
+                                                    fontSize: 10  ,                                              fontWeight: 
+                                                    isTablet(context)? FontWeight.bold:
+                                                    
+                                                    FontWeight.w400
 
                                                     
                                                     )),
@@ -333,21 +390,35 @@ const SizedBox(height: 20,),
                                 )],
                               ),
                               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                Text('customer'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).highlightColor,)),
+                                Text('customer'.tr, 
+                                style: 
+                                rubikRegular.copyWith(fontSize:
+                                
+                                isTablet(context)? 18:
+                                 Dimensions.fontSizeExtraSmall, 
+                                
+                                color: Theme.of(context).highlightColor,)),
                                 ListTile(
-                                  leading: SizedBox(width: 70,height: 70,
+                                  leading: SizedBox(width:
+                                  
+                                  isTablet(context)? 120:
+                                   70,height:isTablet(context)? 120: 70,
                                     child: ClipRect(
                                       child: FadeInImage.assetNetwork(
                                         imageErrorBuilder: (c,o,s) => Image.asset(Images.placeholder),
                                         placeholder: Images.placeholder,
                                         image: '${Get.find<SplashController>().baseUrls!.customerImageUrl}/${orderModel!.customer!.image ?? ''}',
-                                        height: 40, width: 40, fit: BoxFit.cover,
+                                        height:isTablet(context)? 120: 40, width: isTablet(context)? 120:40, fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
                                   title: Text(
                                     '${orderModel!.customer!.fName ?? ''} ${orderModel!.customer!.lName ?? ''}',
-                                    style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
+                                    style: rubikRegular.copyWith(fontSize:
+                                    
+                                    isTablet(context)? 30:
+                                    
+                                     Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
                                   ),
                                   trailing: InkWell(
                                     onTap: () {launch('tel:${orderModel!.customer!.phone}');
@@ -359,20 +430,40 @@ const SizedBox(height: 20,),
                                       //  Theme.of(context).shadowColor
                                       
                                       ),
-                                      child: const Icon(Icons.call_outlined, color: Colors.white),
+                                      child:  Icon(Icons.call_outlined, 
+                                      
+                                      size: isTablet(context)? 30:24,
+                                      
+                                      color: Colors.white),
                                     ),
                                   ),
                                 ),
                                 const SizedBox(height: Dimensions.paddingSizeDefault),
-                                Text('${'order_note'.tr} : ${orderModel!.orderNote != null?orderModel!.orderNote ?? '': ""}', style: rubikRegular),
+                                Text('${'order_note'.tr} : ${orderModel!.orderNote != null?orderModel!.orderNote ?? '': ""}', style: rubikRegular
+                                .copyWith(
+                                  fontSize: isTablet(context)? 20:15
+                                )
+                                
+                                
+                                ),
                                 const SizedBox(height: Dimensions.paddingSizeDefault),
-                                Text('${'address'.tr} : ${orderModel!.shippingAddressData != null ? orderModel!.shippingAddress!.address! : orderModel!.shippingAddress ?? ''}', style: rubikRegular),
+                                Text('${'address'.tr} : ${orderModel!.shippingAddressData != null ? orderModel!.shippingAddress!.address! : orderModel!.shippingAddress ?? ''}', style:
+                                 rubikRegular.copyWith(
+                                  fontSize: isTablet(context)? 20:15
+                                 )
+                                 
+                                 ),
                                 const SizedBox(height: Dimensions.paddingSizeDefault),
-                                Text('${'billing_address'.tr} : ${orderModel!.billingAddress != null ? jsonDecode(orderModel!.billingAddress!)['address'] : orderModel!.billingAddress ?? ''}', style: rubikRegular),
+                                Text('${'billing_address'.tr} : ${orderModel!.billingAddress != null ? jsonDecode(orderModel!.billingAddress!)['address'] : orderModel!.billingAddress ?? ''}',
+                                 style: rubikRegular.copyWith(
+                                  fontSize: isTablet(context)? 20:15
+                                 )),
 
                               ]),
                             ),
-                            const SizedBox(height: 20),
+                             SizedBox(height:
+                            isTablet(context)? 30:
+                             20),
 
 
 
@@ -392,8 +483,15 @@ const SizedBox(height: 20,),
 
 
    Row(children: [
-                                  Text('${'order_summary'.tr} :', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                                  Text('${'order_summary'.tr} :', style: rubikRegular.copyWith(
+                                    fontSize: isTablet(context)? 20:15,
+                                    
+                                    color: Theme.of(context).highlightColor)),
+                                   SizedBox(width:
+                                  isTablet(context)? 8:
+                                  
+                                  
+                                   Dimensions.paddingSizeExtraSmall),
 
 
                                 ]),
@@ -401,8 +499,8 @@ const SizedBox(height: 20,),
 
 
                             Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5
+                              padding:  EdgeInsets.symmetric(
+                                vertical: isTablet(context)? 9:5
                               ),
                               decoration: BoxDecoration(
 
@@ -413,18 +511,30 @@ const SizedBox(height: 20,),
                                 )
                               ),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                Text('items_price'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
-                                Text(PriceConverter.convertPrice( itemsPrice), style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
+                                Text('items_price'.tr, style: rubikRegular.copyWith(fontSize:
+                                isTablet(context)? 20:
+                                
+                                
+                                 Dimensions.fontSizeLarge)),
+                                Text(PriceConverter.convertPrice( itemsPrice),
+                                 style: rubikRegular.copyWith(fontSize: 
+                                 
+                                 isTablet(context)? 20:
+                                 
+                                 Dimensions.fontSizeLarge)),
                               ]),
                             )
                             
                             
                             ,
-                            const SizedBox(height: 10),
+                             SizedBox(height:
+                            
+                            isTablet(context)? 18:
+                             10),
 
                                Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5
+                              padding:  EdgeInsets.symmetric(
+                                vertical:isTablet(context)? 9: 5
                               ),
                               decoration: BoxDecoration(
 
@@ -435,12 +545,16 @@ const SizedBox(height: 20,),
                                 )
                               ),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                Text('tax'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+
+                                Text('tax'.tr, style: rubikRegular.copyWith(fontSize:
+                                
+                                isTablet(context)? 20:
+                                 Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                                 Text('(+) ${PriceConverter.convertPrice( tax)}',
-                                    style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                                    style: rubikRegular.copyWith(fontSize:isTablet(context)? 20: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                               ]),
                             ),
-                            const SizedBox(height: 10),
+                             SizedBox(height:isTablet(context)? 18: 10),
 
                             // const Padding(
                             //   padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
@@ -448,8 +562,8 @@ const SizedBox(height: 20,),
                             // ),
 
                                   Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5
+                              padding:  EdgeInsets.symmetric(
+                                vertical:isTablet(context)? 9: 5
                               ),
                               decoration: BoxDecoration(
 
@@ -463,22 +577,32 @@ const SizedBox(height: 20,),
                                 )
                               ),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                Text('subtotal'.tr, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                                Text('subtotal'.tr, style: rubikMedium.copyWith(fontSize: 
+                                isTablet(context)? 20:
+                                
+                                Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                                 Text(PriceConverter.convertPrice( subTotal),
-                                    style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                                    style: rubikMedium.copyWith(fontSize:
+                                    
+                                    isTablet(context)? 20:
+                                    
+                                     Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                               ]),
                             ),
-                            const SizedBox(height: 10),
+                             SizedBox(height: 
+                             isTablet(context)? 18:
+                             
+                             10),
 
 //  const Padding(
 //                           padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
 //                           child: CustomDivider(),
 //                         ),
 
-const SizedBox(height: 10,),
+
                             Container(
-                               padding: const EdgeInsets.symmetric(
-                                vertical: 5
+                               padding:  EdgeInsets.symmetric(
+                                vertical:isTablet(context)? 9: 5
                               ),
                               decoration: BoxDecoration(
 
@@ -489,16 +613,23 @@ const SizedBox(height: 10,),
                                 )
                               ),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                Text('discount'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                                Text('(-) ${PriceConverter.convertPrice( discount)}', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                                Text('discount'.tr, style: rubikRegular.copyWith(fontSize: 
+                                isTablet(context)? 20:
+                                
+                                Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                                Text('(-) ${PriceConverter.convertPrice( discount)}', style: rubikRegular.copyWith(
+                                  fontSize: 
+                                  
+                                  isTablet(context)? 20:
+                                  Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                               ]),
                             ),
                             const SizedBox(height: 10),
 
                             Container(
 
-                               padding: const EdgeInsets.symmetric(
-                                vertical: 5
+                               padding:  EdgeInsets.symmetric(
+                                vertical:isTablet(context)? 9: 5
                               ),
                               decoration: BoxDecoration(
 
@@ -509,18 +640,24 @@ const SizedBox(height: 10,),
                                 )
                               ),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                Text('coupon_discount'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                                Text('coupon_discount'.tr, style: rubikRegular.copyWith(fontSize:
+                                
+                                isTablet(context)? 20:
+                                 Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                                 Text(
                                   '(-) ${PriceConverter.convertPrice(orderModel!.discountAmount!)}',
-                                  style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
+                                  style: rubikRegular.copyWith(fontSize: 
+                                  isTablet(context)? 20:
+                                  
+                                  Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor),
                                 ),
                               ]),
                             ),
                             const SizedBox(height: 10),
 
                             Container(
-                               padding: const EdgeInsets.symmetric(
-                                vertical: 5
+                               padding:  EdgeInsets.symmetric(
+                                vertical:isTablet(context)? 9: 5
                               ),
                               decoration: BoxDecoration(
 
@@ -531,8 +668,17 @@ const SizedBox(height: 10,),
                                 )
                               ),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                Text('delivery_fee'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
-                                Text('(+) ${PriceConverter.convertPrice( deliveryCharge)}', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                                Text('delivery_fee'.tr, style: rubikRegular.copyWith(fontSize:
+                                
+                                isTablet(context)? 20:
+                                 Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
+                                Text('(+) ${PriceConverter.convertPrice( deliveryCharge)}', style: rubikRegular.copyWith(
+                                  
+                                  
+                                  fontSize:
+                                  
+                                  isTablet(context)? 20:
+                                   Dimensions.fontSizeLarge, color: Theme.of(context).highlightColor)),
                               ]),
                             ),
 
@@ -542,8 +688,8 @@ const SizedBox(height: 10,),
                             // ),
 
                             Container(
-                               padding: const EdgeInsets.symmetric(
-                                vertical: 5
+                               padding:  EdgeInsets.symmetric(
+                                vertical:isTablet(context)? 9: 5
                               ),
                               decoration: BoxDecoration(
 
@@ -562,8 +708,14 @@ const SizedBox(height: 10,),
                                 )
                               ),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                Text('total_amount'.tr, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor)),
-                                Text(PriceConverter.convertPrice( totalPrice), style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor),
+                                Text('total_amount'.tr, style: rubikMedium.copyWith(fontSize:
+                                
+                                isTablet(context)? 20:
+                                 Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor)),
+                                Text(PriceConverter.convertPrice( totalPrice), style: rubikMedium.copyWith(fontSize:
+                                
+                                isTablet(context)? 20:
+                                 Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor),
                                 ),
                               ]),
                             ),
@@ -600,7 +752,11 @@ const SizedBox(height: 10,),
                           color: Theme.of(context).colorScheme.background,
                         ),
                         child: Transform.rotate(
-                          angle: Get.find<LocalizationController>().isLtr ? pi * 2 : pi, // in radians
+                          angle: 
+                          
+                          0,
+                          
+                          //  Get.find<LocalizationController>().isLtr ? pi * 2 : pi, // in radians
                           child: Directionality(
                             textDirection: TextDirection.ltr,
                             child: SliderButton(
@@ -626,11 +782,11 @@ const SizedBox(height: 10,),
                               ///Put label over here
                               label: Text('swip_to_deliver_order'.tr, style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).primaryColor),),
                               dismissThresholds: 0.5,
-                              icon: const Center(
+                              icon:  Center(
                                   child: Icon(
                                     Icons.double_arrow_sharp,
                                     color: Colors.white,
-                                    size: 20.0,
+                                    size:isTablet(context)? 30: 20.0,
                                     semanticLabel: 'Text to announce in accessibility modes',
                                   )),
 
@@ -644,7 +800,7 @@ const SizedBox(height: 10,),
                           ),
                         ),
                       )
-                          : orderModel!.orderStatus == 'out_for_delivery'
+                          : orderModel!.orderStatus != 'out_for_delivery'
                           ? Container(
                         height: 50,
                         width: MediaQuery.of(context).size.width,
@@ -654,7 +810,12 @@ const SizedBox(height: 10,),
                           border: Border.all(color: Theme.of(context).dividerColor.withOpacity(.05)),
                           color: Theme.of(context).colorScheme.background,),
                         child: Transform.rotate(
-                          angle: Get.find<LocalizationController>().isLtr ? pi * 2 : pi, // in radians
+                          angle: 
+                          0
+                          // Get.find<LocalizationController>().isLtr ? pi * 2 : pi
+                          ,
+                          
+                           // in radians
                           child: Directionality(
                             textDirection: TextDirection.ltr, // set it to rtl
                             child: SliderButton(
