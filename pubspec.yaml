@@ -2,11 +2,7 @@ name: eamar_delivery
 # eamar_delivery
 description: A new Flutter application.
 publish_to: 'none'
-<<<<<<< HEAD
-version: 1.0.0+5
-=======
-version: 1.0.2+6
->>>>>>> 05e710efe671595c54d2342bbaa13c16c960181d
+version: 1.0.0+7
 
 environment:
   sdk: ">=2.19.0 <3.0.0"

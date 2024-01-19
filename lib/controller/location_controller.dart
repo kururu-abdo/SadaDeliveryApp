@@ -17,6 +17,8 @@ class LocationController extends GetxController implements GetxService{
   Position _currentLocation = Position(
     latitude: 0, longitude: 0,
     speed: 1, speedAccuracy: 1, altitude: 1, accuracy: 1, heading: 1, timestamp: DateTime.now(),
+    altitudeAccuracy: 0.0, 
+    headingAccuracy: 0.0
   );
   Position get currentLocation => _currentLocation;
 
