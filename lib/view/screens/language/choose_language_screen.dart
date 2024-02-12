@@ -111,8 +111,14 @@ IconButton(onPressed: (){
                           AppConstants.languages[languageController.selectIndex].languageCode!,
                           AppConstants.languages[languageController.selectIndex].countryCode,
                         ));
+Future.delayed(Duration.zero, () {
+  // Navigator.pop(context);
+});
+   handleMenuePressed!();
+                        // Get.back();
+                        // Navigator.pop(context);
                         // if (fromHomeScreen!) {
-                          Navigator.pop(context);
+                          // Navigator.pop(context);
                         // } else {
                         //   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) =>  LoginScreen()));
                         // }

@@ -915,8 +915,8 @@ fit: BoxFit.cover
           'destination_lat':widget.destination!.latitude,
           'destination_lng':widget.destination!.longitude,
 
-            "delivery_man_id":profileController.profileModel.id,
-            'delivery_man_name': '${profileController.profileModel.fName!} ${profileController.profileModel.lName!}'
+            "delivery_man_id":profileController.profileModel!.id,
+            'delivery_man_name': '${profileController.profileModel!.fName!} ${profileController.profileModel!.lName!}'
              ,
             "date": DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
     },

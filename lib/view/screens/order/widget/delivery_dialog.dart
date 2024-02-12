@@ -75,7 +75,7 @@ class DeliveryDialog extends StatelessWidget {
                               }
                             });
                           },
-                        ) : Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)));
+                        ) : Center(child: CircularProgressIndicator.adaptive(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)));
                       },
                     )),
                   ],

@@ -23,7 +23,11 @@ class OrderHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<OrderController>().getAllOrderHistory(context);
+   WidgetsBinding.instance.addPostFrameCallback((_){
+
+
+ Get.find<OrderController>().getAllOrderHistory(context);
+   });
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
@@ -213,7 +217,7 @@ leading:
            Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)))
            :
 
-                      Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)))
+                      Center(child: CircularProgressIndicator.adaptive(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)))
 
 
            

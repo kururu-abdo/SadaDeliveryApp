@@ -16,4 +16,5 @@ class Images {
   static const String logo = 'assets/image/logo.png';
   static const String splashLogo = 'assets/image/logo.png';
   static const String notificationIcon = 'assets/image/logo_splash.png';
+    static const String notFoundImage = 'assets/image/not_found.png';
 }

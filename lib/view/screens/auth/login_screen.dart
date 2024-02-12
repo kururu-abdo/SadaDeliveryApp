@@ -284,7 +284,7 @@ child:
                       }
                     },
                   ) : Center(
-                  child: CircularProgressIndicator(
+                  child: CircularProgressIndicator.adaptive(
                     valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
                   )),
                 ],
