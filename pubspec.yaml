@@ -2,7 +2,7 @@ name: eamar_delivery
 # eamar_delivery
 description: A new Flutter application.
 publish_to: 'none'
-version: 1.0.2+6
+version: 1.0.0+7
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -48,6 +48,7 @@ dependencies:
   location: ^4.4.0
   flutter_dash: ^1.0.0
   firebase_analytics: ^10.4.3
+  flutter_native_splash: ^2.3.10
 
 dev_dependencies:
   flutter_test:
