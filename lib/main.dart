@@ -21,7 +21,6 @@ import 'controller/splash_controller.dart';
 import 'controller/theme_controller.dart';
 import 'helper/get_di.dart' as di;
 import 'package:url_strategy/url_strategy.dart';
-import 'helper/get_di.dart';
 import 'helper/notification_helper.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
